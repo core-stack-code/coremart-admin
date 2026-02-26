@@ -1,8 +1,9 @@
+import DefaultPage from '@/components/common/default-page'
 import React from 'react'
 
 const DashboardPage: React.FC = () => {
     return (
-        <h1>Coremart Admin Dashboard</h1>
+        <DefaultPage title='Dashboard' />
     )
 }
 

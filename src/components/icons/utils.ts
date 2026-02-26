@@ -1,9 +1,49 @@
 import { 
-    Search
+    TicketPercent,
+    Boxes,
+    Settings,
+    User,
+    LogOut,
+    PanelLeft,
+    PanelLeftIcon, 
+    ChevronDown,
+    SunMoon,
+    AlertTriangle,
+    OctagonX
 } from "lucide-react";
+
+import { 
+    CategoriesIcon,
+    CustomersIcon,
+    DashboardIcon,
+    DiscountsIcon,
+    InventoryIcon,
+    OrdersIcon,
+    ProductsIcon,
+} from './custom/sidebar-icon'
 
 
 
 export const LUCIDE_ICON_MAP = {
-    Search,
+    TicketPercent,
+    Boxes,
+    Settings,
+    User,
+    LogOut,
+    PanelLeft,
+    PanelLeftIcon,
+    ChevronDown,
+    SunMoon,
+    AlertTriangle,
+    OctagonX
+}
+
+export const CUSTOM_ICON_MAP = {
+    dashboard: DashboardIcon,
+    orders: OrdersIcon,
+    products: ProductsIcon,
+    customers: CustomersIcon,
+    categories: CategoriesIcon,
+    inventory: InventoryIcon,
+    discounts: DiscountsIcon
 }
