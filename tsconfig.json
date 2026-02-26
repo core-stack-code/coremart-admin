@@ -19,6 +19,8 @@
       }
     ],
     "paths": {
+      "@ui/*": ["./src/components/ui/*"],
+      "@composite/*": ["./src/components/composite/*"],
       "@mod/*": ["./src/module/*"],
       "@/*": ["./src/*"],
       "@app/*": ["./app/*"],

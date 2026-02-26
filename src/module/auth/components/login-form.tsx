@@ -1,58 +1,85 @@
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import {
-  Field,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field"
-import InputField from "@/components/form/input"
+'use client'
+import React, { useEffect } from "react"
+import { useRouter } from "next/navigation"
+import { Controller, useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 
-export function LoginForm({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
-  return (
-        <div className={cn("flex flex-col gap-6", className)} {...props}>
-            <Card>
-                <CardHeader>
-                <CardTitle>Login to your account</CardTitle>
-                <CardDescription>
-                    Enter your email below to login to your account
-                </CardDescription>
-                </CardHeader>
-                <CardContent>
-                <form>
-                    <FieldGroup>
-                    <Field>
-                        <FieldLabel htmlFor="email">Email</FieldLabel>
-                        <InputField
-                            id="email"
-                            type="email"
-                            placeholder="m@example.com"
-                            onChange={() => {}}
-                            value=""
-                            required
-                        />
-                    </Field>
-                    <Field>
-                        <FieldLabel htmlFor="password">Password</FieldLabel>
-                        <InputField id="password" type="password" placeholder="****" required onChange={() => {}}
-                            value="" />
-                    </Field>
-                    <Field>
-                        <Button type="submit">Login</Button>
-                    </Field>
-                    </FieldGroup>
-                </form>
-                </CardContent>
-            </Card>
-        </div>
+import { useLogin } from "../api/mutation"
+import { loginSchema } from "../schema"
+import { LoginPayload } from "../api/type"
+import { flatZodError } from "@/lib/zod/flatZodError"
+import { useToast } from "@/hooks/useToast"
+
+import InputField from "@/components/form/input"
+import { Button } from "@/components/ui/button"
+
+
+const LoginForm: React.FC = () => {
+    const { mutate, isPending } = useLogin();
+    const router = useRouter();
+    const toast = useToast()
+
+    const form = useForm({
+        resolver: zodResolver(loginSchema)
+    })
+    const { control, getValues, handleSubmit, formState: { errors } } = form
+
+
+    const onSubmit = (formData: LoginPayload) => {
+        mutate(formData, {
+            onSuccess: (data) => {
+                toast.success(data.message)
+                router.push('/')
+            },
+        })
+    }
+
+
+    useEffect(() => {
+        if(Object.entries(errors).length > 0) {
+            const errMsg = flatZodError(loginSchema, getValues())
+            if(errMsg) toast.error(errMsg)
+        }
+    }, [errors])
+
+    toast.isLoading(isPending, "Logging in...")
+
+
+    return (
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+            <Controller
+                control={control}
+                name="email"
+                render={({ field, formState }) => (
+                    <InputField
+                        id="email"
+                        type="email"
+                        label="Email"
+                        placeholder="m@example.com"
+                        value={field.value}
+                        onChange={field.onChange}
+                        errMsg={formState.errors.email?.message}
+                    />
+                )}
+            />
+            <Controller
+                control={control}
+                name="password"
+                render={({ field, formState }) => (
+                    <InputField
+                        id="password"
+                        type="password"
+                        label="Password"
+                        placeholder="****"
+                        onChange={field.onChange}
+                        value={field.value}
+                        errMsg={formState.errors.password?.message}
+                    />
+                )}
+            />
+            <Button type="submit">Login</Button>
+        </form>
     )
 }
+
+export default LoginForm
