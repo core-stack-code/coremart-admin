@@ -17,7 +17,7 @@ import {
 import { IconName } from "@/components/icons"
 import SidebarNavLink from "./sidear-nav-link";
 import { Avatar, AvatarImage } from "../ui/avatar";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/useMobile";
 import { cn, Log } from "@/lib/utils";
 
 export type SideBarItem = {

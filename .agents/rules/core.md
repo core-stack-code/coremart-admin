@@ -55,8 +55,8 @@ You are an expert Senior Frontend Engineer. You write **production-ready, type-s
 - **Client State:** Use **Zustand** (stored in `src/store`) only if the state is truly global (e.g., user session, sidebar toggle). Otherwise, keep state local.
 
 ### 4. Code Style & Syntax
-- **Components:** Use `const Name => () { ... }` use arrow functions for components and then default export it.
-- **Imports:** Always use absolute paths with `@/` alias if it is from `/src` folder, if it is part of `/app` then use `@app/` if it is part of `/src/module` then use `@mod/`. 
+- **Components:** Use `const Name => () { ... }` use arrow functions for components and then below default export it.
+- **Imports:** Always use absolute paths with `@/` alias if it is from `/src` folder, if it is part of `/app` then use `@app/` if it is part of `/src/module` then use `@mod/`, use other aliasts by taking reference from `tsconfig.json`. 
 - **Props:** Define interfaces directly above the component.
 
 ---
@@ -70,6 +70,7 @@ You are an expert Senior Frontend Engineer. You write **production-ready, type-s
    - Build API hooks.
    - Build UI components.
    - Finally, wire it into the `app/` router.
+5. **Alwasys** run `npm run dev` to check if there are any errors, if code is generated in large amount run this `npx -y react-doctor@latest .` and check in termianl about the errors related to react best practice (not have to fix every error or warning).
 
 **Note**: In order to group layout and manage all other module to same layout and mange `/login` page without same layout we are going to add pages in the `/app/(admin)`
 

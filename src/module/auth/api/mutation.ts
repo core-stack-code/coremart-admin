@@ -1,17 +1,13 @@
-import { useMutation, UseMutationOptions } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { changePassword, login, logout } from "./api";
 
-import { ChangePasswordPayload, ChangePasswordResponse, LoginPayload, LoginResponse, LogoutResponse } from "./type";
-import { ApiResponse, ApiError } from "@/types/api";
+import { ChangePasswordPayload, LoginPayload, LoginResponse } from "./type";
+import { MutationOptions } from "@/types/api";
 import { MUTATION_REGISTRY } from "@/constants/apiRegistery";
 
 
 export const useLogin = (
-    options?: UseMutationOptions<
-        ApiResponse<LoginResponse>,
-        ApiError,
-        LoginPayload
-    >
+    options?: MutationOptions<LoginResponse, LoginPayload>
 ) => {
     
     return useMutation({
@@ -23,10 +19,7 @@ export const useLogin = (
 
 
 export const useLogout = (
-    options?: UseMutationOptions<
-        ApiResponse<LogoutResponse>,
-        ApiError
-    >
+    options?: MutationOptions<null, void>
 ) => {
     return useMutation({
         mutationKey: [MUTATION_REGISTRY.logout],
@@ -36,12 +29,8 @@ export const useLogout = (
 }
 
 
-export const useChnagePassword = (
-    options?: UseMutationOptions<
-        ApiResponse<ChangePasswordResponse>,
-        ApiError,
-        ChangePasswordPayload
-    >
+export const useChangePassword = (
+    options?: MutationOptions<null, ChangePasswordPayload>
 ) => {
     return useMutation({
         mutationKey: [MUTATION_REGISTRY.changePassword],

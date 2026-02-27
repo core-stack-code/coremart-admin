@@ -31,6 +31,11 @@ const LoginForm: React.FC = () => {
                 toast.success(data.message)
                 router.push('/')
             },
+            onError: (error) => {
+                if (error?.code !== "UNAUTHORIZED") {
+                    toast.error(error?.message || "Login failed");
+                }
+            }
         })
     }
 

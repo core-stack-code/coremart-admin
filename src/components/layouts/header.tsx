@@ -2,7 +2,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { getBreadCrumbs } from '@/utils/getBreadCrumbs'
+import { getBreadCrumbs } from '@/lib/getBreadCrumbs'
 
 import AdminProfile from '@mod/auth/components/admin-profile'
 import { SidebarTrigger } from '@ui/sidebar'

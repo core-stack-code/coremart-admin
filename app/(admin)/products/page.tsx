@@ -1,9 +1,11 @@
-import DefaultPage from '@/components/common/default-page'
 import React from 'react'
+import ProductPageCom from '@mod/product/components/product-page-com'
+
+// TODO: add title and description meta
 
 const ProductsPage: React.FC = () => {
     return (
-        <DefaultPage title='Products' />
+        <ProductPageCom />
     )
 }
 

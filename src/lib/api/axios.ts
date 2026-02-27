@@ -1,5 +1,6 @@
 import { ApiError } from "@/types/api";
 import axios, { AxiosInstance } from "axios";
+import { Log } from "../utils";
 
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL
 
@@ -73,7 +74,10 @@ api.interceptors.response.use(
                 code: "INTERNAL_SERVER_ERROR",
                 message: "Unable to reach server. Please check your internet connection.",
                 success: false,
+                status: 500,
             }
+
+            Log("errorObj", error)
 
             return Promise.reject(error);
         }
@@ -82,7 +86,10 @@ api.interceptors.response.use(
             code: error.response.data?.code || "INTERNAL_SERVER_ERROR",
             message: error.response.data?.message || "Something went wrong",
             success: false,
+            status: error.status,
         }
+
+        Log("errorObj", errorObj)
 
         return Promise.reject(errorObj);
     }

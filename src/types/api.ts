@@ -1,3 +1,4 @@
+import { UseMutationOptions, UseQueryOptions } from "@tanstack/react-query";
 
 const HTTNP_STATUS = {
     CREATED: 201,
@@ -11,7 +12,7 @@ const HTTNP_STATUS = {
     INTERNAL_SERVER_ERROR: 500,
 } as const;
 
-type HttpStatusType = keyof typeof HTTNP_STATUS;
+export type HttpStatusType = keyof typeof HTTNP_STATUS;
 
 export type ApiResponse<T> = {
     success?: boolean;
@@ -24,4 +25,22 @@ export type ApiError = {
     success?: boolean;
     code: HttpStatusType;
     message: string;
+    status?: number; 
+    // status code is not send in error response body by server
+    // but still adding here for better error handling in client side
 }
+
+export type QueryOptions<T> = Omit<
+    UseQueryOptions<ApiResponse<T>, ApiError>,
+    "queryKey" | "queryFn"
+>;
+
+export type MutationOptions<TData, TVariables> = Omit<
+  UseMutationOptions<ApiResponse<TData>, ApiError, TVariables>,
+  "mutationFn" | "mutationKey"
+>;
+
+export type MutationOptionsAPI<TData, TVariables> = Omit<
+  UseMutationOptions<TData, ApiError, TVariables>,
+  "mutationFn" | "mutationKey"
+>;

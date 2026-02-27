@@ -15,8 +15,4 @@ export type LoginResponse = Admin;
 
 export type ProfileResponse = Admin;
 
-export type LogoutResponse = null;
-
 export type ChangePasswordPayload = ChangePasswordFormType;
-
-export type ChangePasswordResponse = null;
