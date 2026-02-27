@@ -9,7 +9,14 @@ import {
     ChevronDown,
     SunMoon,
     AlertTriangle,
-    OctagonX
+    OctagonX,
+    Plus,
+    Edit,
+    SearchX,
+    UploadCloud,
+    X,
+    Trash,
+    Image as ImageIcon
 } from "lucide-react";
 
 import { 
@@ -35,7 +42,14 @@ export const LUCIDE_ICON_MAP = {
     ChevronDown,
     SunMoon,
     AlertTriangle,
-    OctagonX
+    OctagonX,
+    Plus,
+    Edit,
+    SearchX,
+    UploadCloud,
+    X,
+    Trash,
+    ImageIcon
 }
 
 export const CUSTOM_ICON_MAP = {

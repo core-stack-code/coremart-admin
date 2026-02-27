@@ -1,8 +1,5 @@
 "use client"
 import React from 'react'
-import { useGetProfile } from '@mod/auth/api/query'
-import { Log } from '@/lib/utils';
-
 import AppSidebar from '@/components/layouts/app-sidebar';
 import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
 import Header from '@/components/layouts/header';

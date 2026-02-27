@@ -1,6 +1,6 @@
 import api from "@/lib/api/axios";
 import { ApiResponse } from "@/types/api";
-import { ChangePasswordPayload, ChangePasswordResponse, LoginPayload, LoginResponse, LogoutResponse, ProfileResponse } from "./type";
+import { ChangePasswordPayload, LoginPayload, LoginResponse, ProfileResponse } from "./type";
 
 
 export const login = async (payload: LoginPayload): Promise<ApiResponse<LoginResponse>> => {
@@ -13,12 +13,12 @@ export const getProfile = async (): Promise<ApiResponse<ProfileResponse>> => {
     return res.data
 }
 
-export const logout = async (): Promise<ApiResponse<LogoutResponse>> => {
+export const logout = async (): Promise<ApiResponse<null>> => {
     const res = await api.post("/admin/logout")
     return res.data
 }
 
-export const changePassword = async (payload: ChangePasswordPayload): Promise<ApiResponse<ChangePasswordResponse>> => {
+export const changePassword = async (payload: ChangePasswordPayload): Promise<ApiResponse<null>> => {
     const res = await api.post("/admin/change-password", payload)
     return res.data
 }
