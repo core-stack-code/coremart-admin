@@ -8,7 +8,7 @@ import ProductTable from './product-table';
 import TableSkeleton from '@/components/common/table-skeleton';
 import ErrorBlock from '@/components/common/error-block';
 import NoDataFound from '@/components/common/no-data-found';
-import PaginationComponent from '@/components/common/pagination-component';
+import PaginationComponent from '@composite/pagination-component';
 import { Button } from '@/components/ui/button';
 import { Typography } from '@/components/ui/typography';
 

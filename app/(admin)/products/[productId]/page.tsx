@@ -1,9 +1,16 @@
-import React from 'react'
+import ProductDetails from '@/module/product/components/product-details'
 
-const ProductDetail: React.FC = () => {
+interface PageProps {
+    params: Promise<{
+        productId: string
+    }>
+}
+
+const ProductDetailPage = async ({ params }: PageProps) => {
+    const { productId } = await params;
     return (
-        <div>ProductDetail</div>
+        <ProductDetails productId={productId} />
     )
 }
 
-export default ProductDetail
+export default ProductDetailPage

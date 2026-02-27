@@ -8,6 +8,7 @@ export const QUERY_REGISTRY = {
     getProfile: "get-profile",
 
     getProductList: "get-product-list",
+    getProductDetail: "get-product-detail",
 }
 
 

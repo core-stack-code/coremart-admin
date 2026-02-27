@@ -10,7 +10,7 @@ import { LoginPayload } from "../api/type"
 import { flatZodError } from "@/lib/zod/flatZodError"
 import { useToast } from "@/hooks/useToast"
 
-import InputField from "@/components/form/input"
+import InputField from "@/components/form/input-field"
 import { Button } from "@/components/ui/button"
 
 

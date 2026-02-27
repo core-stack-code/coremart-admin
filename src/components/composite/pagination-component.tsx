@@ -10,13 +10,7 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from '@/components/ui/pagination'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
+import SelectField from "@/components/form/select-field"
 import { Typography } from "@/components/ui/typography"
 
 interface PaginationComponentProps {
@@ -77,18 +71,16 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
                 {onLimitChange && (
                     <div className="flex items-center gap-2">
                         <Typography variant="small" className="font-medium">Rows per page</Typography>
-                        <Select value={limit.toString()} onValueChange={handleLimitChange}>
-                            <SelectTrigger className="h-8 w-[70px]">
-                                <SelectValue placeholder={limit.toString()} />
-                            </SelectTrigger>
-                            <SelectContent side="top">
-                                {[10, 20, 30, 40, 50].map((pageSize) => (
-                                    <SelectItem key={pageSize} value={`${pageSize}`}>
-                                        {pageSize}
-                                    </SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
+                        <SelectField 
+                            value={limit.toString()} 
+                            onChange={handleLimitChange}
+                            selectTriggerClass="h-8 w-[70px] bg-transparent"
+                            containerClass="mb-0 gap-0"
+                            options={[10, 20, 30, 40, 50].map(size => ({
+                                label: size.toString(),
+                                value: size.toString()
+                            }))}
+                        />
                     </div>
                 )}
 

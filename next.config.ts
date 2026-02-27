@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
         hostname: 'res.cloudinary.com',
         pathname: '/**',
       },
+      {
+        protocol: 'http',
+        hostname: 'picsum.photos',
+        pathname: '/**',
+      },
     ]
   }
 };

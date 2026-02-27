@@ -9,7 +9,7 @@ import { createProductSchema, CreateProductPayload } from "../utils/schema"
 import { flatZodError } from "@/lib/zod/flatZodError"
 import { useToast } from "@/hooks/useToast"
 
-import InputField from "@/components/form/input"
+import InputField from "@/components/form/input-field"
 import TextareaComponent from "@/components/form/textarea"
 import SingleImageUpload from "@/components/form/single-image-upload"
 import GalleryUpload from "@/components/form/gallery-upload"

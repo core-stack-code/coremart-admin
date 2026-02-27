@@ -1,11 +1,11 @@
 import React from 'react';
-import { cn } from "@/lib/utils";
-import { UploadConfigType } from "@mod/media/utils/mediaUpload";
 import { useUploadImage } from "@mod/media/utils/useUploadImage";
+import { UploadConfigType } from "@mod/media/utils/mediaUpload";
+import { cn } from "@/lib/utils";
+
 import Icon from "../icons";
-import { FieldDescription, FieldLabel } from "../ui/field";
 import FallbackImage from "../common/fallback-image";
-import InputField from "./input";
+import { FieldDescription, FieldLabel } from "../ui/field";
 import { Button } from "../ui/button";
 
 interface SingleImageUploadProps {
@@ -16,6 +16,7 @@ interface SingleImageUploadProps {
     errMsg?: string;
     containerClass?: string;
 }
+
 
 const SingleImageUpload: React.FC<SingleImageUploadProps> = ({
     imageType, value, onChange, label, errMsg, containerClass
@@ -32,12 +33,7 @@ const SingleImageUpload: React.FC<SingleImageUploadProps> = ({
     const handleRemove = () => {
         onChange(null);
     };
-
-    const handleAltTextChange = (text: string) => {
-        if(value) {
-            onChange({ ...value, altText: text });
-        }
-    };
+    
 
     return (
         <div className={cn('flex flex-col gap-3', containerClass)}>

@@ -68,6 +68,8 @@ Must use `/src/components/ui/typography.tsx` componets for all the static text w
 - If form consume many fields devids them into sections and use them with `<FormProvider>` from `react-hook-form`.
 - Use zod for form validatoin
 
+9. **Form Components**
+- Alwasy use FallbackImage component to show imags, wethere it is from server or static. (check in `/src/components/common/fallback-image.tsx`
 
 ## References
 - **Shadcn Docs:** https://ui.shadcn.com/docs
