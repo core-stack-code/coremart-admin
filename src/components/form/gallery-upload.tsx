@@ -1,11 +1,12 @@
 import React from 'react';
-import { cn } from "@/lib/utils";
-import { UploadConfigType } from "@mod/media/utils/mediaUpload";
 import { useUploadImage } from "@mod/media/utils/useUploadImage";
+import { UploadConfigType } from "@mod/media/utils/mediaUpload";
+import { cn } from "@/lib/utils";
+
 import Icon from "../icons";
-import { FieldDescription, FieldLabel } from "../ui/field";
+import InputField from "./input-field";
 import FallbackImage from "../common/fallback-image";
-import InputField from "./input";
+import { FieldDescription, FieldLabel } from "../ui/field";
 import { Button } from "../ui/button";
 
 interface GalleryUploadProps {
@@ -16,6 +17,7 @@ interface GalleryUploadProps {
     errMsg?: string;
     containerClass?: string;
 }
+
 
 const GalleryUpload: React.FC<GalleryUploadProps> = ({
     imageType, value = [], onChange, label, errMsg, containerClass
@@ -41,6 +43,7 @@ const GalleryUpload: React.FC<GalleryUploadProps> = ({
         newImages[index].altText = text;
         onChange(newImages);
     };
+
 
     return (
         <div className={cn('flex flex-col gap-4', containerClass)}>

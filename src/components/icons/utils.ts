@@ -16,7 +16,11 @@ import {
     UploadCloud,
     X,
     Trash,
-    Image as ImageIcon
+    Image as ImageIcon,
+    Star,
+    Trash2,
+    Pencil,
+    Check
 } from "lucide-react";
 
 import { 
@@ -49,7 +53,11 @@ export const LUCIDE_ICON_MAP = {
     UploadCloud,
     X,
     Trash,
-    ImageIcon
+    ImageIcon,
+    Star,
+    Trash2,
+    Pencil,
+    Check
 }
 
 export const CUSTOM_ICON_MAP = {
