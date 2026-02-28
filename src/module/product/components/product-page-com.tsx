@@ -9,9 +9,8 @@ import TableSkeleton from '@/components/common/table-skeleton';
 import ErrorBlock from '@/components/common/error-block';
 import NoDataFound from '@/components/common/no-data-found';
 import PaginationComponent from '@composite/pagination-component';
+import PageTitle from '@/components/common/page-title';
 import { Button } from '@/components/ui/button';
-import { Typography } from '@/components/ui/typography';
-
 
 
 const ProductPageCom: React.FC = () => {
@@ -60,15 +59,17 @@ const ProductPageCom: React.FC = () => {
     
     return (
         <section className="space-y-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div className="flex items-center justify-between">
-                <Typography variant="h3">Products</Typography>
-                <Link href="/products/create">
-                    <Button>
-                        <Icon name="Plus" className="mr-2 h-4 w-4" />
-                        Add Product
-                    </Button>
-                </Link>
-            </div>
+            <PageTitle
+                title='Products'
+                buttonNode={
+                    <Link href="/products/create">
+                        <Button>
+                            <Icon name="Plus" className="mr-2 h-4 w-4" />
+                            Add Product
+                        </Button>
+                    </Link>
+                }
+            />
             {getContent()}
         </section>
     );

@@ -7,9 +7,9 @@ import ProductBasicInfoForm from "./product-basic-info-form"
 import ProductImagesForm from "./product-images-form"
 import ProductVariantsForm from "./product-variants-form"
 import ProductOrganizationForm from "./product-organization-form"
+import PageTitle from "@/components/common/page-title"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Typography } from "@ui/typography"
 
 interface ProductDetailsProps {
     productId: string
@@ -54,13 +54,11 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
     };
 
     return (
-        <div className="max-w-6xl mx-auto py-6">
-            <div className="mb-6">
-                <Typography variant="h3">Product Details</Typography>
-                <Typography className="text-muted-foreground mt-1">
-                    Manage product information, media, variants and organization.
-                </Typography>
-            </div>
+        <div className="space-y-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <PageTitle
+                title="Product Details"
+                subtitle="Manage product information, media, variants and organization."
+            />
             {getContent()}
         </div>
     )

@@ -28,7 +28,7 @@ import {
     CustomersIcon,
     DashboardIcon,
     DiscountsIcon,
-    InventoryIcon,
+    BrandAndAttributesIcon,
     OrdersIcon,
     ProductsIcon,
 } from './custom/sidebar-icon'
@@ -66,6 +66,6 @@ export const CUSTOM_ICON_MAP = {
     products: ProductsIcon,
     customers: CustomersIcon,
     categories: CategoriesIcon,
-    inventory: InventoryIcon,
+    "brand-and-attributes": BrandAndAttributesIcon,
     discounts: DiscountsIcon
 }

@@ -1,5 +1,5 @@
 ---
-name: API & Data Flow
+trigger: always_on
 description: Rules for TanStack Query, Axios, and Server State management
 ---
 
@@ -23,7 +23,8 @@ Every feature in `src/module/<feature>/api` must contain exactly these 4 sub-fol
 - Use `QueryOptions` and `MutationOptions` from `/src/types/api.ts` for options type.
 
 ### 2. Query Hook Pattern
-**Location:** `src/module/<feature>/api/query/use-get-<entity>.ts`.
+**Location:** `src/module/<feature>/api/query.ts`.
+**Name of hook:** `use-get-<entity>.ts`
 ```typescript
 import { useQuery } from "@tanstack/react-query";
 import { getProfile } from "./api";
@@ -47,7 +48,8 @@ export const useGetProfile = (
 - If api contains query parameter then add in the 1st arguments of the hook, and second would be for options
 
 ### 3. Mutation Hook Pattern
-**Location:** `src/module/<feature>/api/mutatoin/use-<action>-<entity>.ts`.
+**Location:** `src/module/<feature>/api/mutatoin`.
+**Name of hook:** `use-<action>-<entity>.ts`
 ```typescript
 import { useMutation } from "@tanstack/react-query";
 import { login} from "./api";
