@@ -9,6 +9,14 @@ export const QUERY_REGISTRY = {
 
     getProductList: "get-product-list",
     getProductDetail: "get-product-detail",
+
+    getBrandAndAttributesCount: "get-brand-and-attributes-count",
+
+    getBrandList: "get-brand-list",
+    
+    getAllSizes: "get-all-sizes",
+    getAllColors: "get-all-colors",
+    getAllMaterials: "get-all-materials",
 }
 
 
@@ -21,5 +29,17 @@ export const MUTATION_REGISTRY = {
     uploadToCloudinary: 'upload-to-cloudinary',
     
     createProduct: 'create-product',
-    updateProduct: 'update-product'
+    updateProduct: 'update-product',
+
+    createBrand: 'create-brand',
+    updateBrand: 'update-brand',
+
+    createSize: 'create-size',
+    updateSize: 'update-size',
+
+    createColor: 'create-color',
+    updateColor: 'update-color',
+
+    createMaterial: 'create-material',
+    updateMaterial: 'update-material',
 };

@@ -111,7 +111,7 @@ export const CustomersIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
   );
 };
 
-export const InventoryIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
+export const BrandAndAttributesIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
   props,
 ) => {
   return (

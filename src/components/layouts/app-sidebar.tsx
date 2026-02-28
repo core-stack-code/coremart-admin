@@ -17,7 +17,6 @@ import {
 import { IconName } from "@/components/icons"
 import SidebarNavLink from "./sidear-nav-link";
 import { Avatar, AvatarImage } from "../ui/avatar";
-import { useIsMobile } from "@/hooks/useMobile";
 import { cn, Log } from "@/lib/utils";
 
 export type SideBarItem = {
@@ -38,9 +37,9 @@ const mainItems: SideBarItem[] = [
         icon: "products",
     },
     {
-        title: "Inventory",
-        url: "/inventory",
-        icon: "inventory",
+        title: "Brand & Attributes",
+        url: "/brand-and-attributes",
+        icon: "brand-and-attributes",
     },
     {
         title: "Categories",

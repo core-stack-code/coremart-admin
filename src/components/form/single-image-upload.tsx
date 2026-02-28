@@ -15,11 +15,12 @@ interface SingleImageUploadProps {
     label?: string;
     errMsg?: string;
     containerClass?: string;
+    dropzoneClassName?: string;
 }
 
 
 const SingleImageUpload: React.FC<SingleImageUploadProps> = ({
-    imageType, value, onChange, label, errMsg, containerClass
+    imageType, value, onChange, label, errMsg, containerClass, dropzoneClassName
 }) => {
     const handleUploadComplete = (url: string) => {
         onChange({ url, altText: value?.altText || '' });
@@ -56,7 +57,8 @@ const SingleImageUpload: React.FC<SingleImageUploadProps> = ({
                     className={cn(
                         "relative flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-xl transition-all cursor-pointer bg-muted/20 hover:bg-muted/50",
                         isDragActive && "border-primary bg-primary/5",
-                        errMsg || uploadError ? "border-destructive bg-destructive/5" : "border-input"
+                        errMsg || uploadError ? "border-destructive bg-destructive/5" : "border-input",
+                        dropzoneClassName
                     )}
                 >
                     <input {...getInputProps()} />
