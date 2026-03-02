@@ -11,11 +11,14 @@ export const formatDate = (time: string, isTime = false) => {
     return date.format('DD MMM YYYY, hh:mm A');
 }
 
+// display in ruppues
+export const formatCurrency = (amount: number): string => {
+    const rupees = amount / 100;
 
-export const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-IN', {
         style: 'currency',
         currency: 'INR',
-        minimumFractionDigits: 0,
-    }).format(amount);
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    }).format(rupees);
 }

@@ -1,10 +1,6 @@
 import { z } from "zod";
-import { ProductStatus } from "../api/type";
 import { imageAltSchema } from "@/lib/zod/common";
-
-const productStatusEnum: ProductStatus[] = [
-    "ACTIVE", "ARCHIVED", "DRAFT"
-] as const;
+import { PRODUCT_STATUS } from "@/constants/selectOptions";
 
 
 export const createProductSchema = z.object({
@@ -42,7 +38,7 @@ export const updateProductSchema = z.object({
         .max(2000, "Description must be at most 2000 characters long")
         .optional(),
     status: z
-        .enum(productStatusEnum, "Invalid product status")
+        .enum(PRODUCT_STATUS, "Invalid product status")
         .optional(),
     thumbnailUrl: 
         imageAltSchema("Thumbnail")

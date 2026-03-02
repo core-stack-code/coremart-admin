@@ -10,14 +10,15 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from '@/components/ui/pagination'
-import SelectField from "@/components/form/select-field"
 import { Typography } from "@/components/ui/typography"
+import SelectField from "@/components/form/select-field"
 
 interface PaginationComponentProps {
     pagination: PaginationType
     onPageChange: (newPage: number) => void
     onLimitChange?: (newLimit: number) => void
 }
+
 
 const PaginationComponent: React.FC<PaginationComponentProps> = ({ 
     pagination, 

@@ -7,7 +7,7 @@ import { useCreateColor } from "../api/mutation";
 import { useToast } from "@/hooks/useToast";
 
 import Icon from "@/components/icons";
-import { Input } from "@/components/ui/input";
+import InputField from "@/components/form/input-field";
 import { Button } from "@/components/ui/button";
 
 const ColorCreateForm: React.FC = () => {
@@ -38,10 +38,13 @@ const ColorCreateForm: React.FC = () => {
             <Controller
                 name="name"
                 control={control}
-                render={({ field }) => (
-                    <Input 
-                        {...field}
+                render={({ field, formState }) => (
+                    <InputField 
+                        id="name"
                         placeholder="Add new color..." 
+                        value={field.value}
+                        onChange={field.onChange}
+                        errMsg={formState.errors.name?.message}
                         className="w-48 border-none focus-visible:ring-0 shadow-none"
                     />
                 )}

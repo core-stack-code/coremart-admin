@@ -2,12 +2,14 @@
 import React, { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { cn } from "@/lib/utils"
 
 import { ProductDetailItem } from "../api/type"
 import { useUpdateProduct } from "../api/mutation"
 import { updateProductSchema, UpdateProductPayload } from "../utils/schema"
 import { useToast } from "@/hooks/useToast"
 import { flatZodError } from "@/lib/zod/flatZodError"
+import { PRODUCT_STATUS_OPTIONS } from "@/constants/selectOptions"
 
 import Icon from "@/components/icons"
 import FormCard from "@/components/common/form-card"
@@ -21,17 +23,8 @@ interface ProductBasicInfoFormProps {
     data: ProductDetailItem
 }
 
-const statusOptions = [
-    { label: "Active", value: "ACTIVE" },
-    { label: "Draft", value: "DRAFT" },
-    { label: "Archived", value: "ARCHIVED" },
-];
-
 
 const ProductBasicInfoForm: React.FC<ProductBasicInfoFormProps> = ({ data }) => {
-    const { mutate, isPending } = useUpdateProduct()
-    const toast = useToast()
-
     const form = useForm<UpdateProductPayload>({
         resolver: zodResolver(updateProductSchema),
         defaultValues: {
@@ -40,8 +33,11 @@ const ProductBasicInfoForm: React.FC<ProductBasicInfoFormProps> = ({ data }) => 
             status: data.status,
         }
     })
-
     const { control, handleSubmit, getValues, formState: { errors, isDirty } } = form
+
+    const { mutate, isPending } = useUpdateProduct()
+    const toast = useToast()
+
 
     const onSubmit = (formData: UpdateProductPayload) => {
         const payload = {
@@ -54,7 +50,8 @@ const ProductBasicInfoForm: React.FC<ProductBasicInfoFormProps> = ({ data }) => 
             onSuccess: () => {
                 toast.success("Product basic details updated successfully");
                 form.reset(payload);
-            }
+            },
+            onError: (error) => toast.error(error.message)
         });
     }
 
@@ -102,7 +99,7 @@ const ProductBasicInfoForm: React.FC<ProductBasicInfoFormProps> = ({ data }) => 
                             render={({ field }) => (
                                 <SelectField
                                     label="Product Status"
-                                    options={statusOptions}
+                                    options={PRODUCT_STATUS_OPTIONS}
                                     value={field.value}
                                     onChange={field.onChange}
                                     placeholder="Select status"
@@ -131,12 +128,12 @@ const ProductBasicInfoForm: React.FC<ProductBasicInfoFormProps> = ({ data }) => 
                     <Typography variant="h4" className="text-base font-semibold border-b pb-2">Properties</Typography>
                     
                     <div className="space-y-1">
-                        <Typography variant="small" className="text-muted-foreground uppercase text-xs font-semibold tracking-wider">Slug</Typography>
+                        <Typography variant="small" className="uppercase text-xs font-semibold tracking-wider">Slug</Typography>
                         <div className="text-sm font-medium break-all">{data.slug}</div>
                     </div>
 
                     <div className="space-y-1">
-                        <Typography variant="small" className="text-muted-foreground uppercase text-xs font-semibold tracking-wider">Rating</Typography>
+                        <Typography variant="small" className="uppercase text-xs font-semibold tracking-wider">Rating</Typography>
                         <div className="flex items-center gap-1">
                             <span className="text-sm font-semibold">{data.rating.toFixed(1)}</span>
                             <div className="flex text-amber-500">
@@ -144,7 +141,10 @@ const ProductBasicInfoForm: React.FC<ProductBasicInfoFormProps> = ({ data }) => 
                                     <Icon 
                                         name="Star"
                                         key={i} 
-                                        className={`w-4 h-4 ${i < Math.floor(data.rating) ? 'fill-current' : 'text-muted-foreground/30'}`} 
+                                        className={cn(
+                                            "size-4",
+                                            i < Math.floor(data.rating) ? 'fill-current' : 'text-muted-foreground/30'
+                                        )} 
                                     />
                                 ))}
                             </div>
@@ -152,7 +152,7 @@ const ProductBasicInfoForm: React.FC<ProductBasicInfoFormProps> = ({ data }) => 
                     </div>
 
                     <div className="space-y-1">
-                        <Typography variant="small" className="text-muted-foreground uppercase text-xs font-semibold tracking-wider">Total Reviews</Typography>
+                        <Typography variant="small" className="uppercase text-xs font-semibold tracking-wider">Total Reviews</Typography>
                         <div className="text-sm font-medium">{data.totalReviews}</div>
                     </div>
                 </div>

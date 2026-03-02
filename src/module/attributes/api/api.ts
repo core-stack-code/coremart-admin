@@ -3,7 +3,8 @@ import { ApiResponse } from "@/types/api";
 import { 
     Color, ColorListResponse, UpdateColorPayloadType, 
     Material, MaterialListResponse, UpdateMaterialPayloadType, 
-    Size, SizeListResponse, UpdateSizePayloadType
+    Size, SizeListResponse, UpdateSizePayloadType,
+    ActiveAttributesList
 } from "./type";
 import { CreateColorPayload, CreateMaterialPayload, CreateSizePayload } from "../utils/schema";
 
@@ -53,5 +54,11 @@ export const createMaterial = async (payload: CreateMaterialPayload): Promise<Ap
 
 export const updateMaterial = async ({id, payload}: UpdateMaterialPayloadType): Promise<ApiResponse<Material>> => {
     const response = await api.patch(`/attributes/material/${id}`, payload);
+    return response.data;
+}
+
+
+export const activeAttributes = async (): Promise<ApiResponse<ActiveAttributesList>> => {
+    const response = await api.get(`/attributes/active-list`);
     return response.data;
 }

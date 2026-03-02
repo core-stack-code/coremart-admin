@@ -8,7 +8,7 @@ import { Color } from "../api/type";
 import { useToast } from "@/hooks/useToast";
 
 import Icon from "@/components/icons";
-import { Input } from "@/components/ui/input";
+import InputField from "@/components/form/input-field";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Typography } from "@/components/ui/typography";
@@ -67,10 +67,11 @@ const ColorItem: React.FC<ColorItemProps> = ({ color }) => {
                     <Controller
                         name="name"
                         control={control}
-                        render={({ field }) => (
-                            <Input 
-                                {...field}
+                        render={({ field, formState }) => (
+                            <InputField 
                                 value={field.value || ""}
+                                onChange={field.onChange}
+                                errMsg={formState.errors.name?.message}
                                 className="max-w-[120px]"
                                 disabled={isPending}
                                 autoFocus

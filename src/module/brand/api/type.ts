@@ -14,3 +14,8 @@ export type Brand = BrandItem & {
     createdAt: string;
     updatedAt: string;
 }
+
+export type ProductToBrandParam = {
+    productId: string,
+    beandId: string
+}

@@ -5,7 +5,7 @@ import { useGetProductDetail } from "../api/query"
 import ErrorBlock from "@/components/common/error-block"
 import ProductBasicInfoForm from "./product-basic-info-form"
 import ProductImagesForm from "./product-images-form"
-import ProductVariantsForm from "./product-variants-form"
+import ProductVariantCard from "./product-variant-card"
 import ProductOrganizationForm from "./product-organization-form"
 import PageTitle from "@/components/common/page-title"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -42,7 +42,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
                             <ProductImagesForm data={product} />
                         </TabsContent>
                         <TabsContent value="variants" className="mt-0">
-                            <ProductVariantsForm data={product} />
+                            <ProductVariantCard data={product} />
                         </TabsContent>
                         <TabsContent value="organization" className="mt-0">
                             <ProductOrganizationForm data={product} />

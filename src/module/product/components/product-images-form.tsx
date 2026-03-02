@@ -27,8 +27,14 @@ const ProductImagesForm: React.FC<ProductImagesFormProps> = ({ data }) => {
     const form = useForm<UpdateProductPayload>({
         resolver: zodResolver(updateProductSchema),
         defaultValues: {
-            thumbnailUrl: data.thumbnail ? { ...data.thumbnail, altText: data.thumbnail.altText || undefined } : null,
-            imageGalary: data.images ? data.images.map(img => ({ ...img, altText: img.altText || undefined })) : []
+            thumbnailUrl: data.thumbnail ? { 
+                url: data.thumbnail.url,
+                altText: data.thumbnail.altText || undefined
+            } : null,
+            imageGalary: data.images ? data.images.map(img => ({ 
+                url: img.url,
+                altText: img.altText || undefined
+            })) : []
         }
     })
 
@@ -44,6 +50,9 @@ const ProductImagesForm: React.FC<ProductImagesFormProps> = ({ data }) => {
             onSuccess: () => {
                 toast.success("Product images updated successfully");
                 form.reset(payload);
+            },
+            onError: (error) => {
+                toast.error(error.message || "Failed to update product images");
             }
         });
     }
