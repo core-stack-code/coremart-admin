@@ -1,10 +1,8 @@
-import DefaultPage from '@/components/common/default-page'
 import React from 'react'
+import CustomersPageCom from '@/module/customer/components/customers-page-com'
 
 const CustomersPage: React.FC = () => {
-    return (
-        <DefaultPage title='Customers' />
-    )
+    return <CustomersPageCom />
 }
 
 export default CustomersPage
