@@ -5,8 +5,7 @@ import { Controller, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 
 import { useLogin } from "../api/mutation"
-import { loginSchema } from "../schema"
-import { LoginPayload } from "../api/type"
+import { LoginFormType, loginSchema } from "../utils/schema"
 import { flatZodError } from "@/lib/zod/flatZodError"
 import { useToast } from "@/hooks/useToast"
 
@@ -19,13 +18,13 @@ const LoginForm: React.FC = () => {
     const router = useRouter();
     const toast = useToast()
 
-    const form = useForm({
+    const form = useForm<LoginFormType>({
         resolver: zodResolver(loginSchema)
     })
     const { control, getValues, handleSubmit, formState: { errors } } = form
 
 
-    const onSubmit = (formData: LoginPayload) => {
+    const onSubmit = (formData: LoginFormType) => {
         mutate(formData, {
             onSuccess: (data) => {
                 toast.success(data.message)

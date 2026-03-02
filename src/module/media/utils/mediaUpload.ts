@@ -9,6 +9,8 @@ export const UPLOAD_CONFIGS_TYPES = [
     "category-image",
     "category-banner",
     "profile-picture",
+    "variant-image",
+    "admin-profile"
 ] as const;
 
 export type UploadConfigType = typeof UPLOAD_CONFIGS_TYPES[number];
@@ -34,6 +36,11 @@ export const UPLOAD_CONFIG: Record<UploadConfigType, UploadRules> = {
         minWidth: 1000,
         minHeight: 1000,
     },
+    "variant-image": {
+        maxSize: mb2,
+        minWidth: 800,
+        minHeight: 800,
+    },
     "brand-logo": {
         maxSize: mb1,
         minWidth: 300,
@@ -54,6 +61,11 @@ export const UPLOAD_CONFIG: Record<UploadConfigType, UploadRules> = {
         minWidth: 400,
         minHeight: 400,
     },
+    "admin-profile": {
+        maxSize: mb2,
+        minWidth: 400,
+        minHeight: 400,
+    }
 };
 
 

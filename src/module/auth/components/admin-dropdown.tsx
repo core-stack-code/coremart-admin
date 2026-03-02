@@ -9,12 +9,13 @@ import { useLogout } from '../api/mutation'
 
 interface AdminDropdownProps {
     name: string
+    imageUrl: string | null
 }
 
 
-const AdminDropdown: React.FC<AdminDropdownProps> = ({ name }) => {
+const AdminDropdown: React.FC<AdminDropdownProps> = ({ name, imageUrl }) => {
     const router = useRouter()
-    const { mutate, isPending } = useLogout()
+    const { mutate } = useLogout()
 
     const handleDarkModeToggle = () => {
         console.log("Dark mode toggled");
@@ -31,8 +32,8 @@ const AdminDropdown: React.FC<AdminDropdownProps> = ({ name }) => {
     
     return (
        <div className='flex gap-2 items-center min-w-50'>
-            <Avatar className="h-10 w-10 rounded-full grayscale border">
-                <AvatarImage src="/logo.png" alt="Coremart Logo" />
+            <Avatar className="h-10 w-10 rounded-full border">
+                <AvatarImage src={imageUrl || "/logo.png"} alt="Coremart Logo" />
             </Avatar>
             <Dropdown
                 trigger={(

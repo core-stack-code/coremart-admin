@@ -46,7 +46,7 @@ export const EditVariantImage: React.FC<EditVariantImageProps> = ({ variantId, c
                 render={({ field, fieldState }) => (
                     <SingleImageUpload
                         label="Update Variant Image"
-                        imageType="product-thumbnail"
+                        imageType="variant-image"
                         value={field.value ? { url: field.value } : null}
                         onChange={(val) => field.onChange(val?.url || "")}
                         errMsg={fieldState.error?.message}

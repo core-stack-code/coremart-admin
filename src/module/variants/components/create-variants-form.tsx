@@ -74,7 +74,7 @@ const CreateVariantForm: React.FC<CreateVariantFormProps> = ({ productId, onCanc
                                 render={({ field, fieldState }) => (
                                     <SingleImageUpload
                                         label="Variant Image"
-                                        imageType="product-thumbnail"
+                                        imageType="variant-image"
                                         value={field.value ? { url: field.value } : null}
                                         onChange={(val) => field.onChange(val?.url || "")}
                                         errMsg={fieldState.error?.message}
