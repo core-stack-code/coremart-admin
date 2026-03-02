@@ -20,6 +20,9 @@ export const QUERY_REGISTRY = {
     
     getActiveAttributes: "get-active-attributes",
     getCategoryOptions: "get-category-options",
+
+    getCustomersList: "get-customers-list",
+    getCustomerDetails: "get-customer-details",
 }
 
 

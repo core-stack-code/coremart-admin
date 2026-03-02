@@ -6,7 +6,6 @@ import {
     SidebarFooter,
     SidebarGroup,
     SidebarGroupContent,
-    SidebarGroupLabel,
     SidebarHeader,
     SidebarMenu,
     SidebarMenuButton,
@@ -17,7 +16,7 @@ import {
 import { IconName } from "@/components/icons"
 import SidebarNavLink from "./sidear-nav-link";
 import { Avatar, AvatarImage } from "../ui/avatar";
-import { cn, Log } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 export type SideBarItem = {
     title: string;
@@ -47,14 +46,14 @@ const mainItems: SideBarItem[] = [
         icon: "categories",
     },
     {
-        title: "Orders",
-        url: "/orders",
-        icon: "orders",
-    },
-    {
         title: "Customers",
         url: "/customers",
         icon: "customers",
+    },
+    {
+        title: "Orders",
+        url: "/orders",
+        icon: "orders",
     },
     {
         title: "Discounts",
