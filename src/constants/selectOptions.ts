@@ -1,9 +1,17 @@
 import { SizeType } from "@mod/attributes/api/type";
+import { ProductStatus } from "@mod/product/api/type";
 
 type OPTIONS_TYPE = {
     label: string;
     value: string;
 }
+
+export const PRODUCT_STATUS: ProductStatus[] = ["DRAFT", "ACTIVE", "ARCHIVED"] as const;
+export const PRODUCT_STATUS_OPTIONS: OPTIONS_TYPE[] = [
+    { label: "Draft", value: "DRAFT" },
+    { label: "Active", value: "ACTIVE" },
+    { label: "Archived", value: "ARCHIVED" }
+]
 
 export const SIZE_TYPES: SizeType[] = ["ALPHA", "FREE", "NUMERIC"] as const;
 export const SIZE_TYPES_OPTIONS: OPTIONS_TYPE[] = [

@@ -17,6 +17,9 @@ export const QUERY_REGISTRY = {
     getAllSizes: "get-all-sizes",
     getAllColors: "get-all-colors",
     getAllMaterials: "get-all-materials",
+    
+    getActiveAttributes: "get-active-attributes",
+    getCategoryOptions: "get-category-options",
 }
 
 
@@ -33,6 +36,11 @@ export const MUTATION_REGISTRY = {
 
     createBrand: 'create-brand',
     updateBrand: 'update-brand',
+    assignProductToBrand: 'assign-product-brand',
+    removeProductFromBrand: 'remove-product-brand',
+
+    assignProductToCategory: 'assign-product-category',
+    removeProductFromCategory: 'remove-product-category',
 
     createSize: 'create-size',
     updateSize: 'update-size',
@@ -42,4 +50,9 @@ export const MUTATION_REGISTRY = {
 
     createMaterial: 'create-material',
     updateMaterial: 'update-material',
+
+    createVariant: 'create-variant',
+    updateVariantImage: 'update-variant-image',
+    updateSku: 'update-sku',
+    deleteVariant: 'delete-variant',
 };

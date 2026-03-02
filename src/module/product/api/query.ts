@@ -1,19 +1,15 @@
-import { useQuery, UseQueryOptions, UseQueryResult } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getProductList, getProductDetail } from "./api";
 
 import { ProductListParams, ProductListResponse, ProductDetailItem } from "./type";
-import { ApiError, ApiResponse } from "@/types/api";
+import { QueryOptions } from "@/types/api";
 import { QUERY_REGISTRY } from "@/constants/apiRegistery";
 
 
 export const useGetProductList = (
     params: ProductListParams,
-    options?: UseQueryOptions<
-        ApiResponse<ProductListResponse>,
-        ApiError,
-        ApiResponse<ProductListResponse>
-    >,
-): UseQueryResult<ApiResponse<ProductListResponse>, ApiError> => {
+    options?: QueryOptions<ProductListResponse>,
+) => {
 
     return useQuery({
         queryKey: [QUERY_REGISTRY.getProductList, params],
@@ -25,12 +21,8 @@ export const useGetProductList = (
 
 export const useGetProductDetail = (
     productId: string,
-    options?: UseQueryOptions<
-        ApiResponse<ProductDetailItem>,
-        ApiError,
-        ApiResponse<ProductDetailItem>
-    >,
-): UseQueryResult<ApiResponse<ProductDetailItem>, ApiError> => {
+    options?: QueryOptions<ProductDetailItem>,
+) => {
 
     return useQuery({
         queryKey: [QUERY_REGISTRY.getProductDetail, productId],

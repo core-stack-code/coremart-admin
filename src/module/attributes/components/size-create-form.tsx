@@ -9,7 +9,7 @@ import { SIZE_TYPES_OPTIONS } from "@/constants/selectOptions";
 
 import Icon from "@/components/icons";
 import SelectField from "@/components/form/select-field";
-import { Input } from "@/components/ui/input";
+import InputField from "@/components/form/input-field";
 import { Button } from "@/components/ui/button";
 
 
@@ -43,9 +43,12 @@ const SizeCreateForm: React.FC = () => {
             <Controller
                 name="name"
                 control={control}
-                render={({ field }) => (
-                    <Input 
-                        {...field}
+                render={({ field, formState }) => (
+                    <InputField 
+                        id="name"
+                        value={field.value}
+                        onChange={field.onChange}
+                        errMsg={formState.errors.name?.message}
                         placeholder="Add new size..." 
                         className="w-48 border-none focus-visible:ring-0 shadow-none"
                     />

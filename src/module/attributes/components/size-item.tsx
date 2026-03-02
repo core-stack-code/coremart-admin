@@ -10,10 +10,10 @@ import { SIZE_TYPES_OPTIONS } from "@/constants/selectOptions";
 
 import Icon from "@/components/icons";
 import SelectField from "@/components/form/select-field";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Typography } from "@/components/ui/typography";
+import InputField from "@/components/form/input-field";
 
 interface SizeItemProps {
     size: Size;
@@ -73,10 +73,12 @@ const SizeItem: React.FC<SizeItemProps> = ({ size }) => {
                         <Controller
                             name="name"
                             control={control}
-                            render={({ field }) => (
-                                <Input 
-                                    {...field}
+                            render={({ field, formState }) => (
+                                <InputField 
+                                    id="name"
                                     value={field.value || ""}
+                                    onChange={field.onChange}
+                                    errMsg={formState.errors.name?.message}
                                     className="max-w-[120px]"
                                     disabled={isPending}
                                     autoFocus

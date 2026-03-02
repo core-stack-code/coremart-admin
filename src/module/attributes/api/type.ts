@@ -44,3 +44,20 @@ export type UpdateMaterialPayloadType = {
     id: string;
     payload: UpdateMaterialPayload;
 }
+
+
+export interface ActiveAttributesList {
+    sizes: {
+        id: string;
+        name: string;
+        type: SizeType;
+    }[];
+    colors: {
+        id: string;
+        name: string;
+    }[];
+    materials: {
+        id: string;
+        name: string;
+    }[];
+}

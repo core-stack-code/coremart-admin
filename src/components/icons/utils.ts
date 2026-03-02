@@ -20,7 +20,8 @@ import {
     Star,
     Trash2,
     Pencil,
-    Check
+    Check,
+    Loader2
 } from "lucide-react";
 
 import { 
@@ -57,7 +58,8 @@ export const LUCIDE_ICON_MAP = {
     Star,
     Trash2,
     Pencil,
-    Check
+    Check,
+    Loader2
 }
 
 export const CUSTOM_ICON_MAP = {

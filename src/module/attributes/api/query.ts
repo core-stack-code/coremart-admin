@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { getAllSizes, getAllColors, getAllMaterials } from "./api";
-import { SizeListResponse, ColorListResponse, MaterialListResponse } from "./type";
+import { getAllSizes, getAllColors, getAllMaterials, activeAttributes } from "./api";
+import { SizeListResponse, ColorListResponse, MaterialListResponse, ActiveAttributesList } from "./type";
 import { QueryOptions } from "@/types/api";
 import { QUERY_REGISTRY } from "@/constants/apiRegistery";
 
@@ -32,6 +32,17 @@ export const useGetAllMaterials = (
     return useQuery({
         queryKey: [QUERY_REGISTRY.getAllMaterials],
         queryFn: () => getAllMaterials(),
+        retry: false,
+        ...options,
+    });
+};
+
+export const useGetActiveAttributes = (
+    options?: QueryOptions<ActiveAttributesList>
+) => {
+    return useQuery({
+        queryKey: [QUERY_REGISTRY.getActiveAttributes],
+        queryFn: () => activeAttributes(),
         retry: false,
         ...options,
     });

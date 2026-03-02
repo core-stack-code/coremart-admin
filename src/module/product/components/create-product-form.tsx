@@ -19,11 +19,7 @@ import { Button } from "@/components/ui/button"
 
 
 const CreateProductForm: React.FC = () => {
-    const { mutate, isPending } = useCreateProduct();
-    const router = useRouter();
-    const toast = useToast();
-
-    const form = useForm<CreateProductPayload>({
+     const form = useForm<CreateProductPayload>({
         resolver: zodResolver(createProductSchema),
         defaultValues: {
             name: "",
@@ -34,11 +30,19 @@ const CreateProductForm: React.FC = () => {
     })
     const { control, getValues, handleSubmit, formState: { errors } } = form
 
+    const { mutate, isPending } = useCreateProduct();
+    const router = useRouter();
+    const toast = useToast();
+
+
     const onSubmit = (formData: CreateProductPayload) => {
         mutate(formData, {
             onSuccess: (data) => {
                 toast.success(data.message || "Product created successfully");
                 router.push('/products');
+            },
+            onError: (error) => {
+                toast.error(error.message || "Failed to create product");
             }
         });
     }
