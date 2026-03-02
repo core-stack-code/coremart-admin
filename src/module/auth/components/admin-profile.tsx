@@ -26,7 +26,7 @@ const AdminProfile: React.FC = () => {
             )
         }
 
-        return <AdminDropdown name={data.data.name} />
+        return <AdminDropdown name={data.data.name} imageUrl={data.data.imageUrl} />
     }
 
     return (

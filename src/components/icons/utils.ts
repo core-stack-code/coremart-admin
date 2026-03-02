@@ -21,7 +21,12 @@ import {
     Trash2,
     Pencil,
     Check,
-    Loader2
+    Loader2,
+    Eye,
+    EyeOff,
+    Lock,
+    Mail,
+    Camera
 } from "lucide-react";
 
 import { 
@@ -59,7 +64,12 @@ export const LUCIDE_ICON_MAP = {
     Trash2,
     Pencil,
     Check,
-    Loader2
+    Loader2,
+    Eye,
+    EyeOff,
+    Lock,
+    Mail,
+    Camera
 }
 
 export const CUSTOM_ICON_MAP = {
