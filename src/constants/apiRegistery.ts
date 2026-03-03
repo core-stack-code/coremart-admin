@@ -23,6 +23,8 @@ export const QUERY_REGISTRY = {
 
     getCustomersList: "get-customers-list",
     getCustomerDetails: "get-customer-details",
+    getCategoryList: "get-category-list",
+    getCategoryTree: "get-category-tree",
 }
 
 
@@ -45,6 +47,8 @@ export const MUTATION_REGISTRY = {
 
     assignProductToCategory: 'assign-product-category',
     removeProductFromCategory: 'remove-product-category',
+    createCategory: 'create-category',
+    updateCategory: 'update-category',
 
     createSize: 'create-size',
     updateSize: 'update-size',

@@ -109,6 +109,7 @@ const ProductOrganizationForm: React.FC<ProductOrganizationFormProps> = ({ data 
                                 selectedIds={data.categories?.map(c => c.id) || []}
                                 onSelect={handleCategorySelect}
                                 disabled={isAssigningCategory}
+                                description="You can select multiple categories for this product."
                             />
                         </div>
                     </div>
