@@ -25,6 +25,8 @@ export const QUERY_REGISTRY = {
     getCustomerDetails: "get-customer-details",
     getCategoryList: "get-category-list",
     getCategoryTree: "get-category-tree",
+    getOrderList: "get-order-list",
+    getOrderDetails: "get-order-details",
 }
 
 

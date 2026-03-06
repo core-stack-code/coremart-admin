@@ -1,6 +1,5 @@
 import { UpdateColorPayload, UpdateMaterialPayload, UpdateSizePayload } from "../utils/schema";
-
-export type SizeType = "ALPHA" | "FREE" | "NUMERIC";
+import { SizeType } from "@/types/status";
 
 export interface Size {
     id: string;

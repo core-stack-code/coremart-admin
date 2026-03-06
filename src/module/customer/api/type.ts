@@ -1,6 +1,6 @@
 import { PaginationType } from "@/types/common";
+import { OrderStatus } from "@/types/status";
 
-type OrderStatus = "PENDING" | "CONFIRMED" | "SHIPPED" | "DELIVERED" | "CANCELLED" | "EXPIRED"
 
 export type CustomerListItem = {
     id: string;

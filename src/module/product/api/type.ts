@@ -1,6 +1,6 @@
 import { ImageType, PaginationType } from "@/types/common";
+import { ProductStatus } from "@/types/status";
 
-export type ProductStatus =  "DRAFT" | "ACTIVE" | "ARCHIVED";
 
 export type ProductListItem = {
     id: string,
