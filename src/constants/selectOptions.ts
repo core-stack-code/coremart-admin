@@ -1,5 +1,4 @@
-import { SizeType } from "@mod/attributes/api/type";
-import { ProductStatus } from "@mod/product/api/type";
+import { ProductStatus, SizeType } from "@/types/status";
 
 type OPTIONS_TYPE = {
     label: string;

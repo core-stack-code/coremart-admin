@@ -27,7 +27,8 @@ import {
     Lock,
     Mail,
     Camera,
-    ChevronRight
+    ChevronRight,
+    Phone
 } from "lucide-react";
 
 import { 
@@ -71,7 +72,8 @@ export const LUCIDE_ICON_MAP = {
     Lock,
     Mail,
     Camera,
-    ChevronRight
+    ChevronRight,
+    Phone
 }
 
 export const CUSTOM_ICON_MAP = {
