@@ -13,13 +13,13 @@ import InputField from "@/components/form/input-field"
 import TextareaComponent from "@/components/form/textarea"
 import SingleImageUpload from "@/components/form/single-image-upload"
 import GalleryUpload from "@/components/form/gallery-upload"
-import FormCard from "@/components/common/form-card"
+import FormCard from "@composite/form-card"
 import PageTitle from "@/components/common/page-title"
 import { Button } from "@/components/ui/button"
 
 
 const CreateProductForm: React.FC = () => {
-     const form = useForm<CreateProductPayload>({
+    const form = useForm<CreateProductPayload>({
         resolver: zodResolver(createProductSchema),
         defaultValues: {
             name: "",

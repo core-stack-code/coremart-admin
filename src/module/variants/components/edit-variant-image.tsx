@@ -16,7 +16,7 @@ interface EditVariantImageProps {
 }
 
 
-export const EditVariantImage: React.FC<EditVariantImageProps> = ({ variantId, currentImageUrl, onClose }) => {
+const EditVariantImage: React.FC<EditVariantImageProps> = ({ variantId, currentImageUrl, onClose }) => {
     const { control, handleSubmit } = useForm<VariantImagePayload>({
         resolver: zodResolver(variantImageSchema),
         defaultValues: {
@@ -64,3 +64,5 @@ export const EditVariantImage: React.FC<EditVariantImageProps> = ({ variantId, c
         </form>
     );
 }
+
+export default EditVariantImage

@@ -49,7 +49,7 @@ const CustomerProfileCard: React.FC<CustomerProfileCardProps> = ({ customer }) =
 
                             <div className="flex flex-col sm:items-end gap-1 text-sm bg-muted/40 p-3 rounded-lg border">
                                 <span className="text-muted-foreground flex items-center gap-1.5">
-                                    <Icon name="SunMoon" className="w-4 h-4" /> Joined Date
+                                    Joined Date
                                 </span>
                                 <span className="font-medium text-foreground">
                                     {formatDate(customer.createdAt, true)}

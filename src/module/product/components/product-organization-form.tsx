@@ -11,7 +11,7 @@ import CategorySelector from "@mod/category/components/category-selector"
 import RemoveBrandButton from "@mod/brand/components/remove-brand-button"
 import RemoveCategoryButton from "@mod/category/components/remove-category-button"
 
-import FormCard from "@/components/common/form-card"
+import FormCard from "@composite/form-card"
 import FallbackImage from "@/components/common/fallback-image"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"

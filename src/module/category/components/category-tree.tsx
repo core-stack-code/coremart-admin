@@ -1,12 +1,12 @@
 "use client"
 import React from 'react'
-import { ChevronRight, Settings, FolderClosed, Grid2X2, Minus } from 'lucide-react'
+import Icon from '@/components/icons'
 import { cn } from '@/lib/utils'
 import { CategoryTreeResponse } from '../api/type'
 
-import { Button } from '@/components/ui/button'
-import { Typography } from '@/components/ui/typography'
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
+import { Button } from '@ui/button'
+import { Typography } from '@ui/typography'
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@ui/collapsible'
 
 interface CategoryTreeProps {
     tree: CategoryTreeResponse[];
@@ -72,12 +72,12 @@ const TreeNode: React.FC<TreeNodeProps> = ({ node, selectedId, onSelect, level =
                                 size="icon" 
                                 className="expand-btn h-6 w-6 rounded-md p-1 hover:bg-muted/80"
                             >
-                                <ChevronRight className={cn("h-4 w-4 transition-transform text-muted-foreground", isOpen && "rotate-90")} />
+                                <Icon name="ChevronRight" className={cn("h-4 w-4 transition-transform text-muted-foreground", isOpen && "rotate-90")} />
                             </Button>
                         </CollapsibleTrigger>
                     ) : (
                         <div className="flex h-6 w-6 items-center justify-center">
-                            <Minus className="h-3 w-3 text-muted-foreground/60" />
+                            <Icon name="Minus" className="h-3 w-3 text-muted-foreground/60" />
                         </div>
                     )}
                 </div>
@@ -87,7 +87,7 @@ const TreeNode: React.FC<TreeNodeProps> = ({ node, selectedId, onSelect, level =
                         "h-7 w-7 rounded-md flex items-center justify-center shrink-0 border",
                         isSelected ? "bg-primary/10 border-primary/20 text-primary" : "bg-muted/30 border-muted text-muted-foreground group-hover:bg-muted/80"
                     )}>
-                       {level === 0 ? <FolderClosed className="h-3.5 w-3.5" /> : <Grid2X2 className="h-3.5 w-3.5" />}
+                       {level === 0 ? <Icon name="FolderClosed" className="h-3.5 w-3.5" /> : <Icon name="Grid2X2" className="h-3.5 w-3.5" />}
                     </div>
                      <Typography className={cn("text-sm transition-colors", isSelected ? "font-semibold text-primary" : "font-medium text-foreground")}>
                         {node.name}
@@ -102,7 +102,7 @@ const TreeNode: React.FC<TreeNodeProps> = ({ node, selectedId, onSelect, level =
                             onSelect(node); 
                         }}
                      >
-                        <Settings className="h-4 w-4" />
+                        <Icon name="Settings" className="h-4 w-4" />
                      </Button>
                 </div>
             </div>

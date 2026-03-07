@@ -11,8 +11,8 @@ import OrderPaymentsList from './order-payments-list';
 import Icon from '@/components/icons';
 import PageTitle from '@/components/common/page-title';
 import ErrorBlock from '@/components/common/error-block';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Button } from '@/components/ui/button';
+import { Skeleton } from '@ui/skeleton';
+import { Button } from '@ui/button';
 
 interface OrderDetailsPageComProps {
     orderId: string;

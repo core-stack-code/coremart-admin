@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useGetCategoryTree } from '../api/query'
 import { CategoryTreeResponse } from '../api/type'
 
@@ -7,7 +7,7 @@ import CategoryTree from './category-tree'
 import UpdateCategoryForm from './update-category-form'
 import ErrorBlock from '@/components/common/error-block'
 import PageTitle from '@/components/common/page-title'
-import { Skeleton } from '@/components/ui/skeleton'
+import { Skeleton } from '@ui/skeleton'
 
 interface CategoryDetailsProps {
     categoryId: string
@@ -18,7 +18,7 @@ const CategoryDetails: React.FC<CategoryDetailsProps> = ({ categoryId }) => {
     const { data: response, isLoading, isError } = useGetCategoryTree({ categoryId })
     const [selectedCategory, setSelectedCategory] = React.useState<CategoryTreeResponse | null>(null);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (response?.data && response.data.length > 0 && !selectedCategory) {
             setSelectedCategory(response.data[0]);
         }

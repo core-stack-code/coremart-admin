@@ -2,8 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import { formatDate, formatCurrency } from '@/lib/foremate';
 import { cn } from '@/lib/utils';
+import { getOrderStatusStyles } from '@/lib/getStyles';
 import { OrderListItem } from '../api/type';
-import { OrderStatus } from '@/types/status';
 
 import Icon from '@/components/icons';
 import { Button } from '@/components/ui/button';
@@ -13,6 +13,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 interface OrderTableProps {
     data: OrderListItem[];
 }
+
 
 const OrderTable: React.FC<OrderTableProps> = ({ data }) => {
     return (
@@ -62,7 +63,7 @@ const OrderTable: React.FC<OrderTableProps> = ({ data }) => {
                             <TableCell className="text-center">
                                 <div className={cn(
                                     "inline-flex items-center justify-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide",
-                                    getStatusStyles(order.status)
+                                    getOrderStatusStyles(order.status)
                                 )}>
                                     {order.status}
                                 </div>
@@ -107,20 +108,3 @@ const OrderTable: React.FC<OrderTableProps> = ({ data }) => {
 };
 
 export default OrderTable;
-
-const getStatusStyles = function(status: OrderStatus) {
-    switch (status) {
-        case 'DELIVERED':
-            return 'border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900/50 dark:bg-emerald-900/20 dark:text-emerald-400';
-        case 'PENDING':
-            return 'border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-900/50 dark:bg-amber-900/20 dark:text-amber-400';
-        case 'CONFIRMED':
-        case 'SHIPPED':
-            return 'border-blue-200 bg-blue-50 text-blue-700 dark:border-blue-900/50 dark:bg-blue-900/20 dark:text-blue-400';
-        case 'CANCELLED':
-        case 'EXPIRED':
-            return 'border-red-200 bg-red-50 text-red-700 dark:border-red-900/50 dark:bg-red-900/20 dark:text-red-400';
-        default:
-            return 'border-slate-200 bg-slate-50 text-slate-700 dark:border-slate-800 dark:bg-slate-900/20 dark:text-slate-400';
-    }
-};

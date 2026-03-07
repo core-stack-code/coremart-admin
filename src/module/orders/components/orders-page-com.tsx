@@ -1,28 +1,19 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import { useGetOrderList } from '../api/query/use-get-order-list';
+import { usePagination } from '@/hooks/usePagination';
 
 import OrderTable from './order-table';
 import TableSkeleton from '@/components/common/table-skeleton';
 import ErrorBlock from '@/components/common/error-block';
 import NoDataFound from '@/components/common/no-data-found';
-import PaginationComponent from '@/components/composite/pagination-component';
+import PaginationComponent from '@composite/pagination-comp';
 import PageTitle from '@/components/common/page-title';
 
+
 const OrdersPageCom: React.FC = () => {
-    const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(10);
-
+    const { handleLimitChange, handlePageChange, limit, page } = usePagination();
     const { data, isLoading, error } = useGetOrderList({ page, limit });
-
-    const handlePageChange = (newPage: number) => {
-        setPage(newPage);
-    };
-
-    const handleLimitChange = (newLimit: number) => {
-        setLimit(newLimit);
-        setPage(1);
-    };
 
     const getContent = () => {
         if (isLoading) return <TableSkeleton columns={8} rows={10} />;

@@ -12,7 +12,7 @@ import { flatZodError } from "@/lib/zod/flatZodError"
 import { PRODUCT_STATUS_OPTIONS } from "@/constants/selectOptions"
 
 import Icon from "@/components/icons"
-import FormCard from "@/components/common/form-card"
+import FormCard from "@composite/form-card"
 import InputField from "@/components/form/input-field"
 import TextareaComponent from "@/components/form/textarea"
 import SelectField from "@/components/form/select-field"

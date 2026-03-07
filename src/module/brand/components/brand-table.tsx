@@ -4,10 +4,10 @@ import UpdateBrandForm from "./update-brand-form";
 
 import Icon from "@/components/icons";
 import FallbackImage from "@/components/common/fallback-image";
-import CollapsibleComponent, { CollapsibleComponentRef } from "@/components/composite/collapsible-component";
-import { Button } from "@/components/ui/button";
-import { Table, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
+import CollapsibleComponent, { CollapsibleComponentRef } from "@composite/collapsible-comp";
+import { Button } from "@ui/button";
+import { Table, TableCell, TableHead, TableHeader, TableRow } from "@ui/table";
+import { Badge } from "@ui/badge";
 
 interface BrandTableProps {
     brands: BrandListResponse;
@@ -19,9 +19,6 @@ const BrandTable: React.FC<BrandTableProps> = ({ brands }) => {
 
     const items = brands.map((brand, index) => {
         return {
-            isTriggerAsChild: true,
-            isContentAsChild: true,
-            isCollapsibleAsChild: true,
             label: (
                 <TableRow className="cursor-pointer">
                     <TableCell className="font-medium">{index + 1}</TableCell>
@@ -62,7 +59,10 @@ const BrandTable: React.FC<BrandTableProps> = ({ brands }) => {
                         </div>
                     </TableCell>
                 </TableRow>
-            )
+            ),
+            isTriggerAsChild: true,
+            isContentAsChild: true,
+            isCollapsibleAsChild: true,
         };
     });
 

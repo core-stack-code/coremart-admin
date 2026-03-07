@@ -9,8 +9,8 @@ import {
     PaginationLink,
     PaginationNext,
     PaginationPrevious,
-} from '@/components/ui/pagination'
-import { Typography } from "@/components/ui/typography"
+} from '@ui/pagination'
+import { Typography } from "@ui/typography"
 import SelectField from "@/components/form/select-field"
 
 interface PaginationComponentProps {

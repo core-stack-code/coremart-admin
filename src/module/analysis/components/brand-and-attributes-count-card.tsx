@@ -4,7 +4,7 @@ import { useGetBrandAndAttributesCount } from "../api/query";
 
 import NoDataFound from "@/components/common/no-data-found";
 import ErrorBlock from "@/components/common/error-block";
-import FormCard from "@/components/common/form-card";
+import FormCard from "@composite/form-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Typography } from "@/components/ui/typography";
 

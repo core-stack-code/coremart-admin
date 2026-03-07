@@ -6,9 +6,9 @@ import { cn } from '@/lib/utils';
 
 import Icon from '@/components/icons';
 import FallbackImage from '@/components/common/fallback-image';
-import { Button } from '@/components/ui/button';
-import { Typography } from '@/components/ui/typography';
-import { Table,TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Button } from '@ui/button';
+import { Typography } from '@ui/typography';
+import { Table,TableBody, TableCell, TableHead, TableHeader, TableRow } from '@ui/table';
 
 interface ProductTableProps {
     data: ProductListItem[];

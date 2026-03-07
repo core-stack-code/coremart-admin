@@ -5,7 +5,7 @@ import { useGetAllSizes } from "../api/query";
 import SizeItem from "./size-item";
 import ErrorBlock from "@/components/common/error-block";
 import SizeCreateForm from "./size-create-form";
-import FormCard from "@/components/common/form-card";
+import FormCard from "@composite/form-card";
 import { Typography } from "@/components/ui/typography";
 import { Skeleton } from "@/components/ui/skeleton";
 

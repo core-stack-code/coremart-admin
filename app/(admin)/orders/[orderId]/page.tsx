@@ -1,4 +1,3 @@
-import React from 'react';
 import OrderDetailsPageCom from '@/module/orders/components/order-details-page-com';
 
 interface PageProps {

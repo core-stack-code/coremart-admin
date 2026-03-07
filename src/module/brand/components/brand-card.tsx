@@ -7,9 +7,9 @@ import ErrorBlock from "@/components/common/error-block";
 import CreateBrandForm from "./create-brand-form";
 import BrandTable from "./brand-table";
 import NoDataFound from "@/components/common/no-data-found";
-import FormCard from "@/components/common/form-card";
-import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
+import FormCard from "@composite/form-card";
+import { Button } from "@ui/button";
+import { Skeleton } from "@ui/skeleton";
 import { Separator } from "@ui/separator";
 
 
@@ -44,7 +44,6 @@ const BrandCard: React.FC = () => {
                         <Separator className="my-2" />
                     </>
                 )}
-
                 {getContent()}
             </div>
         </FormCard>

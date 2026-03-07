@@ -17,7 +17,7 @@ interface FormCardProps {
 
 const FormCard: React.FC<FormCardProps> = ({ title, description, children, contentClass, headerAction }) => {
     return (
-        <Card className="shadow-sm border-muted/60 bg-background">
+        <Card className="shadow-sm border-muted/60 bg-card">
             <CardHeader className="bg-muted/20 border-b flex flex-row items-start justify-between gap-4">
                 <div className="space-y-1.5">
                     <CardTitle>

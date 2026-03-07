@@ -22,7 +22,7 @@ interface EditVariantSkuProps {
     onClose: () => void;
 }
 
-export const EditVariantSku: React.FC<EditVariantSkuProps> = ({ skuId, initialData, onClose }) => {
+const EditVariantSku: React.FC<EditVariantSkuProps> = ({ skuId, initialData, onClose }) => {
     const { control, handleSubmit } = useForm<UpdateProductSkuPayload>({
         resolver: zodResolver(updateProductSkuSchema),
         defaultValues: {
@@ -102,3 +102,5 @@ export const EditVariantSku: React.FC<EditVariantSkuProps> = ({ skuId, initialDa
         </form>
     );
 }
+
+export default EditVariantSku

@@ -3,10 +3,11 @@ import React, { useState } from "react"
 import { ProductDetailItem } from "../api/type"
 
 import Icon from "@/components/icons"
-import FormCard from "@/components/common/form-card"
+import FormCard from "@composite/form-card"
 import SelectField from "@/components/form/select-field"
 import InputField from "@/components/form/input-field"
 import SingleImageUpload from "@/components/form/single-image-upload"
+import FallbackImage from "@/components/common/fallback-image"
 import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
 import { Separator } from "@/components/ui/separator"
@@ -221,7 +222,7 @@ const ProductVariantsForm: React.FC<ProductVariantsFormProps> = ({ data }) => {
                                         {/* Image Thumbnail */}
                                         <div className="h-14 w-14 rounded-md overflow-hidden bg-muted flex items-center justify-center shrink-0 border">
                                             {variant.imageUrl ? (
-                                                <img src={variant.imageUrl} alt="Variant" className="h-full w-full object-cover" />
+                                                <FallbackImage src={variant.imageUrl} alt="Variant" className="h-full w-full object-cover" />
                                             ) : (
                                                 <Icon name="ImageIcon" className="h-5 w-5 text-muted-foreground/50" />
                                             )}

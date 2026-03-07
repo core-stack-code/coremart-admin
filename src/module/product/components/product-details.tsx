@@ -10,6 +10,7 @@ import ProductOrganizationForm from "./product-organization-form"
 import PageTitle from "@/components/common/page-title"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import NoDataFound from "@/components/common/no-data-found"
 
 interface ProductDetailsProps {
     productId: string
@@ -22,7 +23,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
     const getContent = () => {
         if (isLoading) return <Skeleton className="h-[600px] w-full mt-4" />
         if (isError) return <ErrorBlock message="Failed to load product details" />
-        if (!response || !response.data) return <ErrorBlock title="Not Found" message="Product not found" />
+        if (!response || !response.data) return <NoDataFound title="Not Found" description="Product not found" />
 
         const product = response.data;
 

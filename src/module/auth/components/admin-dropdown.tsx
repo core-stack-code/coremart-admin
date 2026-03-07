@@ -1,11 +1,14 @@
 import React from 'react'
 import { useRouter } from 'next/navigation'
+import { useTheme } from "next-themes"
+import { useLogout } from '../api/mutation'
+import { useModelStore } from '@/store'
+import { useToast } from '@/hooks/useToast'
 
 import Dropdown from '@composite/dropdown'
 import Icon from '@/components/icons'
 import { Avatar, AvatarImage } from '@ui/avatar'
 import { Typography } from '@ui/typography'
-import { useLogout } from '../api/mutation'
 
 interface AdminDropdownProps {
     name: string
@@ -15,18 +18,30 @@ interface AdminDropdownProps {
 
 const AdminDropdown: React.FC<AdminDropdownProps> = ({ name, imageUrl }) => {
     const router = useRouter()
+    const { resolvedTheme, setTheme } = useTheme()
     const { mutate } = useLogout()
+    const showModel = useModelStore(s => s.showModel);
+    const toast = useToast()
 
     const handleDarkModeToggle = () => {
-        console.log("Dark mode toggled");
+        setTheme(resolvedTheme === "dark" ? "light" : "dark")
     }
 
-    const handleLogout = () => {
+    const logout = () => {
         mutate(undefined, {
             onSuccess: () => {
+                toast.success("Logout successfully")
                 router.push("/login");
             },
         });
+    }
+
+    const handleLogoutClick = () => {
+        showModel(logout, {
+            title: "Confirm Logout",
+            description: "You are about to sign out of your account. You will need to re-authenticate to access the admin dashboard again.",
+            actionText: "Logout"
+        })
     }
 
     
@@ -37,7 +52,7 @@ const AdminDropdown: React.FC<AdminDropdownProps> = ({ name, imageUrl }) => {
             </Avatar>
             <Dropdown
                 trigger={(
-                    <div className='flex gap-1 items-center '>
+                    <div className='flex gap-1 items-center cursor-pointer'>
                         <Typography>{name}</Typography>
                         <Icon name="ChevronDown" width={16} height={16} stroke='currentColor' />
                     </div>
@@ -57,7 +72,7 @@ const AdminDropdown: React.FC<AdminDropdownProps> = ({ name, imageUrl }) => {
                     {
                         label: "Logout",
                         icon: "LogOut",
-                        onClick: handleLogout,
+                        onClick: handleLogoutClick,
                     },
                 ]}
             />
