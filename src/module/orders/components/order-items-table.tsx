@@ -29,20 +29,20 @@ const OrderItemsTable: React.FC<OrderItemsTableProps> = ({ items }) => {
                     <Table>
                         <TableHeader>
                             <TableRow className="hover:bg-transparent bg-muted/20">
-                                <TableHead className="w-16 font-semibold py-4 text-center">Sr no</TableHead>
-                                <TableHead className="w-20 font-semibold py-4">Image</TableHead>
-                                <TableHead className="w-64 font-semibold py-4">Product Details</TableHead>
-                                <TableHead className="w-40 font-semibold py-4">Attributes</TableHead>
-                                <TableHead className="w-32 font-semibold py-4 text-right">Unit Price</TableHead>
-                                <TableHead className="w-24 font-semibold py-4 text-center">Qty</TableHead>
-                                <TableHead className="w-32 font-semibold py-4 text-right pr-6">Total</TableHead>
+                                <TableHead className="w-16 py-4 text-center"><Typography variant="small" className="font-semibold">Sr no</Typography></TableHead>
+                                <TableHead className="w-20 py-4"><Typography variant="small" className="font-semibold">Image</Typography></TableHead>
+                                <TableHead className="w-64 py-4"><Typography variant="small" className="font-semibold">Product Details</Typography></TableHead>
+                                <TableHead className="w-40 py-4"><Typography variant="small" className="font-semibold">Attributes</Typography></TableHead>
+                                <TableHead className="w-32 py-4 text-right"><Typography variant="small" className="font-semibold">Unit Price</Typography></TableHead>
+                                <TableHead className="w-24 py-4 text-center"><Typography variant="small" className="font-semibold">Qty</Typography></TableHead>
+                                <TableHead className="w-32 py-4 text-right pr-6"><Typography variant="small" className="font-semibold">Total</Typography></TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
                             {items.length === 0 ? (
                                 <TableRow>
-                                    <TableCell colSpan={7} className="h-32 text-center text-muted-foreground">
-                                        No items found in this order.
+                                    <TableCell colSpan={7} className="h-32 text-center">
+                                        <Typography variant="muted">No items found in this order.</Typography>
                                     </TableCell>
                                 </TableRow>
                             ) : (
@@ -69,27 +69,27 @@ const OrderItemsTable: React.FC<OrderItemsTableProps> = ({ items }) => {
                                                 </Link>
                                                 <div className="flex items-center gap-2 mt-1">
                                                     {item.product.brand && (
-                                                        <span className="text-xs bg-muted text-muted-foreground px-2 py-0.5 rounded-sm">
+                                                        <Typography variant="small" className="bg-muted px-2 py-0.5 rounded-sm">
                                                             Brand: {item.product.brand.name}
-                                                        </span>
+                                                        </Typography>
                                                     )}
                                                 </div>
-                                                <p className="text-xs text-muted-foreground">ID: {item.product.id}</p>
+                                                <Typography variant="muted" className="text-xs">ID: {item.product.id}</Typography>
                                             </div>
                                         </TableCell>
                                         <TableCell>
                                             <div className="space-y-1 text-sm">
-                                                <div className="flex text-muted-foreground">
-                                                    <span className="w-16 font-medium">Size:</span>
-                                                    <span className="text-foreground">{item.size}</span>
+                                                <div className="flex">
+                                                    <Typography variant="small" className="w-16 font-medium">Size:</Typography>
+                                                    <Typography variant="small" className="text-foreground">{item.size}</Typography>
                                                 </div>
-                                                <div className="flex text-muted-foreground">
-                                                    <span className="w-16 font-medium">Color:</span>
-                                                    <span className="text-foreground">{item.color}</span>
+                                                <div className="flex">
+                                                    <Typography variant="small" className="w-16 font-medium">Color:</Typography>
+                                                    <Typography variant="small" className="text-foreground">{item.color}</Typography>
                                                 </div>
-                                                <div className="flex text-muted-foreground">
-                                                    <span className="w-16 font-medium">Material:</span>
-                                                    <span className="text-foreground">{item.material}</span>
+                                                <div className="flex">
+                                                    <Typography variant="small" className="w-16 font-medium">Material:</Typography>
+                                                    <Typography variant="small" className="text-foreground">{item.material}</Typography>
                                                 </div>
                                             </div>
                                         </TableCell>
@@ -97,12 +97,14 @@ const OrderItemsTable: React.FC<OrderItemsTableProps> = ({ items }) => {
                                             {formatCurrency(item.price)}
                                         </TableCell>
                                         <TableCell className="text-center">
-                                            <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-muted/50 border text-sm font-semibold">
+                                            <Typography variant="small" className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-muted/50 border font-semibold text-foreground">
                                                 {item.quantity}
-                                            </span>
+                                            </Typography>
                                         </TableCell>
-                                        <TableCell className="text-right font-semibold text-primary pr-6">
-                                            {formatCurrency(item.totalPrice)}
+                                        <TableCell className="text-right pr-6">
+                                            <Typography variant="body" className="font-semibold text-primary">
+                                                {formatCurrency(item.totalPrice)}
+                                            </Typography>
                                         </TableCell>
                                     </TableRow>
                                 ))

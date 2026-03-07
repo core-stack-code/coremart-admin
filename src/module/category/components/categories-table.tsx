@@ -81,14 +81,6 @@ const CategoriesTable: React.FC<CategoriesTableProps> = ({ data, page, limit }) 
                                             <Icon name="Edit" width={24} height={24} />
                                         </Button>
                                     </Link>
-                                    <Button 
-                                        variant="ghost" 
-                                        size="icon" 
-                                        className="h-8 w-8 text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
-                                        type="button"
-                                    >
-                                        <Icon name="Trash2" width={24} height={24} />
-                                    </Button>
                                 </div>
                             </TableCell>
                         </TableRow>

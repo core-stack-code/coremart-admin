@@ -1,35 +1,41 @@
 "use client"
 import React from 'react'
-import { Button } from "@/components/ui/button"
-import Icon from "@/components/icons"
-import { useDeleteVariant } from "../api/mutation"
 import { useToast } from "@/hooks/useToast"
-import { useQueryClient } from "@tanstack/react-query"
-import { QUERY_REGISTRY } from "@/constants/apiRegistery"
+import { useDeleteVariant } from "../api/mutation"
+import { useModelStore } from '@/store'
+
+import Icon from "@/components/icons"
+import { Button } from "@/components/ui/button"
 
 interface DeleteVariantButtonProps {
     variantId: string;
 }
 
-const DeleteVariantButton: React.FC<DeleteVariantButtonProps> = ({ variantId }) => {
-    const toast = useToast();
-    const queryClient = useQueryClient();
 
-    const { mutate, isPending } = useDeleteVariant({
-        onSuccess: () => {
-            toast.success("Variant deleted successfully");
-            queryClient.invalidateQueries({ queryKey: [QUERY_REGISTRY.getProductDetail] });
-        },
-        onError: () => {
-            toast.error("Failed to delete variant");
-        }
-    });
+const DeleteVariantButton: React.FC<DeleteVariantButtonProps> = ({ variantId }) => {
+    const { mutate, isPending } = useDeleteVariant();
+    const showModel = useModelStore(s => s.showModel)
+    const toast = useToast();
+
+    const deleteVariant = () => {
+        mutate({ variantId }, {
+           onSuccess: () => {
+                toast.success("Variant deleted successfully");
+            },
+            onError: () => {
+                toast.error("Failed to delete variant");
+            } 
+        })
+    }
 
     const handleDelete = () => {
-        if (confirm("Are you sure you want to delete this variant?")) {
-            mutate({ variantId });
-        }
-    };
+        showModel(deleteVariant, {
+            title: "Confirm Delete Variant",
+            description: "This action will delete the variant permenently from the data.",
+            actionText: "Delete"
+        })
+    }
+
 
     return (
         <Button 

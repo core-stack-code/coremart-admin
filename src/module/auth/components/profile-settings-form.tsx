@@ -8,7 +8,7 @@ import { useUpdateProfile } from '../api/mutation';
 import { ProfileResponse } from '../api/type';
 import { useToast } from '@/hooks/useToast';
 
-import FormCard from '@/components/common/form-card';
+import FormCard from '@composite/form-card';
 import InputField from '@/components/form/input-field';
 import ProfilePictureUpload from './profile-picture-upload';
 import Icon from '@/components/icons';

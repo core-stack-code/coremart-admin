@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Typography } from '@/components/ui/typography';
 import Icon from '@/components/icons';
+import { Card, CardContent } from '@ui/card';
+import { Typography } from '@ui/typography';
 
 interface NoDataFoundProps {
     title?: string;

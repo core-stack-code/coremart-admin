@@ -9,7 +9,7 @@ import { useToast } from '@/hooks/useToast';
 import { flatZodError } from '@/lib/zod/flatZodError';
 import { CategoryTreeResponse } from '../api/type';
 
-import FormCard from '@/components/common/form-card';
+import FormCard from '@composite/form-card';
 import InputField from '@/components/form/input-field';
 import SingleImageUpload from '@/components/form/single-image-upload';
 import CategorySelector from './category-selector';

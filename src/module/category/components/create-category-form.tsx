@@ -6,31 +6,19 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { createCategory, CreateCategoryPayload } from '../utils/schema';
 import { useCreateCategory } from '../api/mutation';
-import { useGetCategoryOptions } from '../api/query';
 import { useToast } from '@/hooks/useToast';
 import { flatZodError } from '@/lib/zod/flatZodError';
 
-import FormCard from '@/components/common/form-card';
+import FormCard from '@composite/form-card';
 import PageTitle from '@/components/common/page-title';
 import InputField from '@/components/form/input-field';
 import SingleImageUpload from '@/components/form/single-image-upload';
-import SelectField from '@/components/form/select-field';
-import { Button } from '@/components/ui/button';
+import CategorySelector from './category-selector';
+import { Button } from '@ui/button';
 
 
 const CreateCategoryForm: React.FC = () => {
     const router = useRouter();
-    const toast = useToast();
-
-    const { data: categoryOptionsResponse, isLoading: isLoadingOptions } = useGetCategoryOptions();
-    
-    const categoryOptions = React.useMemo(() => {
-        if (!categoryOptionsResponse?.data) return [];
-        return categoryOptionsResponse.data.map(cat => ({
-            label: cat.name,
-            value: cat.id
-        }));
-    }, [categoryOptionsResponse]);
 
     const form = useForm<CreateCategoryPayload>({
         resolver: zodResolver(createCategory),
@@ -41,21 +29,21 @@ const CreateCategoryForm: React.FC = () => {
             parentId: undefined,
         }
     });
-
     const { control, getValues, handleSubmit, formState: { errors } } = form;
 
-    const { mutate: createCategoryFn, isPending } = useCreateCategory({
-        onSuccess: () => {
-            toast.success("Category created successfully");
-            router.push("/categories");
-        },
-        onError: (error) => {
-            toast.error(error.message || "Failed to create category");
-        }
-    });
+    const { mutate: createCategoryFn, isPending } = useCreateCategory();
+    const toast = useToast();
 
     const onSubmit = (data: CreateCategoryPayload) => {
-        createCategoryFn(data);
+        createCategoryFn(data, {
+            onSuccess: () => {
+                toast.success("Category created successfully");
+                router.push("/categories");
+            },
+            onError: (error) => {
+                toast.error(error.message || "Failed to create category");
+            }
+        });
     };
 
     useEffect(() => {
@@ -66,6 +54,7 @@ const CreateCategoryForm: React.FC = () => {
     }, [errors]);
 
     toast.isLoading(isPending, "Creating category...");
+
 
     return (
         <div className="space-y-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -108,16 +97,12 @@ const CreateCategoryForm: React.FC = () => {
                             name="parentId"
                             control={control}
                             render={({ field }) => (
-                                <SelectField
+                                <CategorySelector
                                     value={field.value || "none"}
                                     onChange={(val) => field.onChange(val === "none" ? undefined : val)}
                                     label="Parent Category (Optional)"
-                                    placeholder={isLoadingOptions ? "Loading..." : "Select a parent category"}
-                                    options={[
-                                        { label: "None (Root Category)", value: "none" },
-                                        ...categoryOptions
-                                    ]}
-                                    disabled={isLoadingOptions}
+                                    placeholder={ "Select a parent category"}
+                                    includeNoneOption={true}
                                 />
                             )}
                         />

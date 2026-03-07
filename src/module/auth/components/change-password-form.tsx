@@ -7,7 +7,7 @@ import { changePasswordSchema, ChangePasswordFormType } from '@/lib/zod/password
 import { useChangePassword } from '../api/mutation';
 import { useToast } from '@/hooks/useToast';
 
-import FormCard from '@/components/common/form-card';
+import FormCard from '@composite/form-card';
 import InputField from '@/components/form/input-field';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/icons';

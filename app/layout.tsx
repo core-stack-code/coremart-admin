@@ -28,8 +28,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={cn(`${geistSans.variable} ${geistMono.variable} antialiased w-full h-full`)}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={cn(`${geistSans.variable} ${geistMono.variable} antialiased w-full h-full bg-background text-foreground`)}>
         <main className="w-full h-full">
           <AppProvider>
             {children}

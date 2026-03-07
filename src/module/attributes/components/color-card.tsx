@@ -3,11 +3,11 @@ import React from "react";
 import { useGetAllColors } from "../api/query";
 
 import ErrorBlock from "@/components/common/error-block";
-import FormCard from "@/components/common/form-card";
-import { Typography } from "@/components/ui/typography";
-import { Skeleton } from "@/components/ui/skeleton";
+import FormCard from "@composite/form-card";
 import ColorItem from "./color-item";
 import ColorCreateForm from "./color-create-form";
+import { Typography } from "@ui/typography";
+import { Skeleton } from "@ui/skeleton";
 
 
 const ColorCard: React.FC = () => {

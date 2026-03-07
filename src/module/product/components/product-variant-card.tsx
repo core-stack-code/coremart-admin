@@ -2,7 +2,7 @@
 import React, { useState } from "react"
 import { ProductDetailItem } from "../api/type"
 
-import FormCard from "@/components/common/form-card"
+import FormCard from "@composite/form-card"
 import Icon from "@/components/icons"
 import CreateVariantForm from "@/module/variants/components/create-variants-form"
 import VariantList from "@/module/variants/components/variant-list"

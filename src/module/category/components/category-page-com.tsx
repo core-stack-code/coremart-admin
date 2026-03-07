@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { useGetCategoryList } from '../api/query';
 
@@ -8,25 +8,15 @@ import CategoriesTable from './categories-table';
 import TableSkeleton from '@/components/common/table-skeleton';
 import ErrorBlock from '@/components/common/error-block';
 import NoDataFound from '@/components/common/no-data-found';
-import PaginationComponent from '@/components/composite/pagination-component';
+import PaginationComponent from '@composite/pagination-comp';
 import PageTitle from '@/components/common/page-title';
 import { Button } from '@/components/ui/button';
+import { usePagination } from '@/hooks/usePagination';
 
 
 const CategoryPageCom: React.FC = () => {
-    const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(10);
-
+    const { page, limit, handleLimitChange, handlePageChange } = usePagination()
     const { data: response, isLoading, isError } = useGetCategoryList({ page, limit });
-
-    const handlePageChange = (newPage: number) => {
-        setPage(newPage);
-    };
-
-    const handleLimitChange = (newLimit: number) => {
-        setLimit(newLimit);
-        setPage(1); // Reset to first page when limit changes
-    };
 
     const getContent = () => {
         if (isLoading) return <TableSkeleton columns={7} rows={10} />;

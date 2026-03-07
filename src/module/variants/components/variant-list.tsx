@@ -4,12 +4,13 @@ import { ProductDetailItem } from "@mod/product/api/type"
 import { formatCurrency } from "@/lib/foremate"
 
 import Icon from "@/components/icons"
-import { EditVariantImage } from "./edit-variant-image"
-import { EditVariantSku } from "./edit-variant-sku"
+import DeleteVariantButton from "./delete-variant-button"
+import EditVariantSku from "./edit-variant-sku"
+import EditVariantImage from "./edit-variant-image"
+import FallbackImage from "@/components/common/fallback-image"
 import { Typography } from "@/components/ui/typography"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import DeleteVariantButton from "./delete-variant-button"
 
 type VariantItem = ProductDetailItem["variants"][0];
 
@@ -30,12 +31,7 @@ const VariantList: React.FC<VariantListProps> = ({ variants }) => {
             </div>
         );
     }
-
-    const renderAttributeName = (attr: any) => {
-        if (!attr) return "None";
-        if (typeof attr === 'string') return attr;
-        return attr.name || attr.id || "None";
-    }
+    
 
     return (
         <div className="space-y-4 mt-6">
@@ -56,7 +52,7 @@ const VariantList: React.FC<VariantListProps> = ({ variants }) => {
                                 <div className="flex gap-4 items-center">
                                     <div className="h-16 w-16 rounded-lg overflow-hidden bg-muted flex items-center justify-center shrink-0 border border-border/50 relative group">
                                         {variant.imageUrl ? (
-                                            <img src={variant.imageUrl} alt="Variant" className="h-full w-full object-cover" />
+                                            <FallbackImage src={variant.imageUrl} alt="Variant" className="h-full w-full object-cover" />
                                         ) : (
                                             <Icon name="ImageIcon" className="h-5 w-5 text-muted-foreground/50" />
                                         )}
@@ -67,18 +63,9 @@ const VariantList: React.FC<VariantListProps> = ({ variants }) => {
                                         </div>
                                     </div>
                                     <div className="flex gap-2.5">
-                                        <div className="bg-muted/30 px-3 py-2 rounded-lg flex flex-col justify-center min-w-[60px]">
-                                            <Typography variant="small" className="text-muted-foreground text-xs mb-0.5 font-normal">Size</Typography>
-                                            <Typography variant="body" className="font-medium text-sm leading-none">{renderAttributeName(variant.size)}</Typography>
-                                        </div>
-                                        <div className="bg-muted/30 px-3 py-2 rounded-lg flex flex-col justify-center min-w-[60px]">
-                                            <Typography variant="small" className="text-muted-foreground text-xs mb-0.5 font-normal">Color</Typography>
-                                            <Typography variant="body" className="font-medium text-sm leading-none">{renderAttributeName(variant.color)}</Typography>
-                                        </div>
-                                        <div className="bg-muted/30 px-3 py-2 rounded-lg flex flex-col justify-center min-w-[60px]">
-                                            <Typography variant="small" className="text-muted-foreground text-xs mb-0.5 font-normal">Material</Typography>
-                                            <Typography variant="body" className="font-medium text-sm leading-none">{renderAttributeName(variant.material)}</Typography>
-                                        </div>
+                                        <VariantListText label="Size" variant={variant.size} />
+                                        <VariantListText label="Color" variant={variant.color} />
+                                        <VariantListText label="Material" variant={variant.material} />
                                     </div>
                                 </div>
                                 <div className="flex gap-2">
@@ -139,3 +126,18 @@ const VariantList: React.FC<VariantListProps> = ({ variants }) => {
 };
 
 export default VariantList;
+
+
+
+const VariantListText = ({ variant, label }: { variant: string, label: string }) => {
+    return (
+        <div className="bg-muted/30 px-3 py-2 rounded-lg flex flex-col justify-center min-w-[60px]">
+            <Typography variant="small" className="text-muted-foreground text-xs mb-0.5 font-normal">
+                {label}
+            </Typography>
+            <Typography variant="body" className="font-medium text-sm leading-none">
+                {variant || "None"}
+            </Typography>
+        </div>
+    )
+}

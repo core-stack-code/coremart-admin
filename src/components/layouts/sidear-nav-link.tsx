@@ -16,7 +16,7 @@ interface NavLinkProps {
 
 const SidebarNavLink: React.FC<NavLinkProps> = ({item, className }) => {
     const pathName = usePathname();
-    const isActive = pathName === item.url;
+    const isActive = pathName === item.url || (item.url !== "/" && pathName.startsWith(`${item.url}/`));
     const { state } = useSidebar();
     const isCollapsed = state === "collapsed";
 

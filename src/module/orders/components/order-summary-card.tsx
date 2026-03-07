@@ -1,33 +1,18 @@
 import React from 'react';
+import { OrderDetailsResponse } from '../api/type';
+import { getOrderStatusStyles } from '@/lib/getStyles';
+import { formatDate, formatCurrency } from '@/lib/foremate';
+import { cn } from '@/lib/utils';
+
+import Icon from '@/components/icons';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Typography } from '@/components/ui/typography';
 import { Button } from '@/components/ui/button';
-import { formatDate, formatCurrency } from '@/lib/foremate';
-import { OrderDetailsResponse } from '../api/type';
-import { OrderStatus } from '@/types/status';
-import { cn } from '@/lib/utils';
-import Icon from '@/components/icons';
 
 interface OrderSummaryCardProps {
     order: OrderDetailsResponse['order'];
 }
 
-export const getOrderStatusStyles = function (status: OrderStatus) {
-    switch (status) {
-        case 'DELIVERED':
-            return 'border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900/50 dark:bg-emerald-900/20 dark:text-emerald-400';
-        case 'PENDING':
-            return 'border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-900/50 dark:bg-amber-900/20 dark:text-amber-400';
-        case 'CONFIRMED':
-        case 'SHIPPED':
-            return 'border-blue-200 bg-blue-50 text-blue-700 dark:border-blue-900/50 dark:bg-blue-900/20 dark:text-blue-400';
-        case 'CANCELLED':
-        case 'EXPIRED':
-            return 'border-red-200 bg-red-50 text-red-700 dark:border-red-900/50 dark:bg-red-900/20 dark:text-red-400';
-        default:
-            return 'border-slate-200 bg-slate-50 text-slate-700 dark:border-slate-800 dark:bg-slate-900/20 dark:text-slate-400';
-    }
-};
 
 const OrderSummaryCard: React.FC<OrderSummaryCardProps> = ({ order }) => {
     return (
@@ -68,36 +53,36 @@ const OrderSummaryCard: React.FC<OrderSummaryCardProps> = ({ order }) => {
                         <Typography variant="small" className="text-muted-foreground font-medium flex items-center gap-2">
                             <Icon name="Settings" className="w-4 h-4" /> Date Placed
                         </Typography>
-                        <p className="font-medium text-foreground">
+                        <Typography variant="body" className="font-medium text-foreground">
                             {formatDate(order.createdAt, true)}
-                        </p>
+                        </Typography>
                     </div>
                     
                     <div className="space-y-2">
                         <Typography variant="small" className="text-muted-foreground font-medium flex items-center gap-2">
                             <Icon name="Check" className="w-4 h-4" /> Confirmed At
                         </Typography>
-                        <p className="font-medium text-foreground">
+                        <Typography variant="body" className="font-medium text-foreground">
                             {order.confirmedAt ? formatDate(order.confirmedAt, true) : 'Not Confirmed Yet'}
-                        </p>
+                        </Typography>
                     </div>
                     
                     <div className="space-y-2">
                         <Typography variant="small" className="text-muted-foreground font-medium flex items-center gap-2">
                             <Icon name="TicketPercent" className="w-4 h-4" /> Discount
                         </Typography>
-                        <p className="font-medium text-foreground">
+                        <Typography variant="body" className="font-medium text-foreground">
                             {formatCurrency(order.discountAmount)}
-                        </p>
+                        </Typography>
                     </div>
 
                     <div className="space-y-2">
                         <Typography variant="small" className="text-muted-foreground font-medium flex items-center gap-2">
                             <Icon name="Boxes" className="w-4 h-4" /> Total Amount
                         </Typography>
-                        <p className="text-lg font-bold text-primary">
+                        <Typography variant="large" className="text-primary">
                             {formatCurrency(order.totalAmount)}
-                        </p>
+                        </Typography>
                     </div>
                 </div>
             </CardContent>

@@ -55,11 +55,11 @@ const mainItems: SideBarItem[] = [
         url: "/orders",
         icon: "orders",
     },
-    {
-        title: "Discounts",
-        url: "/discounts",
-        icon: "discounts",
-    }
+    // {
+    //     title: "Discounts",
+    //     url: "/discounts",
+    //     icon: "discounts",
+    // }
 ]
 
 

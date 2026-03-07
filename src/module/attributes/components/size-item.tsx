@@ -2,18 +2,20 @@
 import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+
 import { UpdateSizePayload, updateSizeSchema } from "../utils/schema";
 import { useUpdateSize } from "../api/mutation";
 import { Size } from "../api/type";
 import { useToast } from "@/hooks/useToast";
 import { SIZE_TYPES_OPTIONS } from "@/constants/selectOptions";
+import { useModelStore } from "@/store";
 
 import Icon from "@/components/icons";
 import SelectField from "@/components/form/select-field";
+import InputField from "@/components/form/input-field";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Typography } from "@/components/ui/typography";
-import InputField from "@/components/form/input-field";
 
 interface SizeItemProps {
     size: Size;
@@ -30,18 +32,30 @@ const SizeItem: React.FC<SizeItemProps> = ({ size }) => {
         }
     });
 
-    const [isEditing, setIsEditing] = useState(false);
     const { mutate: updateSize, isPending } = useUpdateSize();
     const toast = useToast();
+    
+    const showModel = useModelStore(s => s.showModel)
+    const [isEditing, setIsEditing] = useState(false);
 
     const onSubmit = (data: UpdateSizePayload) => {
         updateSize({ id: size.id, payload: data }, {
             onSuccess: () => {
-            toast.success("Size updated successfully");
-            setIsEditing(false);
-        },
+                toast.success("Size updated successfully");
+                setIsEditing(false);
+            },
             onError: () => toast.error("Failed to update size")
         });
+    }
+
+    const handleToggleSwitch = (isActive: boolean, onChange: (...event: any[]) => void) => {
+        showModel(() => {
+            onChange(isActive)
+            handleSubmit(onSubmit)()
+        }, {
+            title: "Change active state?",
+            description: "This action will change the active state of size."
+        })
     }
 
     const handleCancel = () => {
@@ -61,8 +75,7 @@ const SizeItem: React.FC<SizeItemProps> = ({ size }) => {
                             checked={field.value} 
                             disabled={isPending}
                             onCheckedChange={(checked) => {
-                                field.onChange(checked);
-                                handleSubmit(onSubmit)();
+                                handleToggleSwitch(checked, field.onChange);
                             }}
                         />
                     )}

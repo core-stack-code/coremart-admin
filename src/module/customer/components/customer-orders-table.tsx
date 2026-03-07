@@ -1,11 +1,12 @@
 import React from 'react';
 import { CustomerOrderList } from '../api/type';
 import { formatDate, formatCurrency } from '@/lib/foremate';
+import { getOrderStatusStyles } from '@/lib/getStyles';
 import { cn } from '@/lib/utils';
 
+import NoDataFound from '@/components/common/no-data-found';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Typography } from '@/components/ui/typography';
-import NoDataFound from '@/components/common/no-data-found';
 
 interface CustomerOrdersTableProps {
     orders: CustomerOrderList[];
@@ -79,21 +80,3 @@ const CustomerOrdersTable: React.FC<CustomerOrdersTableProps> = ({ orders }) => 
 };
 
 export default CustomerOrdersTable;
-
-const getOrderStatusStyles = function(status: CustomerOrderList['status']) {
-    switch (status) {
-        case 'DELIVERED':
-            return 'border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900/50 dark:bg-emerald-900/20 dark:text-emerald-400';
-        case 'SHIPPED':
-            return 'border-blue-200 bg-blue-50 text-blue-700 dark:border-blue-900/50 dark:bg-blue-900/20 dark:text-blue-400';
-        case 'CONFIRMED':
-            return 'border-indigo-200 bg-indigo-50 text-indigo-700 dark:border-indigo-900/50 dark:bg-indigo-900/20 dark:text-indigo-400';
-        case 'PENDING':
-            return 'border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-900/50 dark:bg-amber-900/20 dark:text-amber-400';
-        case 'CANCELLED':
-        case 'EXPIRED':
-            return 'border-destructive/30 bg-destructive/10 text-destructive dark:border-destructive/40 dark:bg-destructive/20';
-        default:
-            return 'border-slate-200 bg-slate-50 text-slate-700 dark:border-slate-800 dark:bg-slate-900/20 dark:text-slate-400';
-    }
-};

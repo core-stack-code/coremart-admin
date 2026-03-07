@@ -42,26 +42,28 @@ const OrderPaymentsList: React.FC<OrderPaymentsListProps> = ({ payments }) => {
                     <Table>
                         <TableHeader>
                             <TableRow className="hover:bg-transparent bg-muted/20">
-                                <TableHead className="w-32 font-semibold py-4 pl-6">Amount</TableHead>
-                                <TableHead className="w-32 font-semibold py-4 text-center">Status</TableHead>
-                                <TableHead className="w-56 font-semibold py-4">Transaction ID</TableHead>
-                                <TableHead className="w-48 font-semibold py-4">Time</TableHead>
-                                <TableHead className="w-32 font-semibold py-4 text-center">Action</TableHead>
-                                <TableHead className="w-12 font-semibold py-4 pr-6"></TableHead>
+                                <TableHead className="w-32 py-4 pl-6"><Typography variant="small" className="font-semibold">Amount</Typography></TableHead>
+                                <TableHead className="w-32 py-4 text-center"><Typography variant="small" className="font-semibold">Status</Typography></TableHead>
+                                <TableHead className="w-56 py-4"><Typography variant="small" className="font-semibold">Transaction ID</Typography></TableHead>
+                                <TableHead className="w-48 py-4"><Typography variant="small" className="font-semibold">Time</Typography></TableHead>
+                                <TableHead className="w-32 py-4 text-center"><Typography variant="small" className="font-semibold">Action</Typography></TableHead>
+                                <TableHead className="w-12 py-4 pr-6"></TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
                             {payments.length === 0 ? (
                                 <TableRow>
-                                    <TableCell colSpan={6} className="h-32 text-center text-muted-foreground">
-                                        No payments found.
+                                    <TableCell colSpan={6} className="h-32 text-center">
+                                        <Typography variant="muted">No payments found.</Typography>
                                     </TableCell>
                                 </TableRow>
                             ) : (
                                 payments.map((payment) => (
                                     <TableRow key={payment.id} className="group hover:bg-muted/30 transition-colors">
-                                        <TableCell className="font-semibold text-primary pl-6">
-                                            {formatCurrency(payment.amount)}
+                                        <TableCell className="pl-6">
+                                            <Typography variant="body" className="font-semibold text-primary">
+                                                {formatCurrency(payment.amount)}
+                                            </Typography>
                                         </TableCell>
                                         <TableCell className="text-center">
                                             <div className={cn(
@@ -73,12 +75,12 @@ const OrderPaymentsList: React.FC<OrderPaymentsListProps> = ({ payments }) => {
                                         </TableCell>
                                         <TableCell>
                                             <div className="flex flex-col space-y-1">
-                                                <p className="text-xs text-muted-foreground font-mono bg-muted/60 px-2 py-0.5 rounded-sm inline-block max-w-max" title="Cashfree Order ID">
+                                                <Typography variant="muted" className="text-xs font-mono bg-muted/60 px-2 py-0.5 rounded-sm inline-block max-w-max" title="Cashfree Order ID">
                                                     cf: {payment.cfOrderId}
-                                                </p>
-                                                <p className="text-xs text-muted-foreground font-mono bg-muted/60 px-2 py-0.5 rounded-sm inline-block max-w-max truncate w-48" title={payment.paymentSessionId}>
+                                                </Typography>
+                                                <Typography variant="muted" className="text-xs font-mono bg-muted/60 px-2 py-0.5 rounded-sm inline-block max-w-max truncate w-48" title={payment.paymentSessionId}>
                                                     sess: {payment.paymentSessionId.substring(0, 15)}...
-                                                </p>
+                                                </Typography>
                                             </div>
                                         </TableCell>
                                         <TableCell>

@@ -28,7 +28,10 @@ import {
     Mail,
     Camera,
     ChevronRight,
-    Phone
+    Phone,
+    FolderClosed,
+    Grid2X2,
+    Minus
 } from "lucide-react";
 
 import { 
@@ -73,7 +76,10 @@ export const LUCIDE_ICON_MAP = {
     Mail,
     Camera,
     ChevronRight,
-    Phone
+    Phone,
+    FolderClosed,
+    Grid2X2,
+    Minus
 }
 
 export const CUSTOM_ICON_MAP = {

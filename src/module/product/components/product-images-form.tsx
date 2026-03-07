@@ -9,7 +9,7 @@ import { updateProductSchema, UpdateProductPayload } from "../utils/schema"
 import { flatZodError } from "@/lib/zod/flatZodError"
 import { useToast } from "@/hooks/useToast"
 
-import FormCard from "@/components/common/form-card"
+import FormCard from "@composite/form-card"
 import SingleImageUpload from "@/components/form/single-image-upload"
 import GalleryUpload from "@/components/form/gallery-upload"
 import InputField from "@/components/form/input-field"

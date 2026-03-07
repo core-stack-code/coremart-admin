@@ -2,10 +2,12 @@
 import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+
 import { UpdateMaterialPayload, updateMaterialSchema } from "../utils/schema";
 import { useUpdateMaterial } from "../api/mutation";
 import { Material } from "../api/type";
 import { useToast } from "@/hooks/useToast";
+import { useModelStore } from "@/store";
 
 import Icon from "@/components/icons";
 import InputField from "@/components/form/input-field";
@@ -26,9 +28,11 @@ const MaterialItem: React.FC<MaterialItemProps> = ({ material }) => {
         }
     });
 
-    const [isEditing, setIsEditing] = useState(false);
     const { mutate: updateMaterial, isPending } = useUpdateMaterial();
     const toast = useToast();
+
+    const showModel = useModelStore(s => s.showModel)
+    const [isEditing, setIsEditing] = useState(false);
 
     const onSubmit = (data: UpdateMaterialPayload) => {
         updateMaterial({ id: material.id, payload: data }, {
@@ -38,6 +42,16 @@ const MaterialItem: React.FC<MaterialItemProps> = ({ material }) => {
             },
             onError: () => toast.error("Failed to update material")
         });
+    }
+
+    const handleToggleSwitch = (isActive: boolean, onChange: (...event: any[]) => void) => {
+        showModel(() => {
+            onChange(isActive)
+            handleSubmit(onSubmit)()
+        }, {
+            title: "Change active state?",
+            description: "This action will change the active state of material."
+        })
     }
 
     const handleCancel = () => {
@@ -56,8 +70,7 @@ const MaterialItem: React.FC<MaterialItemProps> = ({ material }) => {
                             checked={field.value} 
                             disabled={isPending}
                             onCheckedChange={(checked) => {
-                                field.onChange(checked);
-                                handleSubmit(onSubmit)();
+                                handleToggleSwitch(checked, field.onChange);
                             }}
                         />
                     )}

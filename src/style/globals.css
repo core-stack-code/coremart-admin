@@ -5,45 +5,45 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-background: #FFFFFF;
-  --color-foreground: #111827;
+  --color-background: var(--background, #FFFFFF);
+  --color-foreground: var(--foreground, #111827);
 
-  --color-card: #F9FAFB;
-  --color-card-foreground: #111827;
-  --color-popover: #FFFFFF;
-  --color-popover-foreground: #111827;
+  --color-card: var(--card, #F9FAFB);
+  --color-card-foreground: var(--card-foreground, #111827);
+  --color-popover: var(--popover, #FFFFFF);
+  --color-popover-foreground: var(--popover-foreground, #111827);
 
-  --color-primary: #9333EA;
-  --color-primary-foreground: #FFFFFF;
-  --color-secondary: #F3F4F6;
-  --color-secondary-foreground: #111827;
+  --color-primary: var(--primary, #9333EA);
+  --color-primary-foreground: var(--primary-foreground, #FFFFFF);
+  --color-secondary: var(--secondary, #F3F4F6);
+  --color-secondary-foreground: var(--secondary-foreground, #111827);
 
-  --color-muted: #F3F4F6;
-  --color-muted-foreground: #6B7280;
-  --color-accent: #F5F3FF;
-  --color-accent-foreground: #6D28D9;
+  --color-muted: var(--muted, #F3F4F6);
+  --color-muted-foreground: var(--muted-foreground, #6B7280);
+  --color-accent: var(--accent, #F5F3FF);
+  --color-accent-foreground: var(--accent-foreground, #6D28D9);
 
-  --color-destructive: #EF4444;
-  --color-destructive-foreground: #FFFFFF;
+  --color-destructive: var(--destructive, #EF4444);
+  --color-destructive-foreground: var(--destructive-foreground, #FFFFFF);
 
-  --color-border: #E5E7EB;
-  --color-input: #E5E7EB;
-  --color-ring: #9333EA;
+  --color-border: var(--border, #E5E7EB);
+  --color-input: var(--input, #E5E7EB);
+  --color-ring: var(--ring, #9333EA);
 
-  --color-chart-1: #9333EA;
-  --color-chart-2: #3B82F6;
-  --color-chart-3: #10B981;
-  --color-chart-4: #F59E0B;
-  --color-chart-5: #EF4444;
+  --color-chart-1: var(--chart-1, #9333EA);
+  --color-chart-2: var(--chart-2, #3B82F6);
+  --color-chart-3: var(--chart-3, #10B981);
+  --color-chart-4: var(--chart-4, #F59E0B);
+  --color-chart-5: var(--chart-5, #EF4444);
 
-  --color-sidebar: #FFFFFF;
-  --color-sidebar-foreground: #111827;
-  --color-sidebar-primary: #9333EA;
-  --color-sidebar-primary-foreground: #FFFFFF;
-  --color-sidebar-accent: #F3F4F6;
-  --color-sidebar-accent-foreground: #111827;
-  --color-sidebar-border: #E5E7EB;
-  --color-sidebar-ring: #9333EA;
+  --color-sidebar: var(--sidebar, #FFFFFF);
+  --color-sidebar-foreground: var(--sidebar-foreground, #111827);
+  --color-sidebar-primary: var(--sidebar-primary, #9333EA);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground, #FFFFFF);
+  --color-sidebar-accent: var(--sidebar-accent, #F3F4F6);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground, #111827);
+  --color-sidebar-border: var(--sidebar-border, #E5E7EB);
+  --color-sidebar-ring: var(--sidebar-ring, #9333EA);
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -102,6 +102,7 @@
 }
 
 .dark {
+  color-scheme: dark;
   --background: #0F172A;
   --foreground: #F9FAFB;
 
@@ -147,11 +148,13 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
+
   body::-webkit-scrollbar {
     width: 0;
     height: 0;
@@ -169,16 +172,19 @@
 }
 
 .scroll-container {
-  scrollbar-width: none; 
+  scrollbar-width: none;
   -ms-overflow-style: none;
 }
+
 .scroll-container::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
+
 .scroll-container::-webkit-scrollbar-track {
   background: transparent;
 }
+
 .scroll-container::-webkit-scrollbar-thumb {
   background: transparent;
 }
