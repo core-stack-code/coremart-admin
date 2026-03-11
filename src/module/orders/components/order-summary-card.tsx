@@ -5,9 +5,9 @@ import { formatDate, formatCurrency } from '@/lib/foremate';
 import { cn } from '@/lib/utils';
 
 import Icon from '@/components/icons';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Typography } from '@/components/ui/typography';
-import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@ui/card';
+import { Typography } from '@ui/typography';
+import OrderStatusSelector from './order-status-selector';
 
 interface OrderSummaryCardProps {
     order: OrderDetailsResponse['order'];
@@ -28,22 +28,7 @@ const OrderSummaryCard: React.FC<OrderSummaryCardProps> = ({ order }) => {
                         </Typography>
                     </div>
                     <div className="flex items-center gap-3">
-                        <div className={cn(
-                            "inline-flex items-center justify-center rounded-full border px-3 py-1 text-sm font-semibold tracking-wide",
-                            getOrderStatusStyles(order.status)
-                        )}>
-                            {order.status}
-                        </div>
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            className="bg-background"
-                            onClick={() => console.log('Change status for order:', order.id)}
-                            type="button"
-                        >
-                            <Icon name="Pencil" className="w-4 h-4 mr-2" />
-                            Change Status
-                        </Button>
+                        <OrderStatusSelector orderId={order.id} currentStatus={order.status} />
                     </div>
                 </div>
             </CardHeader>

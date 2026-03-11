@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import Link from 'next/link';
-import { useGetOrderDetails } from '../api/query/use-get-order-details';
+import { useGetOrderDetails } from '../api/query';
 
 import OrderSummaryCard from './order-summary-card';
 import OrderCustomerCard from './order-customer-card';
@@ -51,7 +51,7 @@ const OrderDetailsPageCom: React.FC<OrderDetailsPageComProps> = ({ orderId }) =>
                 </div>
 
                 <div className="w-full">
-                    <OrderPaymentsList payments={payments} />
+                    <OrderPaymentsList payments={payments} orderId={orderId} />
                 </div>
             </div>
         );

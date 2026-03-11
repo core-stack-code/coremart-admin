@@ -71,9 +71,13 @@ Must use `/src/components/ui/typography.tsx` componets for all the static text w
 9. **Form Components**
 - Alwasy use FallbackImage component to show imags, wethere it is from server or static. (check in `/src/components/common/fallback-image.tsx`
 
+10. **Charts**
+- Alway check rechart charts and graphs to show in the dashboard
+
 ## References
 - **Shadcn Docs:** https://ui.shadcn.com/docs
 - **React Hook Form Docs:** https://react-hook-form.com/docs
 - **Zod Docs:** https://zod.dev/
 - **Palette Pattern:** Refer to `src/style/globals.css` for the custom brand colors. Use the `primary` variable for all brand-specific actions.
 - **Logical Properties:** (2026 Update) Use `ms-*` (start) and `me-*` (end) instead of `ml-*` and `mr-*` to support RTL layouts where necessary.
+- **Recharts Docs:** https://recharts.github.io/en-US/api/

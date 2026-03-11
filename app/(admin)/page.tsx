@@ -1,10 +1,10 @@
-import DefaultPage from '@/components/common/default-page'
-import React from 'react'
+import React from 'react';
+import DashboardPageCom from '@/module/analysis/components/dashboard-page-com';
 
 const DashboardPage: React.FC = () => {
     return (
-        <DefaultPage title='Dashboard' />
+        <DashboardPageCom />
     )
 }
 
-export default DashboardPage
+export default DashboardPage;
