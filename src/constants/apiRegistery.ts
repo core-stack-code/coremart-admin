@@ -23,10 +23,16 @@ export const QUERY_REGISTRY = {
 
     getCustomersList: "get-customers-list",
     getCustomerDetails: "get-customer-details",
+
     getCategoryList: "get-category-list",
     getCategoryTree: "get-category-tree",
+
     getOrderList: "get-order-list",
     getOrderDetails: "get-order-details",
+    
+    getOverViewMatrix: "get-overview-matrix",
+    getRevenueAnalysis: "get-revenue-analysis",
+    getStatusAnalysis: "get-status-analysis",
 }
 
 
@@ -65,4 +71,7 @@ export const MUTATION_REGISTRY = {
     updateVariantImage: 'update-variant-image',
     updateSku: 'update-sku',
     deleteVariant: 'delete-variant',
+
+    updateOrderStatus: 'update-order-status',
+    updatePaymentStatus: 'update-payment-status',
 };

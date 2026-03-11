@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import { useGetOrderList } from '../api/query/use-get-order-list';
+import { useGetOrderList } from '../api/query';
 import { usePagination } from '@/hooks/usePagination';
 
 import OrderTable from './order-table';
@@ -10,9 +10,14 @@ import NoDataFound from '@/components/common/no-data-found';
 import PaginationComponent from '@composite/pagination-comp';
 import PageTitle from '@/components/common/page-title';
 
+interface OrderPageComProps {
+    initialLimit?: number
+    isShowPagination?: boolean
+}
 
-const OrdersPageCom: React.FC = () => {
-    const { handleLimitChange, handlePageChange, limit, page } = usePagination();
+
+const OrdersPageCom: React.FC<OrderPageComProps> = ({ initialLimit = 10, isShowPagination = true }) => {
+    const { handleLimitChange, handlePageChange, page, limit } = usePagination(1, initialLimit);
     const { data, isLoading, error } = useGetOrderList({ page, limit });
 
     const getContent = () => {
@@ -32,7 +37,7 @@ const OrdersPageCom: React.FC = () => {
         return (
             <div className="flex flex-col">
                 <OrderTable data={orders} />
-                {pagination && (
+                {pagination && isShowPagination && (
                     <PaginationComponent 
                         pagination={pagination} 
                         onPageChange={handlePageChange}
@@ -45,10 +50,10 @@ const OrdersPageCom: React.FC = () => {
 
     
     return (
-        <section className="space-y-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <>
             <PageTitle title='Orders' />
             {getContent()}
-        </section>
+        </>
     );
 };
 

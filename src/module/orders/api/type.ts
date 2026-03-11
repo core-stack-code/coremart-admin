@@ -99,4 +99,22 @@ export type OrderDetailsResponse = {
     payments: OrderPaymentsItems[],
     orderItems: OrderProductItem[],
     customerDetails: OrderCustomerDetails
-}   
+}
+
+
+export type UpdateOrderStatusParams = {
+    orderId: string
+}
+
+export type UpdateOrderStatusPayload = {
+    orderStatus: OrderStatus
+}
+
+export type UpdatePaymentStatusParams = {
+    orderId: string,
+    paymentId: string
+}
+
+export type UpdatePaymentStatusPayload = {
+    paymentStatus: PaymentStatus
+}

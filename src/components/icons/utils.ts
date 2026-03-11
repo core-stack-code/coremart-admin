@@ -31,7 +31,13 @@ import {
     Phone,
     FolderClosed,
     Grid2X2,
-    Minus
+    Minus,
+    TrendingUp,
+    TrendingDown,
+    Users,
+    Package,
+    ShoppingCart,
+    DollarSign
 } from "lucide-react";
 
 import { 
@@ -79,7 +85,13 @@ export const LUCIDE_ICON_MAP = {
     Phone,
     FolderClosed,
     Grid2X2,
-    Minus
+    Minus,
+    TrendingUp,
+    TrendingDown,
+    Users,
+    Package,
+    ShoppingCart,
+    DollarSign
 }
 
 export const CUSTOM_ICON_MAP = {

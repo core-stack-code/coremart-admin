@@ -1,31 +1,23 @@
 import React from 'react';
+import { OrderDetailsResponse } from '../api/type';
+import { formatDate, formatCurrency } from '@/lib/foremate';
+import { getPaymentStatusStyles } from '@/lib/getStyles';
+import { cn } from '@/lib/utils';
+
+import Icon from '@/components/icons';
+import PaymentStatusSelector from './payment-status-selector';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Typography } from '@/components/ui/typography';
 import { Button } from '@/components/ui/button';
-import { OrderDetailsResponse } from '../api/type';
-import { PaymentStatus } from '@/types/status';
-import { formatDate, formatCurrency } from '@/lib/foremate';
-import { cn } from '@/lib/utils';
-import Icon from '@/components/icons';
 
 interface OrderPaymentsListProps {
     payments: OrderDetailsResponse['payments'];
+    orderId: string;
 }
 
-const getPaymentStatusStyles = function (status: PaymentStatus) {
-    switch (status) {
-        case 'PAID':
-        case 'ACTIVE':
-            return 'border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900/50 dark:bg-emerald-900/20 dark:text-emerald-400';
-        case 'EXPIRED':
-            return 'border-red-200 bg-red-50 text-red-700 dark:border-red-900/50 dark:bg-red-900/20 dark:text-red-400';
-        default:
-            return 'border-slate-200 bg-slate-50 text-slate-700 dark:border-slate-800 dark:bg-slate-900/20 dark:text-slate-400';
-    }
-};
 
-const OrderPaymentsList: React.FC<OrderPaymentsListProps> = ({ payments }) => {
+const OrderPaymentsList: React.FC<OrderPaymentsListProps> = ({ payments, orderId }) => {
     return (
         <Card className="border-border/40 shadow-sm bg-card overflow-hidden">
             <CardHeader className="bg-muted/30 border-b pb-4">
@@ -89,16 +81,7 @@ const OrderPaymentsList: React.FC<OrderPaymentsListProps> = ({ payments }) => {
                                             </Typography>
                                         </TableCell>
                                         <TableCell className="text-center">
-                                            <Button
-                                                variant="outline"
-                                                size="sm"
-                                                className="h-8 text-xs font-medium bg-background hover:bg-muted"
-                                                onClick={() => console.log('Change payment status:', payment.id)}
-                                                type="button"
-                                            >
-                                                <Icon name="Pencil" className="w-3.5 h-3.5 mr-1.5" />
-                                                Edit Status
-                                            </Button>
+                                            <PaymentStatusSelector orderId={orderId} paymentId={payment.id} currentStatus={payment.cfStatus} />
                                         </TableCell>
                                         <TableCell className="pr-6 text-right">
                                             <Button
