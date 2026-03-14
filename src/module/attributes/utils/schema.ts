@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { SIZE_TYPES } from '@/constants/selectOptions';
+import { SIZE_TYPES } from '@/constants/select-options';
 
 
 export const createSizeSchema = z.object({

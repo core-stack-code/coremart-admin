@@ -8,3 +8,7 @@ export type OrderStatus = "PENDING" | "CONFIRMED" | "SHIPPED" | "DELIVERED" | "C
 export type PaymentStatus = "ACTIVE" | "PAID" | "EXPIRED"
 
 export type RevenueRange = '7d' | '30d' | '90d' | '180d';
+
+export type DiscountType = "AUTOMATIC" | "COUPON";
+
+export type DiscountBenefitType = "PERCENTAGE" | "FIXED_AMOUNT";

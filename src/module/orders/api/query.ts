@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getOrderDetails, getOrderList } from "./api";
 
 import { QueryOptions } from "@/types/api";
-import { QUERY_REGISTRY } from "@/constants/apiRegistery";
+import { QUERY_REGISTRY } from "@/constants/api-registery";
 import { OrderDetailPramas, OrderDetailsResponse, OrderListParamas, OrderListResponse } from "./type";
 
 

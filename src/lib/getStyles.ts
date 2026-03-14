@@ -1,4 +1,4 @@
-import { OrderStatus, PaymentStatus } from "@/types/status";
+import { OrderStatus, PaymentStatus } from "@/types/enum";
 
 export const getOrderStatusStyles = function (status: OrderStatus) {
     switch (status) {

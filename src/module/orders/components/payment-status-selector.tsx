@@ -5,8 +5,8 @@ import { useToast } from '@/hooks/useToast';
 import { useModelStore } from '@/store';
 
 import { getPaymentStatusStyles } from '@/lib/getStyles';
-import { PAYMENT_STATUS_OPTIONS } from '@/constants/selectOptions';
-import { PaymentStatus } from '@/types/status';
+import { PAYMENT_STATUS_OPTIONS } from '@/constants/select-options';
+import { PaymentStatus } from '@/types/enum';
 import { cn } from '@/lib/utils';
 import SelectField from '@/components/form/select-field';
 

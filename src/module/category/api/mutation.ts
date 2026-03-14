@@ -3,7 +3,8 @@ import { assingProductToCategory, createCategory, removeProductToCategory, updat
 import { ProductToCategoryParam, UpdateCategoryPayloadType } from "./type";
 import { CreateCategoryPayload } from "../utils/schema";
 import { MutationOptions } from "@/types/api";
-import { MUTATION_REGISTRY, QUERY_REGISTRY } from "@/constants/apiRegistery";
+import { MUTATION_REGISTRY, QUERY_REGISTRY } from "@/constants/api-registery";
+
 
 export const useAssignProductToCategory = (
     options?: MutationOptions<null, ProductToCategoryParam>

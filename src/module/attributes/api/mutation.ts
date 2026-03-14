@@ -5,7 +5,7 @@ import { Size, Color, Material, UpdateSizePayloadType, UpdateColorPayloadType, U
 import { CreateSizePayload, CreateColorPayload, CreateMaterialPayload } from "../utils/schema";
 
 import { MutationOptions } from "@/types/api";
-import { MUTATION_REGISTRY, QUERY_REGISTRY } from "@/constants/apiRegistery";
+import { MUTATION_REGISTRY, QUERY_REGISTRY } from "@/constants/api-registery";
 
 
 export const useCreateSize = (

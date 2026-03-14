@@ -3,7 +3,7 @@ import { updateOrderStatus, updatePaymentStatus } from "./api";
 
 import { UpdateOrderStatusParams, UpdateOrderStatusPayload, UpdatePaymentStatusParams, UpdatePaymentStatusPayload } from "./type";
 import { MutationOptions } from "@/types/api";
-import { MUTATION_REGISTRY, QUERY_REGISTRY } from "@/constants/apiRegistery";
+import { MUTATION_REGISTRY, QUERY_REGISTRY } from "@/constants/api-registery";
 
 export const useUpdateOrderStatus = (
     options?: MutationOptions<null, { params: UpdateOrderStatusParams, payload: UpdateOrderStatusPayload }>

@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CreateSizePayload, createSizeSchema } from "../utils/schema";
 import { useCreateSize } from "../api/mutation";
 import { useToast } from "@/hooks/useToast";
-import { SIZE_TYPES_OPTIONS } from "@/constants/selectOptions";
+import { SIZE_TYPES_OPTIONS } from "@/constants/select-options";
 
 import Icon from "@/components/icons";
 import SelectField from "@/components/form/select-field";

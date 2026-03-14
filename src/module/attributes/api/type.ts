@@ -1,5 +1,5 @@
 import { UpdateColorPayload, UpdateMaterialPayload, UpdateSizePayload } from "../utils/schema";
-import { SizeType } from "@/types/status";
+import { SizeType } from "@/types/enum";
 
 export interface Size {
     id: string;

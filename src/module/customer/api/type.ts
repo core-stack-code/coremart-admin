@@ -1,5 +1,5 @@
 import { PaginationType } from "@/types/common";
-import { OrderStatus } from "@/types/status";
+import { OrderStatus } from "@/types/enum";
 
 
 export type CustomerListItem = {

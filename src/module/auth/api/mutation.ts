@@ -3,7 +3,7 @@ import { changePassword, login, logout, updateProfile } from "./api";
 
 import { LoginResponse, ProfileResponse } from "./type";
 import { MutationOptions } from "@/types/api";
-import { MUTATION_REGISTRY, QUERY_REGISTRY } from "@/constants/apiRegistery";
+import { MUTATION_REGISTRY, QUERY_REGISTRY } from "@/constants/api-registery";
 import { LoginFormType } from "../utils/schema";
 import { ChangePasswordFormType } from "@/lib/zod/password";
 

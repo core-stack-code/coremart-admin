@@ -7,7 +7,7 @@ import { UpdateSizePayload, updateSizeSchema } from "../utils/schema";
 import { useUpdateSize } from "../api/mutation";
 import { Size } from "../api/type";
 import { useToast } from "@/hooks/useToast";
-import { SIZE_TYPES_OPTIONS } from "@/constants/selectOptions";
+import { SIZE_TYPES_OPTIONS } from "@/constants/select-options";
 import { useModelStore } from "@/store";
 
 import Icon from "@/components/icons";

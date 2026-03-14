@@ -1,5 +1,5 @@
 import { PaginationType } from "@/types/common";
-import { OrderStatus, PaymentStatus, ProductStatus } from "@/types/status";
+import { OrderStatus, PaymentStatus, ProductStatus } from "@/types/enum";
 
 export type OrderListParamas = {
     page?: number;

@@ -1,17 +1,17 @@
 "use client"
 import React, { useMemo, useState } from 'react';
 import { ResponsiveContainer, LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Line } from 'recharts';
-import dayjs from 'dayjs';
+import { format, subDays } from 'date-fns';
 
 import { useGetRevenueAnalysis } from '../api/query';
 import { formatCurrency } from '@/lib/foremate';
+import { RevenueRange } from '@/types/enum';
+import { STATUS_RANGE_OPTIONS } from '@/constants/select-options';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import SelectField from '@/components/form/select-field';
 import ErrorBlock from '@/components/common/error-block';
-import { STATUS_RANGE_OPTIONS } from '@/constants/selectOptions';
-import { RevenueRange } from '@/types/status';
 
 
 const RevenueChart: React.FC = () => {
@@ -23,16 +23,16 @@ const RevenueChart: React.FC = () => {
         const dates = [];
         
         for (let i = days - 1; i >= 0; i--) {
-            dates.push(dayjs().subtract(i, 'day').format('YYYY-MM-DD'));
+            dates.push(format(subDays(new Date(), i), 'yyyy-MM-dd'));
         }
 
         const apiData = data?.data || [];
 
         return dates.map(date => {
-            const found = apiData.find(item => dayjs(item.date).format('YYYY-MM-DD') === date);
+            const found = apiData.find(item => format(new Date(item.date), 'yyyy-MM-dd') === date);
             return {
                 rawDate: date,
-                date: dayjs(date).format('DD MMM'),
+                date: format(new Date(date), 'dd MMM'),
                 originalRevenue: found ? found.revenue : 0
             };
         });

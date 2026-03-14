@@ -1,5 +1,12 @@
 import { ImageType, PaginationType } from "@/types/common";
-import { ProductStatus } from "@/types/status";
+import { ProductStatus } from "@/types/enum";
+
+export type ProductOptionsResponse = Array<{
+    id: string;
+    name: string;
+    slug: string;
+    thumbnail: string | null;
+}>;
 
 
 export type ProductListItem = {

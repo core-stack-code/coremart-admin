@@ -4,8 +4,8 @@ import { useUpdateOrderStatus } from '../api/mutation';
 import { useToast } from '@/hooks/useToast';
 import { useModelStore } from '@/store';
 
-import { ORDER_STATUS_OPTIONS } from '@/constants/selectOptions';
-import { OrderStatus } from '@/types/status';
+import { ORDER_STATUS_OPTIONS } from '@/constants/select-options';
+import { OrderStatus } from '@/types/enum';
 import { getOrderStatusStyles } from '@/lib/getStyles';
 import { cn } from '@/lib/utils';
 import SelectField from '@/components/form/select-field';
