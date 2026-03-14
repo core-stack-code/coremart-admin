@@ -9,7 +9,7 @@ import { useUpdateProduct } from "../api/mutation"
 import { updateProductSchema, UpdateProductPayload } from "../utils/schema"
 import { useToast } from "@/hooks/useToast"
 import { flatZodError } from "@/lib/zod/flatZodError"
-import { PRODUCT_STATUS_OPTIONS } from "@/constants/selectOptions"
+import { PRODUCT_STATUS_OPTIONS } from "@/constants/select-options"
 
 import Icon from "@/components/icons"
 import FormCard from "@composite/form-card"

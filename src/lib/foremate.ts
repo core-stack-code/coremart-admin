@@ -1,15 +1,16 @@
-import dayjs from "dayjs"
-import utc from 'dayjs/plugin/utc';
+import { format } from "date-fns";
 
-dayjs.extend(utc);
+export const formatDate = (time: string | Date, isTime = false) => {
+    const date = typeof time === "string" ? new Date(time) : time;
+    
+    if (isNaN(date.getTime())) return "";
 
-export const formatDate = (time: string, isTime = false) => {
-    const date = dayjs.utc(time);
     if (!isTime) {
-        return date.format('DD MMM YYYY');
+        return format(date, 'dd MMM yyyy');
     }
-    return date.format('DD MMM YYYY, hh:mm A');
+    return format(date, 'dd MMM yyyy, hh:mm aa');
 }
+
 
 // display in ruppues
 export const formatCurrency = (amount: number): string => {

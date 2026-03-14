@@ -3,7 +3,7 @@ import { createVariant, updateVariantImage, updateSku, deleteVariant } from "./a
 
 import { CreateVariantsResponse, UpdateVariantImageResponse, UpdateSkuResponse, DeleteVariantResponse, CreateVariantsPayloadType, UpdateVarianstImagePayloadType, UpdateSkuPayloadType, DeleteVariantPayloadType } from "./type";
 import { MutationOptions } from "@/types/api";
-import { MUTATION_REGISTRY, QUERY_REGISTRY } from "@/constants/apiRegistery";
+import { MUTATION_REGISTRY, QUERY_REGISTRY } from "@/constants/api-registery";
 
 export const useCreateVariant = (
     options?: MutationOptions<CreateVariantsResponse, CreateVariantsPayloadType>

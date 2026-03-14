@@ -3,7 +3,7 @@ import { MutationOptions } from "@/types/api";
 
 import { createProduct, updateProduct } from "./api";
 import { CreateProductPayload, UpdateProductPayload } from "../utils/schema";
-import { MUTATION_REGISTRY, QUERY_REGISTRY } from "@/constants/apiRegistery";
+import { MUTATION_REGISTRY, QUERY_REGISTRY } from "@/constants/api-registery";
 
 
 export const useCreateProduct = (

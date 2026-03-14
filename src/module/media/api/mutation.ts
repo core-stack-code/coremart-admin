@@ -6,7 +6,7 @@ import {
     CloudinaryUploadPayload, CloudinaryUploadResponse,
     MediaSignatureResponse
 } from "./type";
-import { MUTATION_REGISTRY } from "@/constants/apiRegistery";
+import { MUTATION_REGISTRY } from "@/constants/api-registery";
 import { MediaUploadPayload } from "../utils/mediaUpload";
 
 

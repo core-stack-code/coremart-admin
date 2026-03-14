@@ -1,9 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
-import { getProductList, getProductDetail } from "./api";
+import { getProductList, getProductDetail, getProductOptions } from "./api";
 
-import { ProductListParams, ProductListResponse, ProductDetailItem } from "./type";
+import { ProductListParams, ProductListResponse, ProductDetailItem, ProductOptionsResponse } from "./type";
 import { QueryOptions } from "@/types/api";
-import { QUERY_REGISTRY } from "@/constants/apiRegistery";
+import { QUERY_REGISTRY } from "@/constants/api-registery";
+
+export const useGetProductOptions = (
+    options?: QueryOptions<ProductOptionsResponse>
+) => {
+    return useQuery({
+        queryKey: [QUERY_REGISTRY.getProductOptions],
+        queryFn: () => getProductOptions(),
+        retry: false,
+        ...options,
+    });
+};
 
 
 export const useGetProductList = (

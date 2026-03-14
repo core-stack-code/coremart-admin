@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getCustomerDetails, getCustomersList } from "./api";
 import { CustomerDetailsResponse, CustomerListParams, CustomerListResponse } from "./type";
 import { QueryOptions } from "@/types/api";
-import { QUERY_REGISTRY } from "@/constants/apiRegistery";
+import { QUERY_REGISTRY } from "@/constants/api-registery";
 
 export const useGetCustomerList = (
     params?: CustomerListParams,

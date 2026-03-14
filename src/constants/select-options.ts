@@ -1,4 +1,4 @@
-import { OrderStatus, PaymentStatus, ProductStatus, SizeType, RevenueRange } from "@/types/status";
+import { OrderStatus, PaymentStatus, ProductStatus, SizeType, RevenueRange, DiscountType, DiscountBenefitType } from "@/types/enum";
 
 type OPTIONS_TYPE = {
     label: string;
@@ -43,3 +43,16 @@ export const STATUS_RANGE_OPTIONS = [
     { label: 'Last 90 Days', value: '90d' },
     { label: 'Last 6 Months', value: '180d' },
 ];
+
+
+export const DISCOUNT_TYPE: DiscountType[] = ["AUTOMATIC", "COUPON"] as const;
+export const DISCOUNT_TYPE_OPTIONS: OPTIONS_TYPE[] = [
+    { label: "Automatic", value: "AUTOMATIC" },
+    { label: "Coupon", value: "COUPON" }
+]
+
+export const DISCOUNT_BENEFIT_TYPE: DiscountBenefitType[] = ["PERCENTAGE", "FIXED_AMOUNT"] as const;
+export const DISCOUNT_BENEFIT_TYPE_OPTIONS: OPTIONS_TYPE[] = [
+    { label: "Percentage", value: "PERCENTAGE" },
+    { label: "Fixed Amount", value: "FIXED_AMOUNT" }
+]

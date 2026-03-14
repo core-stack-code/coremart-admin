@@ -9,6 +9,7 @@ export const QUERY_REGISTRY = {
 
     getProductList: "get-product-list",
     getProductDetail: "get-product-detail",
+    getProductOptions: "get-product-options",
 
     getBrandAndAttributesCount: "get-brand-and-attributes-count",
 
@@ -33,6 +34,8 @@ export const QUERY_REGISTRY = {
     getOverViewMatrix: "get-overview-matrix",
     getRevenueAnalysis: "get-revenue-analysis",
     getStatusAnalysis: "get-status-analysis",
+
+    getDiscountList: "get-discount-list",
 }
 
 
@@ -74,4 +77,6 @@ export const MUTATION_REGISTRY = {
 
     updateOrderStatus: 'update-order-status',
     updatePaymentStatus: 'update-payment-status',
+
+    createDiscount: 'create-discount',
 };

@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { imageAltSchema } from "@/lib/zod/common";
-import { PRODUCT_STATUS } from "@/constants/selectOptions";
+import { PRODUCT_STATUS } from "@/constants/select-options";
 
 
 export const createProductSchema = z.object({

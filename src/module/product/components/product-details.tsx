@@ -69,7 +69,7 @@ export default ProductDetails
 
 
 
-export const TabsTriggerWrapper = function({ value, lable }: { value: string, lable: string }) {
+const TabsTriggerWrapper = function({ value, lable }: { value: string, lable: string }) {
     return (
         <TabsTrigger 
             value={value}

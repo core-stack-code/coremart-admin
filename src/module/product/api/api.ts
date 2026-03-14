@@ -1,7 +1,12 @@
 import api from "@/lib/api/axios";
 import { ApiResponse } from "@/types/api";
-import { ProductListParams, ProductListResponse, ProductDetailItem } from "./type";
+import { ProductListParams, ProductListResponse, ProductDetailItem, ProductOptionsResponse } from "./type";
 import { CreateProductPayload, UpdateProductPayload } from "../utils/schema";
+
+export const getProductOptions = async (): Promise<ApiResponse<ProductOptionsResponse>> => {
+    const res = await api.get("/product/options");
+    return res.data;
+}
 
 export const getProductList = async (params: ProductListParams): Promise<ApiResponse<ProductListResponse>> => {
     const res = await api.get("/product/list", { params });

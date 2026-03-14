@@ -37,7 +37,8 @@ import {
     Users,
     Package,
     ShoppingCart,
-    DollarSign
+    DollarSign,
+    Calendar
 } from "lucide-react";
 
 import { 
@@ -91,7 +92,8 @@ export const LUCIDE_ICON_MAP = {
     Users,
     Package,
     ShoppingCart,
-    DollarSign
+    DollarSign,
+    Calendar
 }
 
 export const CUSTOM_ICON_MAP = {

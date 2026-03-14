@@ -1,4 +1,4 @@
-import { OrderStatus, PaymentStatus, RevenueRange } from "@/types/status"
+import { OrderStatus, PaymentStatus, RevenueRange } from "@/types/enum"
 
 export type OverviewMatrixResponse = {
     customers: {
