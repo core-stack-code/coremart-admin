@@ -77,8 +77,28 @@ export const createDiscountSchema = z
     })
     .superRefine(discountRefinement);
 
+const discountUpdateShape = {
+    name: discountBaseShape.name.optional(),
+    type: discountBaseShape.type.optional(),
+    benefitType: discountBaseShape.benefitType.optional(),
+    code: discountBaseShape.code,
+    benefitValue: discountBaseShape.benefitValue.optional(),
+    maxDiscount: discountBaseShape.maxDiscount,
+    minOrderAmount: discountBaseShape.minOrderAmount,
+    usageLimit: discountBaseShape.usageLimit,
+    startsAt: discountBaseShape.startsAt,
+    endsAt: discountBaseShape.endsAt,
+    isActive: z.boolean().optional(),
+};
+
+export const updateDiscountSchema = z
+    .object(discountUpdateShape)
+    .superRefine(discountRefinement);
+
 
 export type CreateDiscountPayload = z.infer<typeof createDiscountSchema>;
+export type UpdateDiscountPayload = z.infer<typeof updateDiscountSchema>;
+
 
 
 export const defaultCouponDiscount: CreateDiscountPayload = {
@@ -86,6 +106,8 @@ export const defaultCouponDiscount: CreateDiscountPayload = {
     type: "COUPON",
     benefitType: "PERCENTAGE",
     benefitValue: 0,
+    minOrderAmount: null,
+    maxDiscount: null,
     code: "",
     usageLimit: 0,
     productIds: [],
@@ -97,6 +119,8 @@ export const defaultAutomaticDiscount: CreateDiscountPayload = {
     type: "AUTOMATIC",
     benefitType: "FIXED_AMOUNT",
     benefitValue: 0,
+    minOrderAmount: null,
+    maxDiscount: null,
     startsAt: "",
     endsAt: "",
     productIds: [],

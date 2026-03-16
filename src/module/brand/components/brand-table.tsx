@@ -1,6 +1,8 @@
 import React, { useRef } from "react";
 import { BrandListResponse } from "../api/type";
 import UpdateBrandForm from "./update-brand-form";
+import { getStatusStyles } from '@/lib/getStyles';
+import { cn } from '@/lib/utils';
 
 import Icon from "@/components/icons";
 import FallbackImage from "@/components/common/fallback-image";
@@ -8,6 +10,7 @@ import CollapsibleComponent, { CollapsibleComponentRef } from "@composite/collap
 import { Button } from "@ui/button";
 import { Table, TableCell, TableHead, TableHeader, TableRow } from "@ui/table";
 import { Badge } from "@ui/badge";
+
 
 interface BrandTableProps {
     brands: BrandListResponse;
@@ -29,9 +32,12 @@ const BrandTable: React.FC<BrandTableProps> = ({ brands }) => {
                     </TableCell>
                     <TableCell>{brand.name}</TableCell>
                     <TableCell>
-                        <Badge variant={brand.isActive ? "default" : "secondary"}>
-                            {brand.isActive ? "Active" : "Inactive"}
-                        </Badge>
+                        <div className={cn(
+                            "inline-flex items-center justify-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide",
+                            getStatusStyles(brand.isActive)
+                        )}>
+                            {brand.isActive ? 'Active' : 'Inactive'}
+                        </div>
                     </TableCell>
                     <TableCell>{brand.productCount || 0}</TableCell>
                     <TableCell>

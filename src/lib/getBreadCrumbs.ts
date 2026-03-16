@@ -5,7 +5,7 @@ const PAGES_MAP: Record<string, string> = {
     "customers": "Customers",
     "categories": "Categories",
     "orders": "Orders",
-    "discounts": "Discounts",
+    "discount": "Discounts",
     "edit": "Edit",
     "create": "Create",
 }
