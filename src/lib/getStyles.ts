@@ -29,3 +29,10 @@ export const getPaymentStatusStyles = function (status: PaymentStatus) {
             return 'border-slate-200 bg-slate-50 text-slate-700 dark:border-slate-800 dark:bg-slate-900/20 dark:text-slate-400';
     }
 };
+
+export const getStatusStyles = function (isActive: boolean) {
+    if (isActive) {
+        return 'border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900/50 dark:bg-emerald-900/20 dark:text-emerald-400';
+    }
+    return 'border-slate-200 bg-slate-50 text-slate-700 dark:border-slate-800 dark:bg-slate-900/20 dark:text-slate-400';
+}

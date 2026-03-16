@@ -2,6 +2,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { CategoryListItem } from '../api/type';
+import { getStatusStyles } from '@/lib/getStyles';
+import { cn } from '@/lib/utils';
 
 import Icon from '@/components/icons';
 import FallbackImage from '@/components/common/fallback-image';
@@ -12,9 +14,10 @@ import {
     TableHead, 
     TableHeader, 
     TableRow 
-} from '@/components/ui/table';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+} from '@ui/table';
+import { Button } from '@ui/button';
+import { Badge } from '@ui/badge';
+
 
 interface CategoriesTableProps {
     data: CategoryListItem[];
@@ -65,9 +68,12 @@ const CategoriesTable: React.FC<CategoriesTableProps> = ({ data, page, limit }) 
                             </TableCell>
                             <TableCell className="text-muted-foreground">{cat.slug}</TableCell>
                             <TableCell className="text-center">
-                                <Badge variant={cat.isActive ? "default" : "secondary"}>
-                                    {cat.isActive ? "Active" : "Inactive"}
-                                </Badge>
+                                <div className={cn(
+                                    "inline-flex items-center justify-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide",
+                                    getStatusStyles(cat.isActive)
+                                )}>
+                                    {cat.isActive ? 'Active' : 'Inactive'}
+                                </div>
                             </TableCell>
                             <TableCell className="text-center">
                                 <div className="flex justify-center items-center gap-1">

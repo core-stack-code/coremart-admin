@@ -36,6 +36,7 @@ export const QUERY_REGISTRY = {
     getStatusAnalysis: "get-status-analysis",
 
     getDiscountList: "get-discount-list",
+    getDiscount: "get-discount"
 }
 
 
@@ -79,4 +80,7 @@ export const MUTATION_REGISTRY = {
     updatePaymentStatus: 'update-payment-status',
 
     createDiscount: 'create-discount',
+    updateDiscount: 'update-discount',
+    updateDiscountScopes: 'update-discount-scopes',
+    deleteDiscount: 'delete-discount',
 };

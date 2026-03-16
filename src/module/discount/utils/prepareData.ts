@@ -11,6 +11,8 @@ export const prepareData = (data: CreateDiscountPayload) => {
 
     return {
         ...data,
+        maxDiscount: data.maxDiscount || null,
+        minOrderAmount: data.minOrderAmount || null,
         productIds: data.productIds?.length ? data.productIds : undefined,
         categoryIds: data.categoryIds?.length ? data.categoryIds : undefined,
     }
