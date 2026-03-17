@@ -9,6 +9,7 @@ import { PAYMENT_STATUS_OPTIONS } from '@/constants/select-options';
 import { PaymentStatus } from '@/types/enum';
 import { cn } from '@/lib/utils';
 import SelectField from '@/components/form/select-field';
+import { getErroMsg } from '@/lib/getErrorMsg';
 
 interface PaymentStatusSelectorProps {
     orderId: string;
@@ -32,7 +33,8 @@ const PaymentStatusSelector: React.FC<PaymentStatusSelectorProps> = ({ orderId, 
                 toast.success(data?.message || "Payment status updated successfully");
             },
             onError: (error) => {
-                toast.error(error.message || "Failed to update payment status");
+                const errorMsg = getErroMsg("Payment status", error)
+                toast.error(errorMsg)
             }
         });
     }

@@ -8,6 +8,7 @@ import { useUpdateMaterial } from "../api/mutation";
 import { Material } from "../api/type";
 import { useToast } from "@/hooks/useToast";
 import { useModelStore } from "@/store";
+import { getErroMsg } from "@/lib/getErrorMsg";
 
 import Icon from "@/components/icons";
 import InputField from "@/components/form/input-field";
@@ -40,7 +41,10 @@ const MaterialItem: React.FC<MaterialItemProps> = ({ material }) => {
                 toast.success("Material updated successfully");
                 setIsEditing(false);
             },
-            onError: () => toast.error("Failed to update material")
+            onError: (error) => {
+                const errorMsg = getErroMsg("Material", error)
+                toast.error(errorMsg)
+            }
         });
     }
 

@@ -45,6 +45,7 @@ export const MUTATION_REGISTRY = {
     logout: 'logout',
     changePassword: 'change-password',
     updateProfile: 'update-profile',
+    demoAdmin: 'demo-admin',
     
     createSignature: 'create-signature',
     uploadToCloudinary: 'upload-to-cloudinary',

@@ -11,6 +11,7 @@ import { useToast } from "@/hooks/useToast"
 
 import InputField from "@/components/form/input-field"
 import { Button } from "@/components/ui/button"
+import DemoAdminButton from "./demo-admin-btn"
 
 
 const LoginForm: React.FC = () => {
@@ -82,6 +83,7 @@ const LoginForm: React.FC = () => {
                 )}
             />
             <Button type="submit">Login</Button>
+            <DemoAdminButton />
         </form>
     )
 }

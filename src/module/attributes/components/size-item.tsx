@@ -16,6 +16,7 @@ import InputField from "@/components/form/input-field";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Typography } from "@/components/ui/typography";
+import { getErroMsg } from "@/lib/getErrorMsg";
 
 interface SizeItemProps {
     size: Size;
@@ -44,7 +45,10 @@ const SizeItem: React.FC<SizeItemProps> = ({ size }) => {
                 toast.success("Size updated successfully");
                 setIsEditing(false);
             },
-            onError: () => toast.error("Failed to update size")
+            onError: (error) => {
+                const errorMsg = getErroMsg("Size", error)
+                toast.error(errorMsg)
+            }
         });
     }
 

@@ -8,6 +8,7 @@ import { useToast } from '@/hooks/useToast';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/icons';
 import { useModelStore } from '@/store';
+import { getErroMsg } from '@/lib/getErrorMsg';
 
 interface DeleteDiscountButtonProps {
     discountId: string;
@@ -28,7 +29,8 @@ const DeleteDiscountButton: React.FC<DeleteDiscountButtonProps> = ({ discountId 
                 router.push("/discount");
             },
             onError: (error) => {
-                toast.error(error?.message || "Failed to delete discount");
+                const errorMsg = getErroMsg("Discount", error)
+                toast.error(errorMsg)
             }
         });
     };

@@ -14,6 +14,7 @@ import SingleImageUpload from "@/components/form/single-image-upload"
 import GalleryUpload from "@/components/form/gallery-upload"
 import InputField from "@/components/form/input-field"
 import { Button } from "@/components/ui/button"
+import { getErroMsg } from "@/lib/getErrorMsg"
 
 interface ProductImagesFormProps {
     data: ProductDetailItem
@@ -52,7 +53,8 @@ const ProductImagesForm: React.FC<ProductImagesFormProps> = ({ data }) => {
                 form.reset(payload);
             },
             onError: (error) => {
-                toast.error(error.message || "Failed to update product images");
+                const errorMsg = getErroMsg("Product image", error)
+                toast.error(errorMsg)
             }
         });
     }

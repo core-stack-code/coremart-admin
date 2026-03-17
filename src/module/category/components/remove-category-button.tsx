@@ -19,7 +19,7 @@ const RemoveCategoryButton: React.FC<RemoveCategoryButtonProps> = ({ categoryId,
             toast.success("Category removed successfully");
             onSuccess?.();
         },
-        onError: (error) => {
+        onError: () => {
             toast.error("Failed to remove category");
         }
     });

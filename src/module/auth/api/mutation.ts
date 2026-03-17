@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { changePassword, login, logout, updateProfile } from "./api";
+import { changePassword, demoAdmin, login, logout, updateProfile } from "./api";
 
-import { LoginResponse, ProfileResponse } from "./type";
+import { DemoAdminResponse, LoginResponse, ProfileResponse } from "./type";
 import { MutationOptions } from "@/types/api";
 import { MUTATION_REGISTRY, QUERY_REGISTRY } from "@/constants/api-registery";
 import { LoginFormType } from "../utils/schema";
@@ -54,3 +54,14 @@ export const useUpdateProfile = (
         ...options,
     });
 }
+
+export const useDemoLogin = (
+    options?: MutationOptions<DemoAdminResponse, void>
+) => {
+    
+    return useMutation({
+        mutationKey: [MUTATION_REGISTRY.demoAdmin],
+        mutationFn: () => demoAdmin(),
+        ...options,
+    });
+};

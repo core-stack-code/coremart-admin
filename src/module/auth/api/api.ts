@@ -1,6 +1,6 @@
 import api from "@/lib/api/axios";
 import { ApiResponse } from "@/types/api";
-import { LoginResponse, ProfileResponse } from "./type";
+import { DemoAdminResponse, LoginResponse, ProfileResponse } from "./type";
 import { ChangePasswordFormType } from "@/lib/zod/password";
 import { LoginFormType } from "../utils/schema";
 
@@ -27,5 +27,10 @@ export const logout = async (): Promise<ApiResponse<null>> => {
 
 export const changePassword = async (payload: ChangePasswordFormType): Promise<ApiResponse<null>> => {
     const res = await api.post("/admin/change-password", payload)
+    return res.data
+}
+
+export const demoAdmin = async (): Promise<ApiResponse<DemoAdminResponse>> => {
+    const res = await api.post("/admin/demo-login")
     return res.data
 }

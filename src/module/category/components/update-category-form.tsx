@@ -16,6 +16,7 @@ import CategorySelector from './category-selector';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { FieldLabel } from '@/components/ui/field';
+import { getErroMsg } from '@/lib/getErrorMsg';
 
 interface UpdateCategoryFormProps {
     data: CategoryTreeResponse;
@@ -52,7 +53,8 @@ const UpdateCategoryForm: React.FC<UpdateCategoryFormProps> = ({ data }) => {
             toast.success("Category updated successfully");
         },
         onError: (error) => {
-            toast.error(error.message || "Failed to update category");
+            const errorMsg = getErroMsg("Category", error)
+            toast.error(errorMsg)
         }
     });
 

@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CreateColorPayload, createColorSchema } from "../utils/schema";
 import { useCreateColor } from "../api/mutation";
 import { useToast } from "@/hooks/useToast";
+import { getErroMsg } from "@/lib/getErrorMsg";
 
 import Icon from "@/components/icons";
 import InputField from "@/components/form/input-field";
@@ -27,7 +28,10 @@ const ColorCreateForm: React.FC = () => {
                 toast.success("Color created successfully");
                 reset();
             },
-            onError: () => toast.error("Failed to create color")
+            onError: (error) => {
+                const errorMsg = getErroMsg("Color", error)
+                toast.error(errorMsg)
+            }
         });
     };
 

@@ -16,6 +16,7 @@ import GalleryUpload from "@/components/form/gallery-upload"
 import FormCard from "@composite/form-card"
 import PageTitle from "@/components/common/page-title"
 import { Button } from "@/components/ui/button"
+import { getErroMsg } from "@/lib/getErrorMsg"
 
 
 const CreateProductForm: React.FC = () => {
@@ -42,7 +43,8 @@ const CreateProductForm: React.FC = () => {
                 router.push('/products');
             },
             onError: (error) => {
-                toast.error(error.message || "Failed to create product");
+                const errorMsg = getErroMsg("Product", error)
+                toast.error(errorMsg)
             }
         });
     }
