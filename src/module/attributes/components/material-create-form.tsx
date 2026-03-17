@@ -3,6 +3,7 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CreateMaterialPayload, createMaterialSchema } from "../utils/schema";
+import { getErroMsg } from "@/lib/getErrorMsg";
 import { useCreateMaterial } from "../api/mutation";
 import { useToast } from "@/hooks/useToast";
 
@@ -28,7 +29,10 @@ const MaterialCreateForm: React.FC = () => {
                 toast.success("Material created successfully");
                 reset();
             },
-            onError: () => toast.error("Failed to create material")
+            onError: (error) => {
+                const errorMsg = getErroMsg("Material", error)
+                toast.error(errorMsg)
+            }
         });
     };
 

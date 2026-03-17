@@ -10,6 +10,7 @@ import InputField from "@/components/form/input-field";
 import SingleImageUpload from "@/components/form/single-image-upload";
 import { Button } from "@/components/ui/button";
 import { Typography } from "@/components/ui/typography";
+import { getErroMsg } from "@/lib/getErrorMsg";
 
 interface CreateBrandFormProps {
     onCancel: () => void;
@@ -34,7 +35,10 @@ const CreateBrandForm: React.FC<CreateBrandFormProps> = ({ onCancel }) => {
                 toast.success("Brand created successfully");
                 onCancel();
             },
-            onError: () => toast.error("Failed to create brand")
+            onError: (error) => {
+                const errorMsg = getErroMsg("Brand", error)
+                toast.error(errorMsg)
+            }
         });
     };
 

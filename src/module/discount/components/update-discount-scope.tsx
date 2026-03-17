@@ -8,6 +8,7 @@ import FormCard from '@/components/composite/form-card';
 import CategorySelector from '@mod/category/components/category-selector';
 import ProductSelector from '@mod/product/components/product-selector';
 import { Button } from '@ui/button';
+import { getErroMsg } from '@/lib/getErrorMsg';
 
 interface UpdateDiscountScopeProps {
     data: DiscountDetailsResponse;
@@ -37,7 +38,8 @@ const UpdateDiscountScope: React.FC<UpdateDiscountScopeProps> = ({ data }) => {
                 toast.success(res?.message || "Discount scopes updated successfully");
             },
             onError: (error) => {
-                toast.error(error.message || "Failed to update discount scopes");
+                const errorMsg = getErroMsg("Discount", error)
+                toast.error(errorMsg)
             }
         });
     };

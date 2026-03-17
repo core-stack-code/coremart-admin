@@ -17,6 +17,7 @@ import DeleteDiscountButton from './delete-discount-button'
 import PageTitle from '@/components/common/page-title';
 import { Button } from '@ui/button'
 import { Typography } from '@/components/ui/typography';
+import { getErroMsg } from '@/lib/getErrorMsg';
 
 interface UpdateDiscountFormProps {
     data: DiscountDetailsResponse;
@@ -75,7 +76,8 @@ const UpdateDiscountForm: React.FC<UpdateDiscountFormProps> = ({ data }) => {
                 form.reset(payload);
             },
             onError: (error) => {
-                toast.error(error.message || "Failed to update discount");
+                const errorMsg = getErroMsg("Discount", error)
+                toast.error(errorMsg)
             }
         });
     };

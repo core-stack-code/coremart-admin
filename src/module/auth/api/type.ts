@@ -10,3 +10,5 @@ type Admin = {
 export type LoginResponse = Admin;
 
 export type ProfileResponse = Admin;
+
+export type DemoAdminResponse = Admin;

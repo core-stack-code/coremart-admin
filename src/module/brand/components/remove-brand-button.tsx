@@ -19,7 +19,7 @@ const RemoveBrandButton: React.FC<RemoveBrandButtonProps> = ({ brandId, productI
             toast.success("Brand removed successfully");
             onSuccess?.();
         },
-        onError: (error) => {
+        onError: () => {
             toast.error("Failed to remove brand");
         }
     });

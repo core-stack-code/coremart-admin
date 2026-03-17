@@ -8,6 +8,7 @@ import { useUpdateColor } from "../api/mutation";
 import { Color } from "../api/type";
 import { useToast } from "@/hooks/useToast";
 import { useModelStore } from "@/store";
+import { getErroMsg } from "@/lib/getErrorMsg";
 
 import Icon from "@/components/icons";
 import InputField from "@/components/form/input-field";
@@ -40,7 +41,10 @@ const ColorItem: React.FC<ColorItemProps> = ({ color }) => {
                 toast.success("Color updated successfully");
                 setIsEditing(false);
             },
-            onError: () => toast.error("Failed to update color")
+            onError: (error) => {
+                const errorMsg = getErroMsg("Color", error)
+                toast.error(errorMsg)
+            }
         });
     }
 

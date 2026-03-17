@@ -9,6 +9,7 @@ import { OrderStatus } from '@/types/enum';
 import { getOrderStatusStyles } from '@/lib/getStyles';
 import { cn } from '@/lib/utils';
 import SelectField from '@/components/form/select-field';
+import { getErroMsg } from '@/lib/getErrorMsg';
 
 interface OrderStatusSelectorProps {
     orderId: string;
@@ -30,7 +31,8 @@ const OrderStatusSelector: React.FC<OrderStatusSelectorProps> = ({ orderId, curr
             toast.success(data?.message || "Order status updated successfully");
             },
             onError: (error) => {
-                toast.error(error.message || "Failed to update order status");
+                const errorMsg = getErroMsg("Order status", error)
+                toast.error(errorMsg)
             }
         });
     }

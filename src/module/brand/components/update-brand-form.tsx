@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { FieldLabel, FieldDescription } from "@/components/ui/field";
 import { Typography } from "@/components/ui/typography";
+import { getErroMsg } from "@/lib/getErrorMsg";
 
 interface BrandFormProps {
     brand: {
@@ -47,7 +48,10 @@ const UpdateBrandForm: React.FC<BrandFormProps> = ({ brand, onCancel }) => {
                 toast.success("Brand updated successfully");
                 onCancel();
             },
-            onError: () => toast.error("Failed to update brand")
+            onError: (error) => {
+                const errorMsg = getErroMsg("Brand", error)
+                toast.error(errorMsg)
+            }
         })
     };
 

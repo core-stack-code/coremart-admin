@@ -15,6 +15,7 @@ import CommonDiscountSection from './common-discount-sec'
 import AutomaticDiscoundSection from './auto-discount-sec'
 import CouponDiscountSection from './coupon-discount-sec'
 import { Button } from '@ui/button'
+import { getErroMsg } from '@/lib/getErrorMsg';
 
 
 const CreateDiscountForm: React.FC = () => {
@@ -51,7 +52,8 @@ const CreateDiscountForm: React.FC = () => {
                 router.push("/discount");
             },
             onError: (error) => {
-                toast.error(error.message || "Failed to create discount");
+                const errorMsg = getErroMsg("Discount", error)
+                toast.error(errorMsg)
             }
         });
     };

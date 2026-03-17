@@ -15,6 +15,7 @@ import InputField from '@/components/form/input-field';
 import SingleImageUpload from '@/components/form/single-image-upload';
 import CategorySelector from './category-selector';
 import { Button } from '@ui/button';
+import { getErroMsg } from '@/lib/getErrorMsg';
 
 
 const CreateCategoryForm: React.FC = () => {
@@ -41,7 +42,8 @@ const CreateCategoryForm: React.FC = () => {
                 router.push("/categories");
             },
             onError: (error) => {
-                toast.error(error.message || "Failed to create category");
+                const errorMsg = getErroMsg("Category", error)
+                toast.error(errorMsg)
             }
         });
     };

@@ -11,6 +11,7 @@ import Icon from "@/components/icons";
 import SelectField from "@/components/form/select-field";
 import InputField from "@/components/form/input-field";
 import { Button } from "@/components/ui/button";
+import { getErroMsg } from "@/lib/getErrorMsg";
 
 
 const SizeCreateForm: React.FC = () => {
@@ -31,7 +32,10 @@ const SizeCreateForm: React.FC = () => {
                 toast.success("Size created successfully");
                 reset();
             },
-            onError: () => toast.error("Failed to create size")
+            onError: (error) => {
+                const errorMsg = getErroMsg("Size", error)
+                toast.error(errorMsg)
+            }
         });
     };
 

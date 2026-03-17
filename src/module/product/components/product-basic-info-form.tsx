@@ -18,6 +18,7 @@ import TextareaComponent from "@/components/form/textarea"
 import SelectField from "@/components/form/select-field"
 import { Button } from "@/components/ui/button"
 import { Typography } from "@/components/ui/typography"
+import { getErroMsg } from "@/lib/getErrorMsg"
 
 interface ProductBasicInfoFormProps {
     data: ProductDetailItem
@@ -51,7 +52,10 @@ const ProductBasicInfoForm: React.FC<ProductBasicInfoFormProps> = ({ data }) => 
                 toast.success("Product basic details updated successfully");
                 form.reset(payload);
             },
-            onError: (error) => toast.error(error.message)
+            onError: (error) => {
+                const errorMsg = getErroMsg("Product", error)
+                toast.error(errorMsg)
+            }
         });
     }
 
