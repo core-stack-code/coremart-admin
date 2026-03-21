@@ -1,4 +1,11 @@
-import ProductDetails from '@/module/product/components/product-details'
+import { Metadata } from 'next';
+
+import ProductDetails from '@/module/product/components/product-details';
+
+export const metadata: Metadata = {
+    title: 'Product Details | CoreMart Admin',
+    description: 'View and edit product details',
+};
 
 interface PageProps {
     params: Promise<{

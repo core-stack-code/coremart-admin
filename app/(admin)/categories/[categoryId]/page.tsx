@@ -1,4 +1,11 @@
+import { Metadata } from 'next';
+
 import CategoryDetails from '@/module/category/components/category-details';
+
+export const metadata: Metadata = {
+    title: 'Category Details | CoreMart Admin',
+    description: 'View and edit category details',
+};
 
 interface PageProps {
     params: Promise<{

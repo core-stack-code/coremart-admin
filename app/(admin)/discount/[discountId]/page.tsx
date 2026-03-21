@@ -1,4 +1,11 @@
-import DiscountDetails from "@mod/discount/components/discount-details";
+import { Metadata } from 'next';
+
+import DiscountDetails from '@mod/discount/components/discount-details';
+
+export const metadata: Metadata = {
+    title: 'Discount Details | CoreMart Admin',
+    description: 'View and edit discount details',
+};
 
 interface PageProps {
     params: Promise<{

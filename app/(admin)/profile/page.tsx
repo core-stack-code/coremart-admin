@@ -1,5 +1,12 @@
 import React from 'react'
-import ProfilePageCom from '@/module/auth/components/profile-page-com'
+import { Metadata } from 'next';
+
+import ProfilePageCom from '@/module/auth/components/profile-page-com';
+
+export const metadata: Metadata = {
+    title: 'Profile | CoreMart Admin',
+    description: 'Admin user profile settings',
+};
 
 const ProfilePage: React.FC = () => {
     return (

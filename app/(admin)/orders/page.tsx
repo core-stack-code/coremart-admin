@@ -1,5 +1,12 @@
 import React from 'react';
+import { Metadata } from 'next';
+
 import OrdersPageCom from '@/module/orders/components/orders-page-com';
+
+export const metadata: Metadata = {
+    title: 'Orders | CoreMart Admin',
+    description: 'Manage store orders',
+};
 
 const OrdersPage: React.FC = () => {
     return (
