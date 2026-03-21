@@ -19,6 +19,8 @@ const RevenueChart: React.FC = () => {
     const { data, isLoading, error } = useGetRevenueAnalysis({ range });
 
     const chartData = useMemo(() => {
+        if (!data || !data?.data) return [];
+
         const days = parseInt(range.replace('d', ''));
         const dates = [];
         
@@ -36,7 +38,7 @@ const RevenueChart: React.FC = () => {
                 originalRevenue: found ? found.revenue : 0
             };
         });
-    }, [data, range]);
+    }, [data, isLoading, error, range]);
 
     const CustomTooltip = ({ active, payload, label }: any) => {
         if (active && payload && payload.length) {
@@ -52,13 +54,46 @@ const RevenueChart: React.FC = () => {
         return null;
     };
 
-    const getAxisFormatter = (val: number) => {
-        const rupees = val / 100;
-        if (rupees >= 1000) {
-            return `₹${(rupees / 1000).toFixed(1)}k`;
-        }
-        return `₹${rupees.toLocaleString()}`;
-    };
+
+    const getContent = () => {
+        if (isLoading) return <Skeleton className="w-full h-[350px] rounded-xl" />
+        if (error) return <ErrorBlock message="Failed to load revenue data" />
+
+        return (
+            <div className="h-[350px] w-full mt-4 -ml-4">
+                <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={chartData} margin={{ top: 5, right: 20, left: 10, bottom: 0 }}>
+                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border)" />
+                        <XAxis 
+                            dataKey="date" 
+                            axisLine={false} 
+                            tickLine={false} 
+                            tick={{ fill: 'var(--muted-foreground)', fontSize: 12 }}
+                            dy={10}
+                            minTickGap={30}
+                        />
+                        <YAxis 
+                            axisLine={false} 
+                            tickLine={false} 
+                            tick={{ fill: 'var(--muted-foreground)', fontSize: 12 }}
+                            tickFormatter={getAxisFormatter}
+                            width={60}
+                        />
+                        <Tooltip content={<CustomTooltip />} cursor={{ fill: 'transparent', stroke: 'var(--border)', strokeDasharray: '4 4' }} />
+                        <Line 
+                            type="monotone" 
+                            dataKey="originalRevenue" 
+                            stroke="var(--primary)" 
+                            strokeWidth={3}
+                            dot={false}
+                            activeDot={{ r: 6, fill: 'var(--primary)', stroke: 'var(--background)', strokeWidth: 2 }}
+                            animationDuration={1500}
+                        />
+                    </LineChart>
+                </ResponsiveContainer>
+            </div>
+        )
+    }
 
 
     return (
@@ -74,47 +109,20 @@ const RevenueChart: React.FC = () => {
                 </div>
             </CardHeader>
             <CardContent>
-                {isLoading ? (
-                    <Skeleton className="w-full h-[350px] rounded-xl" />
-                ) : error ? (
-                    <ErrorBlock message="Failed to load revenue data" />
-                ) : (
-                    <div className="h-[350px] w-full mt-4 -ml-4">
-                        <ResponsiveContainer width="100%" height="100%">
-                            <LineChart data={chartData} margin={{ top: 5, right: 20, left: 10, bottom: 0 }}>
-                                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border)" />
-                                <XAxis 
-                                    dataKey="date" 
-                                    axisLine={false} 
-                                    tickLine={false} 
-                                    tick={{ fill: 'var(--muted-foreground)', fontSize: 12 }}
-                                    dy={10}
-                                    minTickGap={30}
-                                />
-                                <YAxis 
-                                    axisLine={false} 
-                                    tickLine={false} 
-                                    tick={{ fill: 'var(--muted-foreground)', fontSize: 12 }}
-                                    tickFormatter={getAxisFormatter}
-                                    width={60}
-                                />
-                                <Tooltip content={<CustomTooltip />} cursor={{ fill: 'transparent', stroke: 'var(--border)', strokeDasharray: '4 4' }} />
-                                <Line 
-                                    type="monotone" 
-                                    dataKey="originalRevenue" 
-                                    stroke="var(--primary)" 
-                                    strokeWidth={3}
-                                    dot={false}
-                                    activeDot={{ r: 6, fill: 'var(--primary)', stroke: 'var(--background)', strokeWidth: 2 }}
-                                    animationDuration={1500}
-                                />
-                            </LineChart>
-                        </ResponsiveContainer>
-                    </div>
-                )}
+                {getContent()}
             </CardContent>
         </Card>
     );
 };
 
 export default RevenueChart;
+
+
+
+function getAxisFormatter (val: number) {
+    const rupees = val / 100;
+    if (rupees >= 1000) {
+        return `₹${(rupees / 1000).toFixed(1)}k`;
+    }
+    return `₹${rupees.toLocaleString()}`;
+};

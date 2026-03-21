@@ -1,6 +1,11 @@
 import { ADMIN_COOKIES } from "@/constants/api-registery";
 import { NextRequest, NextResponse } from "next/server";
 
+export const config = {
+    matcher: [
+        '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
+    ],
+};
 
 export function proxy(req: NextRequest) {
     const pathName = req.nextUrl.pathname;

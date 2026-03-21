@@ -1,5 +1,10 @@
-import LoginCard from "@mod/auth/components/login-card";
+import { Metadata } from 'next';
+import LoginCard from '@mod/auth/components/login-card';
 
+export const metadata: Metadata = {
+    title: 'Login | CoreMart Admin',
+    description: 'Login to CoreMart Admin dashboard',
+};
 
 export default function Page() {
   return (

@@ -25,7 +25,9 @@ const OverviewMatrix: React.FC = () => {
         );
     }
     if (error) return <ErrorBlock message="Failed to load dashboard statistics." />;
-    if (!data?.data) return <NoDataFound title="No Data Available" description="There are no dashboard metrics generated yet." />;
+    if (!data || !data?.data) {
+        return <NoDataFound title="No Data Available" description="There are no dashboard metrics generated yet." />;
+    }
 
 
     const { customers, inventory, orders, revenue } = data.data;

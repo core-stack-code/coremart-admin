@@ -1,4 +1,11 @@
-import CustomerDetailPageCom from "@/module/customer/components/customer-detail-page-com";
+import { Metadata } from 'next';
+
+import CustomerDetailPageCom from '@/module/customer/components/customer-detail-page-com';
+
+export const metadata: Metadata = {
+    title: 'Customer Details | CoreMart Admin',
+    description: 'View customer details and history',
+};
 
 interface PageProps {
     params: Promise<{

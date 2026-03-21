@@ -1,10 +1,17 @@
 import React from 'react';
+import PageTitle from '@/components/common/page-title';
+import { Metadata } from 'next';
+
 import BrandCard from '@/module/brand/components/brand-card';
 import BrandAndAttributesCountCard from '@/module/analysis/components/brand-and-attributes-count-card';
 import SizeCard from '@/module/attributes/components/size-card';
 import ColorCard from '@/module/attributes/components/color-card';
 import MaterialCard from '@/module/attributes/components/material-card';
-import PageTitle from '@/components/common/page-title';
+
+export const metadata: Metadata = {
+    title: 'Brand & Attributes | CoreMart Admin',
+    description: 'Manage brands and attributes for CoreMart products',
+};
 
 
 const BrandAndAttributesPage: React.FC = () => {

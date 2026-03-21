@@ -39,7 +39,7 @@ const StatusChart: React.FC = () => {
                 name,
                 value
             }));
-    }, [data]);
+    }, [data, isLoading, error]);
 
     const CustomTooltip = ({ active, payload }: any) => {
         if (active && payload && payload.length) {
@@ -60,6 +60,62 @@ const StatusChart: React.FC = () => {
         return chartData.reduce((acc, curr) => acc + curr.value, 0);
     }, [chartData]);
 
+    const getContent = () => {
+        if (isLoading) return <Skeleton className="w-full h-[300px] rounded-xl mt-4" />
+        if (error) return <ErrorBlock message="Failed to load status data" />
+        if (chartData.length === 0) return <NoDataFound title="No Data" description={`No active ${chartType}s found`} />
+        
+        return (
+            <div className="flex flex-col items-center h-full w-full justify-between mt-2">
+                <div className="h-[240px] w-full relative">
+                    <ResponsiveContainer width="100%" height="100%">
+                        <PieChart>
+                            <Pie
+                                data={chartData}
+                                cx="50%"
+                                cy="50%"
+                                innerRadius={70}
+                                outerRadius={95}
+                                paddingAngle={5}
+                                dataKey="value"
+                                stroke="none"
+                                animationDuration={1500}
+                                animationBegin={200}
+                            >
+                                {chartData.map((entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                ))}
+                            </Pie>
+                            <Tooltip content={<CustomTooltip />} />
+                        </PieChart>
+                    </ResponsiveContainer>
+                    
+                    
+                    <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                        <span className="text-3xl font-bold tracking-tight text-foreground">{totalCount}</span>
+                        <span className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mt-1">Total</span>
+                    </div>
+                </div>
+
+
+                <div className="w-full grid grid-cols-2 gap-x-2 gap-y-3 mt-4 pt-4 border-t border-border/50">
+                    {chartData.map((entry, index) => (
+                        <div key={`legend-${index}`} className="flex items-center gap-2">
+                            <div 
+                                className="w-3 h-3 rounded-full shrink-0" 
+                                style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                            />
+                            <span className="text-xs font-medium text-muted-foreground truncate capitalize">
+                                {entry.name.toLowerCase()}
+                            </span>
+                            <span className="text-xs font-bold ml-auto">{entry.value}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        )
+    }
+
 
     return (
         <Card className="col-span-1 lg:col-span-4 overflow-hidden hover:shadow-md transition-all duration-300 border-border/50 flex flex-col">
@@ -74,65 +130,7 @@ const StatusChart: React.FC = () => {
                 </div>
             </CardHeader>
             <CardContent className="flex-1 flex flex-col justify-center">
-                {isLoading ? (
-                    <Skeleton className="w-full h-[300px] rounded-xl mt-4" />
-                ) : error ? (
-                    <div className="mt-4 flex-1 flex items-center justify-center">
-                        <ErrorBlock message="Failed to load status data" />
-                    </div>
-                ) : chartData.length === 0 ? (
-                    <div className="mt-4 flex-1 flex items-center justify-center">
-                        <NoDataFound title="No Data" description={`No active ${chartType}s found`} />
-                    </div>
-                ) : (
-                    <div className="flex flex-col items-center h-full w-full justify-between mt-2">
-                        <div className="h-[240px] w-full relative">
-                            <ResponsiveContainer width="100%" height="100%">
-                                <PieChart>
-                                    <Pie
-                                        data={chartData}
-                                        cx="50%"
-                                        cy="50%"
-                                        innerRadius={70}
-                                        outerRadius={95}
-                                        paddingAngle={5}
-                                        dataKey="value"
-                                        stroke="none"
-                                        animationDuration={1500}
-                                        animationBegin={200}
-                                    >
-                                        {chartData.map((entry, index) => (
-                                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                                        ))}
-                                    </Pie>
-                                    <Tooltip content={<CustomTooltip />} />
-                                </PieChart>
-                            </ResponsiveContainer>
-                            
-                            
-                            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                                <span className="text-3xl font-bold tracking-tight text-foreground">{totalCount}</span>
-                                <span className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mt-1">Total</span>
-                            </div>
-                        </div>
-
-
-                        <div className="w-full grid grid-cols-2 gap-x-2 gap-y-3 mt-4 pt-4 border-t border-border/50">
-                            {chartData.map((entry, index) => (
-                                <div key={`legend-${index}`} className="flex items-center gap-2">
-                                    <div 
-                                        className="w-3 h-3 rounded-full shrink-0" 
-                                        style={{ backgroundColor: COLORS[index % COLORS.length] }}
-                                    />
-                                    <span className="text-xs font-medium text-muted-foreground truncate capitalize">
-                                        {entry.name.toLowerCase()}
-                                    </span>
-                                    <span className="text-xs font-bold ml-auto">{entry.value}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
+                {getContent()}
             </CardContent>
         </Card>
     );

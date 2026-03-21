@@ -5,6 +5,7 @@ import RevenueChart from './revenue-chart';
 import StatusChart from './status-chart';
 import OrdersPageCom from '@mod/orders/components/orders-page-com';
 
+
 const DashboardPageCom: React.FC = () => {
     return (
         <div className="space-y-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -19,7 +20,6 @@ const DashboardPageCom: React.FC = () => {
                 <OverviewMatrix />
             </section>
             
-            {/* Analysis Charts Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 w-full mt-6">
                <RevenueChart />
                
