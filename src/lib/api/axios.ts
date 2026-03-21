@@ -53,6 +53,8 @@ api.interceptors.response.use(
                     })
 
                     processQueue(null)
+                    isRefreshing = false
+                    
                     return api(originalRequest)
 
                 } catch (refreshError: any) {
@@ -62,7 +64,9 @@ api.interceptors.response.use(
                         success: false,
                         status: 401,
                     }
+
                     processQueue(errorObj)
+                    isRefreshing = false
 
                     if (typeof window !== "undefined") {
                         window.location.href = "/login?clearSession=true";
@@ -77,8 +81,6 @@ api.interceptors.response.use(
                     }
 
                     return Promise.reject(error)
-                } finally {
-                    isRefreshing = false
                 }
             } else {
                 if (typeof window !== "undefined") {

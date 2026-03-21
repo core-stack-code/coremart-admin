@@ -7,9 +7,9 @@ const queryClient = new QueryClient({
     queryCache: new QueryCache({
         onError: (error: any) => {
             if (error?.status === 401 || error?.code === "UNAUTHORIZED") {
-                showToast.error(error?.message || 'Session has expired');
                 return;
             }
+            showToast.error(error?.message || 'Something went wrong');
         },
     }),
 
