@@ -15,6 +15,13 @@ export function proxy(req: NextRequest) {
 
     const token = req.cookies.get(ADMIN_COOKIES.refreshToken)?.value;
 
+    if (pathName.startsWith("/login") && req.nextUrl.searchParams.get("clearSession") === "true") {
+        const response = NextResponse.redirect(new URL("/login", req.url));
+        response.cookies.delete(ADMIN_COOKIES.refreshToken);
+        response.cookies.delete(ADMIN_COOKIES.accessToken);
+        return response;
+    }
+
     if (!token && !pathName.startsWith("/login")) {
         return NextResponse.redirect(new URL("/login", req.url));
     }

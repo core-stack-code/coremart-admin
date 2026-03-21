@@ -78,6 +78,7 @@ const LoginForm: React.FC = () => {
                         placeholder="****"
                         onChange={field.onChange}
                         value={field.value}
+                        autoComplete="current-password"
                         errMsg={formState.errors.password?.message}
                     />
                 )}
