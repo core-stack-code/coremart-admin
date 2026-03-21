@@ -1,3 +1,4 @@
+"use client"
 import { ApiError } from "@/types/api";
 import axios, { AxiosInstance } from "axios";
 import { Log } from "../utils";
@@ -33,39 +34,57 @@ api.interceptors.response.use(
     async (error) => {
         const originalRequest = error.config;
 
-        if (error.response?.status === 401 && !originalRequest._retry) {
-            if (isRefreshing) {
-                return new Promise((resolve, reject) => {
-                    failedQueue.push({ resolve, reject });
-                })
-                 .then(() => api(originalRequest))
-                 .catch((err) => Promise.reject(err));
-            }
-
-            originalRequest._retry = true
-            isRefreshing = true
-
-            try {
-                await axios.post(`${SERVER_URL}/admin/refresh-token`, {}, {
-                    withCredentials: true
-                })
-
-                processQueue(null)
-                return api(originalRequest)
-
-            } catch (refreshError) {
-                processQueue(refreshError)
-
-                window.location.href = "/login"
-                
-                const error: ApiError = {
-                    code: "UNAUTHORIZED",
-                    message: "Session expired. Please login again.",
-                    success: false,
+        if (error.response?.status === 401) {
+            if (!originalRequest._retry) {
+                if (isRefreshing) {
+                    return new Promise((resolve, reject) => {
+                        failedQueue.push({ resolve, reject });
+                    })
+                     .then(() => api(originalRequest))
+                     .catch((err) => Promise.reject(err));
                 }
-                return Promise.reject(error)
-            } finally {
-                isRefreshing = false
+
+                originalRequest._retry = true
+                isRefreshing = true
+
+                try {
+                    await axios.post(`${SERVER_URL}/admin/refresh-token`, {}, {
+                        withCredentials: true
+                    })
+
+                    processQueue(null)
+                    return api(originalRequest)
+
+                } catch (refreshError: any) {
+                    const errorObj: ApiError = {
+                        code: "UNAUTHORIZED",
+                        message: "Session expired. Please login again.",
+                        success: false,
+                        status: 401,
+                    }
+                    processQueue(errorObj)
+
+                    if (typeof window !== "undefined") {
+                        window.location.href = "/login?clearSession=true";
+                        return;
+                    }
+                    
+                    const error: ApiError = {
+                        code: "UNAUTHORIZED",
+                        message: "Session expired. Please login again.",
+                        success: false,
+                        status: 401,
+                    }
+
+                    return Promise.reject(error)
+                } finally {
+                    isRefreshing = false
+                }
+            } else {
+                if (typeof window !== "undefined") {
+                    window.location.href = "/login?clearSession=true"
+                    return;
+                }
             }
         }
 
