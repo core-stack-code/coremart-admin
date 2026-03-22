@@ -68,14 +68,14 @@ const CreateCategoryForm: React.FC = () => {
                         <Button type="button" variant="outline" onClick={() => router.back()} disabled={isPending}>
                             Cancel
                         </Button>
-                        <Button type="submit" disabled={isPending} onClick={handleSubmit(onSubmit)}>
+                        <Button type="submit" disabled={isPending} form="create-category-form">
                             Create Category
                         </Button>
                     </div>
                 }
             />
 
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
+            <form id="create-category-form" onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
                 <div className="flex flex-col gap-6">
                     <FormCard 
                         title="Basic Details" 

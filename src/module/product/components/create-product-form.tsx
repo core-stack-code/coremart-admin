@@ -69,13 +69,13 @@ const CreateProductForm: React.FC = () => {
                         <Button type="button" variant="outline" onClick={() => router.back()} disabled={isPending}>
                             Cancel
                         </Button>
-                        <Button type="submit" disabled={isPending}>
+                        <Button type="submit" disabled={isPending} form="create-product-form">
                             Create Product
                         </Button>
                     </div>
                 }
             />
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
+            <form id="create-product-form" onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
                 <div className="flex flex-col gap-6">
                     <FormCard
                         title="Basic Details"

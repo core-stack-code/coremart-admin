@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ADMIN_COOKIES } from "@/constants/api-registery";
-import { Log } from "@/lib/utils";
 
 export const config = {
     matcher: [
