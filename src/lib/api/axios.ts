@@ -15,6 +15,7 @@ const api: AxiosInstance = axios.create({
 
 
 let isRefreshing = false
+let isRedirecting = false
 let failedQueue: any[] = []
 
 const processQueue = (error: any) => {
@@ -27,6 +28,15 @@ const processQueue = (error: any) => {
     })
     failedQueue = [];
 }
+
+api.interceptors.request.use(
+    (config) => {
+        if (isRedirecting) {
+            return Promise.reject(new Error('Redirecting...'));
+        }
+        return config;
+    }
+);
 
 
 api.interceptors.response.use(
@@ -68,24 +78,25 @@ api.interceptors.response.use(
                     processQueue(errorObj)
                     isRefreshing = false
 
-                    if (typeof window !== "undefined") {
+                    if (typeof window !== "undefined" && !isRedirecting) {
+                        isRedirecting = true
                         window.location.href = "/login?clearSession=true";
-                        return;
                     }
                     
-                    const error: ApiError = {
+                    return Promise.reject(errorObj)
+                }
+            } else {
+                if (typeof window !== "undefined" && !isRedirecting) {
+                    isRedirecting = true
+                    window.location.href = "/login?clearSession=true";
+                    
+                    const errorObj: ApiError = {
                         code: "UNAUTHORIZED",
                         message: "Session expired. Please login again.",
                         success: false,
                         status: 401,
                     }
-
-                    return Promise.reject(error)
-                }
-            } else {
-                if (typeof window !== "undefined") {
-                    window.location.href = "/login?clearSession=true"
-                    return;
+                    return Promise.reject(errorObj);
                 }
             }
         }

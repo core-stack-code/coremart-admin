@@ -1,5 +1,6 @@
-import { ADMIN_COOKIES } from "@/constants/api-registery";
 import { NextRequest, NextResponse } from "next/server";
+import { ADMIN_COOKIES } from "@/constants/api-registery";
+import { Log } from "@/lib/utils";
 
 export const config = {
     matcher: [
@@ -19,8 +20,9 @@ export function proxy(req: NextRequest) {
     }
 
     const token = req.cookies.get(ADMIN_COOKIES.refreshToken)?.value;
+    const clearSession = req.nextUrl.searchParams.get("clearSession") === "true";
 
-    if (pathName.startsWith("/login") && req.nextUrl.searchParams.get("clearSession") === "true") {
+    if (clearSession) {
         const response = NextResponse.redirect(new URL("/login", req.url));
         response.cookies.delete(ADMIN_COOKIES.refreshToken);
         response.cookies.delete(ADMIN_COOKIES.accessToken);
