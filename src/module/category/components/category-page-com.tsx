@@ -2,6 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useGetCategoryList } from '../api/query';
+import { usePagination } from '@/hooks/usePagination';
 
 import Icon from '@/components/icons';
 import CategoriesTable from './categories-table';
@@ -11,7 +12,6 @@ import NoDataFound from '@/components/common/no-data-found';
 import PaginationComponent from '@composite/pagination-comp';
 import PageTitle from '@/components/common/page-title';
 import { Button } from '@/components/ui/button';
-import { usePagination } from '@/hooks/usePagination';
 
 
 const CategoryPageCom: React.FC = () => {

@@ -70,6 +70,7 @@ const ColorCard: React.FC = () => {
         <FormCard 
             title="Color Attributes" 
             description="Manage predefined color options available across products"
+            contentClass="max-h-[calc(100vh-225px)] overflow-y-auto"
             headerAction={<ColorCreateForm />}
         >
             {getContent()}

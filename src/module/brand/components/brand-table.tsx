@@ -9,7 +9,6 @@ import FallbackImage from "@/components/common/fallback-image";
 import CollapsibleComponent, { CollapsibleComponentRef } from "@composite/collapsible-comp";
 import { Button } from "@ui/button";
 import { Table, TableCell, TableHead, TableHeader, TableRow } from "@ui/table";
-import { Badge } from "@ui/badge";
 
 
 interface BrandTableProps {
