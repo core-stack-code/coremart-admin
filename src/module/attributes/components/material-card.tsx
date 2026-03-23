@@ -70,6 +70,7 @@ const MaterialCard: React.FC = () => {
         <FormCard 
             title="Material Attributes" 
             description="Manage predefined material options available across products"
+            contentClass="max-h-[calc(100vh-225px)] overflow-y-auto"
             headerAction={<MaterialCreateForm />}
         >
             {getContent()}

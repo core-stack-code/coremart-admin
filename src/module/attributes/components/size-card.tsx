@@ -70,6 +70,7 @@ const SizeCard: React.FC = () => {
         <FormCard 
             title="Size Attributes" 
             description="Manage predefined size options and categorization logic across products"
+            contentClass="max-h-[calc(100vh-225px)] overflow-y-auto"
             headerAction={<SizeCreateForm />}
         >
             {getContent()}

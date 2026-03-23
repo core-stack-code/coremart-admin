@@ -29,7 +29,7 @@ const BrandCard: React.FC = () => {
         <FormCard 
             title="Brands List"
             description="View all active and deactivated brands across the entire catalog"
-            contentClass="p-0"
+            contentClass="p-0 max-h-[calc(100vh-350px)] overflow-y-auto"
             headerAction={
                 <Button onClick={() => setIsCreating(true)} disabled={isCreating}>
                     <Icon name="Plus" className="mr-2 h-4 w-4" />
