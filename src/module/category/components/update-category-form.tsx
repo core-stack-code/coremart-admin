@@ -48,22 +48,22 @@ const UpdateCategoryForm: React.FC<UpdateCategoryFormProps> = ({ data }) => {
         });
     }, [data, reset]);
 
-    const { mutate: updateCategoryFn, isPending } = useUpdateCategory({
-        onSuccess: () => {
-            toast.success("Category updated successfully");
-        },
-        onError: (error) => {
-            const errorMsg = getErroMsg("Category", error)
-            toast.error(errorMsg)
-        }
-    });
+    const { mutate, isPending } = useUpdateCategory();
 
     const onSubmit = (formData: UpdateCategoryPayload) => {
         const payload = { ...formData };
         if (payload.parentId === "none") {
-            payload.parentId = undefined;
+            payload.parentId = null;
         }
-        updateCategoryFn({ categoryId: data.id, payload });
+        mutate({ categoryId: data.id, payload }, {
+            onSuccess: () => {
+                toast.success("Category updated successfully");
+            },
+            onError: (error) => {
+                const errorMsg = getErroMsg("Category", error)
+                toast.error(errorMsg)
+            }
+        });
     };
 
     useEffect(() => {
@@ -74,6 +74,7 @@ const UpdateCategoryForm: React.FC<UpdateCategoryFormProps> = ({ data }) => {
     }, [errors, getValues, toast]);
 
     toast.isLoading(isPending, "Updating category...");
+
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
@@ -108,7 +109,7 @@ const UpdateCategoryForm: React.FC<UpdateCategoryFormProps> = ({ data }) => {
                         render={({ field }) => (
                             <CategorySelector
                                 value={field.value || "none"}
-                                onChange={(val) => field.onChange(val === "none" ? undefined : val)}
+                                onChange={field.onChange}
                                 label="Parent Category"
                                 placeholder={ "Select a parent category"}
                                 disabledIds={[data.id]}
