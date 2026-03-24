@@ -36,6 +36,9 @@ const CreateCategoryForm: React.FC = () => {
     const toast = useToast();
 
     const onSubmit = (data: CreateCategoryPayload) => {
+        if (data.parentId === "none") {
+            data.parentId = undefined;
+        }
         createCategoryFn(data, {
             onSuccess: () => {
                 toast.success("Category created successfully");
@@ -101,7 +104,7 @@ const CreateCategoryForm: React.FC = () => {
                             render={({ field }) => (
                                 <CategorySelector
                                     value={field.value || "none"}
-                                    onChange={(val) => field.onChange(val === "none" ? undefined : val)}
+                                    onChange={field.onChange}
                                     label="Parent Category (Optional)"
                                     placeholder={ "Select a parent category"}
                                     includeNoneOption={true}

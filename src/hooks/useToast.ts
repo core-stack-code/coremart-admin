@@ -62,6 +62,13 @@ export const useToast = () => {
                     loadingToastId.current = null;
                 }
             }
+
+            return () => {
+                if (loadingToastId.current) {
+                    toast.dismiss(loadingToastId.current);
+                    loadingToastId.current = null;
+                }
+            };
         }, [flag, message]);
     };
 

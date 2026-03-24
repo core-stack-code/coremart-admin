@@ -33,7 +33,6 @@ export const defaultCreateProductVariant: CreateProductVariantPayload = {
     sizeId: "",
     colorId: "",
     materialId: "",
-    imageUrl: "",
     sku: {
         price: 0,
         stock: 0,
