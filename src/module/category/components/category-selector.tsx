@@ -46,7 +46,7 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
         const availableCategories = response.data.filter(cat => !excludeIds.includes(cat.id));
 
         const options = availableCategories.map(cat => ({
-            label: cat.name,
+            label: `${cat.name} (${cat.slug})`,
             value: cat.id
         }));
 
