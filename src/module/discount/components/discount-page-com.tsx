@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, { Suspense } from 'react';
 import Link from 'next/link';
 import { useDiscountList } from '../api/query';
 import { usePagination } from '@/hooks/usePagination';
@@ -13,8 +13,18 @@ import PaginationComponent from '@composite/pagination-comp';
 import PageTitle from '@/components/common/page-title';
 import { Button } from '@ui/button';
 
-
+ 
 const DiscountPageCom: React.FC = () => {
+    return (
+        <Suspense fallback={<TableSkeleton columns={8} rows={10} />}>
+            <DiscountPageComponent />
+        </Suspense>
+    )
+}
+
+
+
+const DiscountPageComponent: React.FC = () => {
     const { page, handleLimitChange, handlePageChange, limit } = usePagination();
     const { data, isLoading, error } = useDiscountList({ page, limit });
 

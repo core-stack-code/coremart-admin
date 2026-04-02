@@ -22,3 +22,9 @@ export const updateProfile = z.object({
 
 export type LoginFormType = z.infer<typeof loginSchema>;
 export type UpdateProfileFormType = z.infer<typeof updateProfile>;
+
+
+export const defaultLoginFormValue: LoginFormType = {
+    email: "",
+    password: ""
+}

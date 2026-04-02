@@ -14,6 +14,7 @@ export const useCreateVariant = (
         mutationFn: (payload) => createVariant(payload),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: [QUERY_REGISTRY.getProductDetail] });
+            queryClient.invalidateQueries({ queryKey: [QUERY_REGISTRY.getProductList] });
         },
         ...options,
     });
@@ -56,6 +57,7 @@ export const useDeleteVariant = (
         mutationFn: (payload) => deleteVariant(payload),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: [QUERY_REGISTRY.getProductDetail] });
+            queryClient.invalidateQueries({ queryKey: [QUERY_REGISTRY.getProductList] });
         },
         ...options,
     });

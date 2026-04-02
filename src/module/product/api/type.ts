@@ -28,6 +28,7 @@ export type ProductListItem = {
 export type ProductListParams = {
     page: number,
     limit: number,
+    search?: string
 }
 
 export type ProductListResponse = {
