@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, { Suspense } from 'react';
 import Link from 'next/link';
 import { useGetProductList } from '../api/query';
 import { usePagination } from '@/hooks/usePagination';
@@ -12,11 +12,26 @@ import NoDataFound from '@/components/common/no-data-found';
 import PaginationComponent from '@composite/pagination-comp';
 import PageTitle from '@/components/common/page-title';
 import { Button } from '@ui/button';
-
+import DebouncedSearchInput from '@/components/composite/debounced-search-input';
 
 const ProductPageCom: React.FC = () => {
+    return (
+        <Suspense fallback={<TableSkeleton columns={8} rows={10} />}>
+            <ProductPageComponent />
+        </Suspense>
+    )
+}
+
+const ProductPageComponent: React.FC = () => {
     const { page, handleLimitChange, handlePageChange, limit } = usePagination()
-    const { data, isLoading, error } = useGetProductList({ page, limit });
+    
+    const [searchQuery, setSearchQuery] = React.useState<string | undefined>(undefined);
+
+    const { data, isLoading, error } = useGetProductList({ 
+        page,
+        limit,
+        search: searchQuery?.trim() !== '' ? searchQuery?.trim() : undefined
+    });
 
     const getContent = () => {
         if (isLoading) return <TableSkeleton columns={8} rows={10} />;
@@ -28,7 +43,7 @@ const ProductPageCom: React.FC = () => {
         if (!products || products.length === 0) {
             return <NoDataFound 
                 title="No Products Found" 
-                description="Get started by creating your first product." 
+                description="Get started by creating your first product or try adjusting your search." 
             />;
         }
 
@@ -46,7 +61,6 @@ const ProductPageCom: React.FC = () => {
         );
     };
 
-    
     return (
         <section className="space-y-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <PageTitle
@@ -60,6 +74,15 @@ const ProductPageCom: React.FC = () => {
                     </Link>
                 }
             />
+
+            <div className="flex items-center justify-between gap-4">
+                <DebouncedSearchInput
+                    placeholder="Search products..."
+                    onSearch={setSearchQuery}
+                    className="xl:min-w-md min-w-xs"
+                />
+            </div>
+
             {getContent()}
         </section>
     );

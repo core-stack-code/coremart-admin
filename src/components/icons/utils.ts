@@ -38,7 +38,8 @@ import {
     Package,
     ShoppingCart,
     DollarSign,
-    Calendar
+    Calendar,
+    Search
 } from "lucide-react";
 
 import { 
@@ -93,7 +94,8 @@ export const LUCIDE_ICON_MAP = {
     Package,
     ShoppingCart,
     DollarSign,
-    Calendar
+    Calendar,
+    Search
 }
 
 export const CUSTOM_ICON_MAP = {

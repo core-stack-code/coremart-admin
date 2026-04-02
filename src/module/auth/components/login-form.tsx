@@ -5,7 +5,7 @@ import { Controller, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 
 import { useLogin } from "../api/mutation"
-import { LoginFormType, loginSchema } from "../utils/schema"
+import { defaultLoginFormValue, LoginFormType, loginSchema } from "../utils/schema"
 import { flatZodError } from "@/lib/zod/flatZodError"
 import { useToast } from "@/hooks/useToast"
 
@@ -20,7 +20,8 @@ const LoginForm: React.FC = () => {
     const toast = useToast()
 
     const form = useForm<LoginFormType>({
-        resolver: zodResolver(loginSchema)
+        resolver: zodResolver(loginSchema),
+        defaultValues: defaultLoginFormValue
     })
     const { control, getValues, handleSubmit, formState: { errors } } = form
 

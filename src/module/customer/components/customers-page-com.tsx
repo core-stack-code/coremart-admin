@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, { Suspense } from 'react';
 import { usePagination } from '@/hooks/usePagination';
 import { useGetCustomerList } from '../api/query';
 
@@ -12,6 +12,16 @@ import PaginationComponent from '@composite/pagination-comp';
 
 
 const CustomersPageCom: React.FC = () => {
+    return (
+        <Suspense fallback={<TableSkeleton columns={8} rows={10} />}>
+            <CustomersPageComponent />
+        </Suspense>
+    )
+}
+
+
+
+const CustomersPageComponent: React.FC = () => {
     const { page, limit, handleLimitChange, handlePageChange } = usePagination();
     const { data, isLoading, error } = useGetCustomerList({ page, limit });
 

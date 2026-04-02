@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useGetOrderList } from '../api/query';
 import { usePagination } from '@/hooks/usePagination';
 
@@ -17,7 +17,17 @@ interface OrderPageComProps {
 
 
 const OrdersPageCom: React.FC<OrderPageComProps> = ({ initialLimit = 10, isShowPagination = true }) => {
-    const { handleLimitChange, handlePageChange, page, limit } = usePagination(1, initialLimit);
+    return (
+        <Suspense fallback={<TableSkeleton columns={8} rows={10} />}>
+            <OrdersPageComponent initialLimit={initialLimit} isShowPagination={isShowPagination} />
+        </Suspense>
+    )
+}
+
+
+
+const OrdersPageComponent: React.FC<OrderPageComProps> = ({ initialLimit = 10, isShowPagination = true }) => {
+    const { handleLimitChange, handlePageChange, page, limit } = usePagination(initialLimit);
     const { data, isLoading, error } = useGetOrderList({ page, limit });
 
     const getContent = () => {

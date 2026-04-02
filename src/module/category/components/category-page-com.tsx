@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, { Suspense } from 'react';
 import Link from 'next/link';
 import { useGetCategoryList } from '../api/query';
 import { usePagination } from '@/hooks/usePagination';
@@ -15,6 +15,16 @@ import { Button } from '@/components/ui/button';
 
 
 const CategoryPageCom: React.FC = () => {
+    return (
+        <Suspense fallback={<TableSkeleton columns={8} rows={10} />}>
+            <CategoryPageComponent />
+        </Suspense>
+    )
+}
+
+
+
+const CategoryPageComponent: React.FC = () => {
     const { page, limit, handleLimitChange, handlePageChange } = usePagination()
     const { data: response, isLoading, isError } = useGetCategoryList({ page, limit });
 
