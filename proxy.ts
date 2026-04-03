@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ADMIN_COOKIES } from "@/constants/api-registery";
-import { Log } from "@/lib/utils";
 
 export const config = {
     matcher: [
@@ -20,13 +19,6 @@ export function proxy(req: NextRequest) {
     }
 
     const token = req.cookies.get(ADMIN_COOKIES.refreshToken)?.value;
-    Log('checking in proxy', {
-        token,
-        pathName,
-        one: pathName.startsWith("/login"),
-        two: !token,
-        three: req.nextUrl.searchParams.get('redirect'),
-    })
 
     if (req.nextUrl.searchParams.get('redirect') && pathName === "/login") {
         return NextResponse.redirect(new URL('/login', req.url));
