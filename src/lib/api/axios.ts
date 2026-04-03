@@ -17,6 +17,7 @@ const api: AxiosInstance = axios.create({
 let isRefreshing = false
 let isRedirecting = false
 let failedQueue: any[] = []
+ const skipRefreshUrls = ['/login', '/refresh-token', '/logout'];
 
 const processQueue = (error: any) => {
     failedQueue.forEach(prom => {
@@ -44,7 +45,15 @@ api.interceptors.response.use(
     async (error) => {
         const originalRequest = error.config;
 
-        if (error.response?.status === 401) {
+        if (!originalRequest) {
+            return Promise.reject(error);
+        }
+
+        const status = error.response ? error.response.status : error.status;
+       
+        const isSkipUrl = !!originalRequest.url && skipRefreshUrls.some(url => originalRequest.url.includes(url));
+
+        if (status === 401 && !isSkipUrl) {
             if (!originalRequest._retry) {
                 if (isRefreshing) {
                     return new Promise((resolve, reject) => {
@@ -78,7 +87,7 @@ api.interceptors.response.use(
 
                     if (typeof window !== "undefined" && !isRedirecting) {
                         isRedirecting = true
-                        window.location.href = "/login?clearSession=true";
+                        window.location.replace("/login");
                     }
                     
                     return Promise.reject(errorObj)
@@ -86,7 +95,7 @@ api.interceptors.response.use(
             } else {
                 if (typeof window !== "undefined" && !isRedirecting) {
                     isRedirecting = true
-                    window.location.href = "/login?clearSession=true";
+                    window.location.replace("/login");
                     
                     const errorObj: ApiError = {
                         code: "UNAUTHORIZED",
@@ -100,23 +109,23 @@ api.interceptors.response.use(
         }
 
         if (!error.response) {
-            const error: ApiError = {
+            const errorObj: ApiError = {
                 code: "INTERNAL_SERVER_ERROR",
                 message: "Unable to reach server. Please check your internet connection.",
                 success: false,
                 status: 500,
             }
 
-            Log("errorObj", error)
+            Log("errorObj", errorObj)
 
-            return Promise.reject(error);
+            return Promise.reject(errorObj);
         }
 
         const errorObj: ApiError = {
             code: error.response.data?.code || "INTERNAL_SERVER_ERROR",
             message: error.response.data?.message || "Something went wrong",
             success: false,
-            status: error.status,
+            status: error.response.status,
         }
 
         Log("errorObj", errorObj)
