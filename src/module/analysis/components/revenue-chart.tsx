@@ -61,7 +61,7 @@ const RevenueChart: React.FC = () => {
 
         return (
             <div className="h-[350px] w-full mt-4 -ml-4">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height="100%" minWidth={250}>
                     <LineChart data={chartData} margin={{ top: 5, right: 20, left: 10, bottom: 0 }}>
                         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border)" />
                         <XAxis 
