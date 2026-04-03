@@ -55,6 +55,7 @@ export const useAssignProductToBrand = (
         ...options,
         onSuccess: (...args) => {
             queryClient.invalidateQueries({ queryKey: [QUERY_REGISTRY.getProductDetail] });
+            queryClient.invalidateQueries({ queryKey: [QUERY_REGISTRY.getProductList] });
             if (options?.onSuccess) {
                 options.onSuccess(...args);
             }
@@ -73,6 +74,7 @@ export const useRemoveProductToBrand = (
         ...options,
         onSuccess: (...args) => {
             queryClient.invalidateQueries({ queryKey: [QUERY_REGISTRY.getProductDetail] });
+            queryClient.invalidateQueries({ queryKey: [QUERY_REGISTRY.getProductList] });
             if (options?.onSuccess) {
                 options.onSuccess(...args);
             }
