@@ -17,7 +17,7 @@ const api: AxiosInstance = axios.create({
 let isRefreshing = false
 let isRedirecting = false
 let failedQueue: any[] = []
-const skipRefreshUrls = ['/login', '/refresh-token', '/logout'];
+const skipRefreshUrls = ['/admin/login', '/admin/refresh-token'];
 
 const processQueue = (error: any) => {
     failedQueue.forEach(prom => {
