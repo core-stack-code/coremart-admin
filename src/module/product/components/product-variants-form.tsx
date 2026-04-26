@@ -189,7 +189,7 @@ const ProductVariantsForm: React.FC<ProductVariantsFormProps> = ({ data }) => {
                                                 ...prev, sku: { ...prev.sku, skuCode: val } as any 
                                             }))}
                                         />
-                                        <div className="flex flex-col gap-3 pb-[10px] pl-2">
+                                        <div className="flex flex-col gap-3 pb-2.5 pl-2">
                                             <Typography variant="small" className="font-semibold text-xs uppercase tracking-wider text-muted-foreground">Status</Typography>
                                             <div className="flex items-center gap-2 h-9">
                                                 <Switch 
