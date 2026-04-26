@@ -110,7 +110,7 @@ const CreateProductForm: React.FC = () => {
                                         value={field.value}
                                         onChange={field.onChange}
                                         errMsg={formState.errors.description?.message}
-                                        className="min-h-[160px] resize-y"
+                                        className="min-h-40 resize-y"
                                     />
                                 )}
                             />

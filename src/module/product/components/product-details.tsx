@@ -21,7 +21,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
     const { data: response, isLoading, isError } = useGetProductDetail(productId)
 
     const getContent = () => {
-        if (isLoading) return <Skeleton className="h-[600px] w-full mt-4" />
+        if (isLoading) return <Skeleton className="h-150 w-full mt-4" />
         if (isError) return <ErrorBlock message="Failed to load product details" />
         if (!response || !response.data) return <NoDataFound title="Not Found" description="Product not found" />
 
